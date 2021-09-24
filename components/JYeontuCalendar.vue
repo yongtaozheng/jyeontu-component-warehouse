@@ -30,7 +30,7 @@
 
 <script>
 export default {
-  name: 'myCalendar',
+  name: 'JYeontuCalendar',
   props: {
     title: {
       type: String,
