@@ -13,7 +13,7 @@
 2.  xxxx
 3.  xxxx
 #### 效果预览
-[预览地址](http://localhost:8081/#/homePage)
+[预览地址](http://jdhnv787.xyz/JYeontuComponents/#/homePage)
 #### 使用说明
 
 1.  JYeontuCalendar：[https://blog.csdn.net/Twinkle_sone/article/details/120465663](http://https://blog.csdn.net/Twinkle_sone/article/details/120465663)
