@@ -22,6 +22,7 @@
     "vue-style-loader": "^4.1.3",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "compression-webpack-plugin": "^8.0.1"
   }
 }
