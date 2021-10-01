@@ -1,0 +1,34 @@
+{
+  "name": "routerConfig",
+  "menu": [{
+    "id": "1",
+    "name": "home",
+    "path": "/homePage",
+    "label": "首页",
+    "selected": true,
+    "icon": "icon-home",
+    "open": true,
+    "component": "views/homePage/homePage.vue",
+    "children": []
+  },{
+    "id": 2,
+    "name": "calendar",
+    "path": "/calendar",
+    "label": "日历",
+    "select": false,
+    "icon": "icon-calendar",
+    "open": false,
+    "component": "views/calendar/calendar.vue",
+    "children": []
+  },{
+    "id": 3,
+    "name": "electronicNumber",
+    "path": "/electronicNumber",
+    "label": "电子屏数字",
+    "select": false,
+    "icon": "icon-number",
+    "open": false,
+    "component": "views/electronicNumber/electronicNumber.vue",
+    "children": []
+  }]
+}

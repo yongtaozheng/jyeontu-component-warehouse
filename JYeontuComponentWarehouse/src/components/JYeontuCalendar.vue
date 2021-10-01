@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="template">
 		<div id="header" class="header">
 			<div class="header-title">{{title}}</div>
 			<div class="btn-list">
@@ -18,7 +18,7 @@
 			 </div>
 			 <div @click="clickDay(item)"
 				  class="grid-day grid"
-				  :class="{'selected': item == selectDay}"
+          :class="gridClass(item)"
 				  v-for="(item,index) in days"
 				  :key="index">
 				 {{item.split('-')[2]}}
@@ -50,6 +50,15 @@ export default {
     }
   },
   methods: {
+    gridClass(item){
+      if(item == this.selectDay){
+        return 'selected'
+      }
+      if(item.split('-')[1] != this.selectMonth.split('-')[1]){
+        return 'gray'
+      }
+      return '';
+    },
     setBg () {
       let src = this.bgSrc
       let box = document.getElementById('header')
@@ -127,7 +136,7 @@ export default {
       // const nextMonths = this.getMonthDays(nextYear, nextMonth)
       let days = []
       for (let i = 0; i < startWeek; i++) {
-        days.unshift(preYear + '-' + preMonth + '-' + (preMonths - i))
+        days.unshift(preYear + '-' + this.zero(preMonth) + '-' + this.zero(preMonths - i))
       }
       for (let i = 1; i <= months; i++) {
         days.push(year + '-' + this.zero(month) + '-' + this.zero(i))
@@ -138,6 +147,14 @@ export default {
       return days
     },
     clickDay (day) {
+      let clickMonth = parseInt(day.split('-')[1]),
+          selectMonth = parseInt(this.selectMonth.split('-')[1]);
+      if(clickMonth == selectMonth - 1){
+        this.toPreMonth();
+      }
+      if(clickMonth == selectMonth + 1){
+        this.toNextMonth();
+      }
       this.selectDay = day
       this.$emit('selectDay', day)
     },
@@ -185,23 +202,34 @@ export default {
     .header{
       height: calc(100vw * 9 / 16);
     }
+    .select-month{
+      flex: 2;
+      font-size: medium !important;
+      font-weight: bold !important;
+    }
   }
   .header{
     display: flex;
     flex-direction: column;
     .header-title{
       line-height: 5rem;
+      font-size: larger;
+      font-weight: bold;
     }
     .btn-list{
       display: flex;
       padding: 1rem;
       margin-top: auto;
+      cursor: pointer;
       .btn-list-left{
         padding: 0.5rem;
         width: 40%;
         display: flex;
         .select-month{
+          color: black;
           flex: 2;
+          font-size: larger;
+          font-weight: bolder;
         }
         .btn-pre{
           flex: 1;
@@ -237,6 +265,10 @@ export default {
     }
     .grid-week{
       border-top: #005599 solid 1px;
+      background-color: skyblue;
+    }
+    .grid-day{
+      cursor: pointer;
     }
     .grid-week:nth-child(7){
       border-right: #005599 solid 1px;
@@ -255,6 +287,9 @@ export default {
     }
     .grid-day:nth-child(42){
       border-right: #005599 solid 1px;
+    }
+    .gray{
+      background-color: slategrey;
     }
 	}
 </style>

@@ -1,0 +1,30 @@
+{
+  "id": "2846995",
+  "name": "JYeontuComponents",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1727474",
+      "name": "234日历",
+      "font_class": "calendar",
+      "unicode": "e8cf",
+      "unicode_decimal": 59599
+    },
+    {
+      "icon_id": "698898",
+      "name": "数字",
+      "font_class": "number",
+      "unicode": "e660",
+      "unicode_decimal": 58976
+    },
+    {
+      "icon_id": "8679369",
+      "name": "主页",
+      "font_class": "home",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    }
+  ]
+}
