@@ -30,5 +30,26 @@
     "open": false,
     "component": "views/electronicNumber/electronicNumber.vue",
     "children": []
+  },{
+    "id": 4,
+    "name": "games",
+    "path": "/games",
+    "label": "游戏",
+    "select": false,
+    "icon": "icon-number",
+    "open": false,
+    "component": "",
+    "children": [{
+      "id": 401,
+      "name": "tetris",
+      "path": "/tetris",
+      "label": "俄罗斯方块",
+      "select": false,
+      "icon": "icon-number",
+      "open": false,
+      "component": "views/games/tetris.vue",
+      "children": []
+    }
+    ]
   }]
 }
