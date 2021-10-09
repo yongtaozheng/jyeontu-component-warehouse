@@ -72,9 +72,13 @@ export default {
 @media screen and (max-width:1000px) {
   .drawer-left-content{
     display: block;
+	font-size: x-small !important;
   }
   .left-content{
-    display: none;
+	display: none;
+  }
+  #app{
+	  font-size: x-small !important;
   }
 }
 body {

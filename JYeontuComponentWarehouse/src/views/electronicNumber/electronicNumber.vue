@@ -2,8 +2,8 @@
   <div class="content">
     <electronicNumber
         :numbers="numbers"
-        :numberColor="numberColor"
-        :numberSize="numberSize"
+        :number-color="numberColor"
+        :number-size="numberSize"
     >
     </electronicNumber>
   </div>
@@ -20,7 +20,7 @@ export default {
     return {
       numbers:[],
       numberColor:'#8076a3',
-      numberSize:'3rem'
+      numberSize:'1rem'
     }
   },
   mounted(){

@@ -1,19 +1,43 @@
 <template>
   <div id="topMenu">
+	<electronic-number
+	    :numbers="numbers"
+	    :number-color="numberColor"
+	    :number-size="numberSize"
+		class="electronic-number"
+	>
+	</electronic-number>
     <span id="username" class="username">JYeontu</span>
     <img class="avatar" src="../../assets/logo.png" alt="">
   </div>
 </template>
 
 <script>
+import electronicNumber from '@/components/electronicNumber'
+import { getToday } from '@/utils/dateTool'
 export default {
-  name: 'top',
-  data () {
-    return {}
+  name: 'topMenu',
+  components:{
+    electronicNumber
   },
-  methods: {},
+  data () {
+    return {
+		numbers:[],
+		numberColor:'pink',
+		numberSize:'0.6rem'
+	}
+  },
+  methods: {
+	  getTime(){
+	    let day = getToday('yyyy-mm-dd hh:MM:ss');
+	    this.numbers = [day];
+	    setTimeout(()=>{
+	      this.getTime();
+	    },1000);
+	  }
+  },
   created () {
-
+	  this.getTime();
   },
   mounted () {
     const username = document.getElementById('username')
@@ -25,26 +49,30 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .avatar {
   width: 40px;
   height: 40px;
   border-radius: 20px;
-  float: right;
+  // float: right;
   margin: 10px;
 }
 
 .username {
-  float: right;
+  // float: right;
   line-height: 60px;
   margin-right: 20px;
   color: white;
+  font-size: 1rem;
 }
 
 #topMenu {
   background-color: #111827;
   min-width: 100vw;
   height: 60px;
+  display:-webkit-flex;
+  align-items:center;
+  flex-direction: row-reverse;
 }
 
 @keyframes blink {
@@ -63,5 +91,10 @@ export default {
   /*animation-delay: var(--delay);*/
   animation-timing-function: ease-in-out;
   animation-duration: .4s;
+}
+.electronic-number{
+	// float: right;
+	line-height: 60px;
+	margin-right: 4rem;
 }
 </style>
