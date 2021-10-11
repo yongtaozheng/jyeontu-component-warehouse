@@ -168,4 +168,4 @@ export const numberToChineseWords = money => {
 		 }
 	 }
 	 return flag + res;
- }
+ };
