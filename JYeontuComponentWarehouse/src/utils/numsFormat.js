@@ -169,3 +169,49 @@ export const numberToChineseWords = money => {
 	 }
 	 return flag + res;
  };
+ 
+ /**
+  * @description 整数转罗马数字
+  * @param {number} num 整数
+  * @return {string} 罗马数字
+  */
+var intToRoman = function(num) {
+    const thousands = ["", "M", "MM", "MMM"];
+    const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
+    const tens     = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
+    const ones     = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+
+    const roman = [];
+    roman.push(thousands[Math.floor(num / 1000)]);
+    roman.push(hundreds[Math.floor(num % 1000 / 100)]);
+    roman.push(tens[Math.floor(num % 100 / 10)]);
+    roman.push(ones[num % 10]);
+    return roman.join('');
+};
+
+/**
+  * @description 罗马数字转整数
+ * @param {string} s 罗马数字
+ * @return {number} 整数
+ */
+var romanToInt = function(s) {
+    const symbolValues = new Map();
+    symbolValues.set('I', 1);
+    symbolValues.set('V', 5);
+    symbolValues.set('X', 10);
+    symbolValues.set('L', 50);
+    symbolValues.set('C', 100);
+    symbolValues.set('D', 500);
+    symbolValues.set('M', 1000);  
+    let ans = 0;
+    const n = s.length;
+    for (let i = 0; i < n; ++i) {
+        const value = symbolValues.get(s[i]);
+        if (i < n - 1 && value < symbolValues.get(s[i + 1])) {
+            ans -= value;
+        } else {
+            ans += value;
+        }
+    }
+    return ans;
+};
