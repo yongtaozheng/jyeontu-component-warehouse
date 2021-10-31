@@ -74,7 +74,13 @@ export default {
     display: block;
   }
   .left-content{
-    display: none;
+	display: none;
+  }
+  #leftMenu{
+	font-size: small !important;
+  }
+  #routerViewContent{
+	  font-size: small !important;
   }
 }
 body {

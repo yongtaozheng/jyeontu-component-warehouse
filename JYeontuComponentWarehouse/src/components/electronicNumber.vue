@@ -1,5 +1,5 @@
 <template>
-  <div class="numbers-style">
+  <div class="numbers-style" id="electronic-number">
     <div v-for="(number,numberIndex) in numbers"
          :key="numberIndex"
          class="number-style">
@@ -44,7 +44,6 @@ export default {
   //监控data中的数据变化",
   watch: {},
   mounted(){
-
   },
   //方法集合",
   methods: {
@@ -218,6 +217,9 @@ export default {
       return [];
     },
     rowStyle(row){
+	  const content = document.getElementById('electronic-number');
+	  // console.log(content.offsetHeight,content.offsetWidth);
+	  // const w = content.offsetWidth,h = content.offsetHeight;
       let res = `width:calc(${this.numberSize}/5);height:calc(${this.numberSize}/5);`;
       if(row == 1){
         res += `background-color: ${this.numberColor};`;
