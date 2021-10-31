@@ -78,12 +78,17 @@ export default {
     changeBlock(){
       let x = this.x,y = this.y;
       let block = this.block;
+      let newblock = control.changeBlock(block);
+
       clearTimeout(fallDownTime);
+      if(this.x + newblock.length >= this.map.length) return;
       this.reflesh(block,x,y,true);
-      block = control.changeBlock(block);
-      this.block = block;
-      this.reflesh(block,x,y,false);
-      this.fallDownBlock(block);
+      if(newblock.length > block.length){
+        x = Math.max(x - newblock.length + block.length,0);
+      }
+      this.block = newblock;
+      this.reflesh(newblock,x,y,false);
+      this.fallDownBlock(newblock);
     },
     //初始化游戏数据
     initGame(){
@@ -100,8 +105,8 @@ export default {
     generatorBlock(){
       //随机选取
       let randomNum = tools.randomNum(0,this.blockList.length - 1);
-      let block = this.blockList[0];
-      block = control.changeBlock(block);
+      let block = this.blockList[randomNum];
+      // block = control.changeBlock(block);
       this.block = block;
       return block;
     },
