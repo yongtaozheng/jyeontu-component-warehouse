@@ -51,5 +51,15 @@
       "children": []
     }
     ]
+  },{
+    "id": 5,
+    "name": "flowChartView",
+    "path": "/flowChartView",
+    "label": "流程图",
+    "select": false,
+    "icon": "icon-calendar",
+    "open": false,
+    "component": "views/flowChartView.vue",
+    "children": []
   }]
 }
