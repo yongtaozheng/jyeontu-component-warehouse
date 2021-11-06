@@ -31,6 +31,26 @@
     "component": "views/electronicNumber/electronicNumber.vue",
     "children": []
   },{
+    "id": 5,
+    "name": "flowChartView",
+    "path": "/flowChartView",
+    "label": "流程图",
+    "select": false,
+    "icon": "icon-calendar",
+    "open": false,
+    "component": "views/flowChartView.vue",
+    "children": []
+  },{
+    "id": 6,
+    "name": "JTableView",
+    "path": "/JTableView",
+    "label": "表格",
+    "select": false,
+    "icon": "icon-calendar",
+    "open": false,
+    "component": "views/JTableView.vue",
+    "children": []
+  },{
     "id": 4,
     "name": "games",
     "path": "/games",
@@ -51,15 +71,5 @@
       "children": []
     }
     ]
-  },{
-    "id": 5,
-    "name": "flowChartView",
-    "path": "/flowChartView",
-    "label": "流程图",
-    "select": false,
-    "icon": "icon-calendar",
-    "open": false,
-    "component": "views/flowChartView.vue",
-    "children": []
   }]
 }

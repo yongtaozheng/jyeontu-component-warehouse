@@ -1,0 +1,144 @@
+<template>
+  <j-table :title="title"
+           :tableData="tableData">
+  </j-table>
+</template>
+
+<script>
+import JTable from '@/components/JTable.vue'
+export default {
+  name: "JTableView",
+  //import引入的组件需要注入到对象中才能使用",
+  components: {
+    JTable,
+  },
+  data() {
+    //这里存放数据",
+    return {
+      title:[
+        {
+          title:'姓名',//展示列名
+          key:'name',//字段名
+          type: '', // 列类型
+          readOnly:true,//是否只读
+          width:'35vw',//列宽度
+          columnStyle: '', // 列样式
+          fixed: false,//是否固定
+          sort: false, // 是否支持排序
+        },
+        {
+          title:'年龄',//展示列名
+          key:'age',//字段名
+          type: '', // 列类型
+          readOnly:false,//是否只读
+          width:'25vw',//列宽度
+          columnStyle: '', // 列样式
+          fixed: false,//是否固定
+          sort: true, // 是否支持排序
+        },
+        {
+          title:'职业',//展示列名
+          key:'work',//字段名
+          type: '', // 列类型
+          readOnly:true,//是否只读
+          width:'40vw',//列宽度
+          columnStyle: '', // 列样式
+          fixed: false,//是否固定
+          sort: false, // 是否支持排序
+        }
+      ],
+      tableData:[
+        {
+          'name':'张三',
+          'age':'18',
+          'work':'法外狂徒'
+        },
+        {
+          'name':'李四',
+          'age':'18',
+          'work':'学生'
+        },
+        {
+          'name':'王五',
+          'age':'22',
+          'work':'工程师'
+        }
+      ],
+    };
+  },
+  //监听属性 类似于data概念",
+  computed: {},
+  //监控data中的数据变化",
+  watch: {},
+  //方法集合",
+  methods: {},
+  //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载
+  beforeCreate() {
+  },
+
+  //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
+  created() {
+
+  },
+  //生命周期 - 挂载之前",html模板未渲染
+  beforeMount() {
+
+  },
+
+  //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
+  mounted() {
+
+  },
+
+  //生命周期 - 更新之前",数据模型已更新,html模板未更新
+  beforeUpdate() {
+
+  },
+  //生命周期 - 更新之后",数据模型已更新,html模板已更新
+  updated() {
+
+  },
+  //生命周期 - 销毁之前",
+  beforeDestroy() {
+
+  },
+  destroyed() {
+
+  },
+  //生命周期 - 销毁完成",
+  //如果页面有keep-alive缓存功能，这个函数会触发",
+  activated() {
+
+  },
+
+
+  // "http-get请求": {
+  //   "prefix": "httpget",
+  //     "body": [
+  //     "this.\({",
+  //     "url: this.\\$http.adornUrl(''),",
+  //     "method: 'get',",
+  //     "params: this.\\$http.adornParams({})",
+  //     "}).then(({ data }) => {",
+  //     "})"
+  //   ],
+  //     "description": "httpGET请求"
+  // },
+  // "http-post请求": {
+  //   "prefix": "httppost",
+  //     "body": [
+  //     "this.\({",
+  //     "url: this.\\$http.adornUrl(''),",
+  //     "method: 'post',",
+  //     "data: this.\\$http.adornData(data, false)",
+  //     "}).then(({ data }) => { });"
+  //   ],
+  //     "description": "httpPOST请求"
+  // }
+  // }
+}
+</script>
+
+<style scoped>
+
+</style>

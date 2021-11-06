@@ -33,6 +33,7 @@
 					</div>
 					<div :id="item.id"
 						@mousedown="itemClick(index1,index,item.id,item)"
+            @touchend="itemClick(index1,index,item.id,item)"
 						:style="getItemStyle(item)">
 						<img :src="item.icon"
 							v-if="item.icon !== ''"
@@ -98,10 +99,12 @@
 				if(this.chartData.dragAble){
 					window.addEventListener('mouseup',this.handleMouseup);
 					window.addEventListener('mouseover',this.handleMouseover);
+					window.addEventListener('touchcancel',this.handleMouseup);
+					window.addEventListener('touchmove',this.handleMouseover);
 				}
 				this.preventEvent();
+        this.initStyle();
 				this.initData();
-				this.initStyle();
 				window.onresize = this.onReSize;
 			},
 			//阻止默认事件
@@ -129,9 +132,9 @@
 				const x = event.pageX,y = event.pageY;
 				dom.style.visibility = 'hidden';
 				// if(x > l && x < (l + w) && y > t && y < (t + h)){
-					
-				// }else{ 
-					
+
+				// }else{
+
 				// }
 				if(this.vChartDataList[this.oldInd]) this.vChartDataList[this.oldInd].opacity = 1;
 				chartContent.style.border='none';
@@ -167,7 +170,7 @@
 					if(oldInd < 0) return;
 					this.vChartDataList.splice(oldInd,0,{...this.selectedItem});
 					this.initData();
-					
+
 				}
 			},
 			//获取当前移动到的坐标
@@ -219,7 +222,7 @@
 				}
 				this.itemWidth = itemWidth;
 				this.itemNum = Math.floor(width / (itemWidth + itemWidth / 5));
-				// console.log('initStyle',width,height,itemWidth);
+				console.log('initStyle',width,height,itemWidth);
 			},
 			//初始化数据
 			initData(){
@@ -236,7 +239,7 @@
 					}
 				}
 				this.chartDataList = res;
-				// console.log('initData',res);
+				console.log('initData',res);
 			},
 			//重组class
 			getClass(res,str){
@@ -337,6 +340,7 @@
 		border-radius: 50% 50%;
 	}
 	.flow-chart{
+    width: 100%;
 		.chart-title{
 		}
 		.chart-content{

@@ -8,6 +8,9 @@ import '@/assets/icon/iconfont.css'
 
 Vue.use(ElementUI)
 
+
+
+Vue.config.devtools = true;
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <top>
-    </top>
-    <div style="display: flex;width: 100vw">
+    <div class="top-content" id="top-content">
+      <top></top>
+    </div>
+    <div style="display: flex;">
       <el-drawer
           class="drawer-left-content"
           title="菜单"
@@ -11,11 +12,15 @@
           :before-close="handleClose">
         <left class="drawer-left-content"></left>
       </el-drawer>
-      <left class="left-content"></left>
+      <div class="left-content" id="left-content">
+        <left></left>
+      </div>
       <i class="menuBtn el-icon-menu drawer-left-content" @click="drawer = true" type="primary"
          style="margin-left: 10px;">
       </i>
-      <router-view class="router-viewContent" id="routerViewContent"></router-view>
+      <div class="router-viewContent" id="routerViewContent">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -43,15 +48,22 @@ export default {
     reSizeWidth () {
       let a = document.getElementById('leftMenu')
       let aWidth = a.offsetWidth
+      let aHeight = a.offsetHeight
       let b = document.getElementById('topMenu')
       let bWidth = b.offsetWidth
+      let bHeight = b.offsetHeight
       let c = document.getElementById('routerViewContent')
       c.style.width = bWidth - aWidth + 'px'
+      c.style.marginTop = parseInt(bHeight) + 'px'
+      c.style.marginLeft = parseInt(aWidth) + 'px'
+      c.style.padding = '2rem'
+      a.style.marginTop = parseInt(bHeight) + 'px'
+      console.log(aWidth,bWidth);
     }
   },
   mounted () {
     // setTimeout(() => {
-    //   this.reSizeWidth()
+      this.reSizeWidth()
     // }, 1000)
   }
 }
@@ -60,13 +72,17 @@ export default {
 <style lang="scss">
 .router-viewContent{
   //height: calc(100vh - 60px);
-  width: 100%;
+  //width: 100%;
 }
 .drawer-left-content{
   display: none;
 }
+.top-content{
+  position: fixed;
+}
 .left-content{
   display: block;
+  position: fixed;
 }
 
 @media screen and (max-width:1000px) {
@@ -74,7 +90,8 @@ export default {
     display: block;
   }
   .left-content{
-	display: none;
+	  display: none;
+    position: fixed;
   }
   #leftMenu{
 	font-size: small !important;

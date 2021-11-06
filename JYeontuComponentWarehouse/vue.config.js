@@ -4,7 +4,6 @@ let path = require('path')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-
 module.exports = {
   productionSourceMap: false, // 不生成map文件，解决项目上线首次打开加载慢的问题
   publicPath: './', // 解决打包文件，访问空白的文件路径问题
