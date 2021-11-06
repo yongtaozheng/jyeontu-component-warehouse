@@ -33,7 +33,7 @@
 					</div>
 					<div :id="item.id"
 						@mousedown="itemClick(index1,index,item.id,item)"
-            @touchend="itemClick(index1,index,item.id,item)"
+            @touchstart="itemClick(index1,index,item.id,item)"
 						:style="getItemStyle(item)">
 						<img :src="item.icon"
 							v-if="item.icon !== ''"
@@ -99,7 +99,7 @@
 				if(this.chartData.dragAble){
 					window.addEventListener('mouseup',this.handleMouseup);
 					window.addEventListener('mouseover',this.handleMouseover);
-					window.addEventListener('touchcancel',this.handleMouseup);
+					window.addEventListener('touchend',this.handleMouseup);
 					window.addEventListener('touchmove',this.handleMouseover);
 				}
 				this.preventEvent();

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div style="display: flex">
-      <div style="width: 40%;">
+    <div class="view-body">
+      <div class="flowchart-body">
         <flowchart :chartData = "chartData"></flowchart>
       </div>
-      <div style="width: 40%;margin-top: 2rem;margin-left: 10%">
+      <div class="table-body">
         <div>流程图chartData配置表</div>
         <j-table :title="title"
                  :tableData="tableData">
@@ -15,7 +15,6 @@
         </j-table>
       </div>
     </div>
-    <pre v-highlightjs=code ><code class="javascript"></code></pre>
 
   </div>
 </template>
@@ -229,5 +228,31 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  .view-body{
+    display: flex;
+    flex-direction: row;
+    .flowchart-body{
+      width: 40%;
+    }
+    .table-body{
+      width: 40%;
+      margin-top: 2rem;
+      margin-left: 10%;
+    }
+  }
+  @media screen and (max-width:1000px) {
+    .view-body{
+      display: flex;
+      flex-direction: column;
+      .flowchart-body{
+        width: 100%;
+      }
+      .table-body{
+        width: 80%;
+        margin-top: 2rem;
+        margin-left: 10%;
+      }
+    }
+  }
 </style>

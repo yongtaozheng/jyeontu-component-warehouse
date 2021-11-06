@@ -98,6 +98,7 @@ export default {
   }
   #routerViewContent{
 	  font-size: small !important;
+    margin-left: 0px;
   }
 }
 body {
