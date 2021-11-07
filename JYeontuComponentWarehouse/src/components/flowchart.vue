@@ -1,5 +1,5 @@
 <template>
-	<div class="flow-chart">
+	<div class="flow-chart" id="flow-chart">
 		<div class="char-title">
 			{{chartData.title}}
 		</div>
@@ -64,12 +64,12 @@
 		  chartData: {
 		    type: Object,
 		    default: {
-				title:'',//标题
-				dragAble:false,//是否可拖拽
-				width:0,//每个item的宽度
-				data:[],
-				radius:false//图标是否圆角
-			}
+          title:'',//标题
+          dragAble:false,//是否可拖拽
+          width:0,//每个item的宽度
+          data:[],
+          radius:false//图标是否圆角
+			  }
 		  },
 		},
 		data(){
@@ -109,10 +109,10 @@
 			},
 			//阻止默认事件
 			preventEvent(){
-				document.ondragstart = function() {
+        document.getElementById('flow-chart').ondragstart = function() {
 					return false;
 				};
-				document.onselectstart = function () {
+				document.getElementById('flow-chart').onselectstart = function () {
 					return false;
 				};
 			},
@@ -222,7 +222,7 @@
 				}
 				this.itemWidth = itemWidth;
 				this.itemNum = Math.floor(width / (itemWidth + itemWidth / 5));
-				console.log('initStyle',width,height,itemWidth);
+				// console.log('initStyle',width,height,itemWidth);
 			},
 			//初始化数据
 			initData(){
@@ -239,7 +239,7 @@
 					}
 				}
 				this.chartDataList = res;
-				console.log('initData',res);
+				// console.log('initData',res);
 			},
 			//重组class
 			getClass(res,str){

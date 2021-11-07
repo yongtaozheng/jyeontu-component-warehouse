@@ -15,18 +15,20 @@
         </j-table>
       </div>
     </div>
-
+    <code-height-light :code="code"></code-height-light>
   </div>
 </template>
 
 <script>
-	import flowchart from '@/components/flowchart.vue'
+  import flowchart from '@/components/flowchart.vue'
+  import codeHeightLight from '@/components/codeHeightLight.vue'
   import JTable from '@/components/JTable.vue'// 引入组件
 	export default {
 		name:'flowChartView',
 		components:{
 			flowchart,
-      JTable
+      JTable,
+      codeHeightLight
 		},
 		data(){
 			return {
@@ -181,10 +183,10 @@
 
           chartData:{
             title:'可拖拽流程图',
-                dragAble:true,
-                width:50,
-                radius:true,
-                data:[
+            dragAble:true,
+            width:50,
+            radius:true,
+            data:[
               {
                 icon:require('@/assets/logo.png'),
                 text:'准备'
@@ -251,7 +253,7 @@
       .table-body{
         width: 80%;
         margin-top: 2rem;
-        margin-left: 10%;
+        margin-left: 0;
       }
     }
   }
