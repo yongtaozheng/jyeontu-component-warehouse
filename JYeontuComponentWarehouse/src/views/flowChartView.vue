@@ -178,6 +178,8 @@
       this.chartData.data = this.chartData.data.concat([...data]);
       this.code = `
           <flowchart :chartData = "chartData"></flowchart>
+          <div></div>
+          <div></div>
 
           import flowchart from '@/components/flowchart.vue'
 
@@ -252,8 +254,7 @@
       }
       .table-body{
         width: 80%;
-        margin-top: 2rem;
-        margin-left: 0;
+        margin: 2rem auto;
       }
     }
   }

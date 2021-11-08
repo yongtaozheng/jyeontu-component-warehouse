@@ -9,6 +9,7 @@
       </div>
       <div class="content-body" v-show="isCodeShow">
         <span class="code-copy" @click="copyCode()">复制代码</span>
+		<pre id="content-code-html" class="content-code-html"></pre>
         <pre id="content-code" class="content-code">
 
         </pre>
@@ -34,7 +35,8 @@ export default {
       icon:'>',
       text:'查看代码',
       isCodeShow:false,
-      showCode:''
+      showCode:'',
+	  htmlCode:''
     };
   },
   //监听属性 类似于data概念",
@@ -69,12 +71,24 @@ export default {
       alter('已复制');
     },
     replaceKeyWord(){
+	  const contentCodeHtml = document.getElementById('content-code-html');
       let showCode = this.code;
       //html标签
-      let htmlReg = '(<[a-z]+)( .*>.*)(</[a-z]+>)';
-      //code = code.replace(new RegExp(htmlReg,'g'),"<span style='color: yellow'>$1</span>$2<span style='color: yellow'>$3</span>");
+      let htmlReg = / *<([a-z]+)(.*>.*)<\/([a-z]+)>/g;
+	  let textCode = showCode.match(htmlReg);
+	  textCode = textCode.join('\n');
+	  
+	  let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
+	  textCode = textCode.replace(tagReg,"<span>\<</span><span style='color: #F9273F'>$1</span><span style='color: green'>$2</span>$4<span style='color:yellow'>$5</span>$6\><span>\<</span><span>\/</span><span style='color: #F9273F'>$7</span><span>\></span>")
+	  //<flowchart :chartData = "chartData"></flowchart>
+	  //1 flowchart 2 :chartData 5 chartData 7 flowchart
+	  
+	  contentCodeHtml.innerHTML = textCode;
+	  
+      showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
+	  
       //字符串
-      let regStr = '\'(.+)\'';
+      let regStr = '\'(.*)\'';
       showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color: green'>'$1'</span>");
       //js关键字
       let keyWord = ['import','from','require','let','var','const','this','true','false'];
@@ -84,11 +98,12 @@ export default {
         // console.log('------',reg,keyWord[i],code);
       }
       //变量名
-      let varReg = '?!(style=\'.*):';
-      // code = code.replace(new RegExp(varReg,'g'),"<span style='color: purple'> $1</span>$2");
+      let varReg = '( .+)(:)(\{|<span style=)';
+	  // console.log(showCode.match(varReg,'g'));
+      showCode = showCode.replace(new RegExp(varReg,'g'),"<span style='color: purple'>$1</span>$2$3");
 
       this.showCode = showCode;
-
+	  
     }
   },
   //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载
@@ -161,6 +176,13 @@ export default {
         float: right;
         padding: 0.2rem 0.5rem;
       }
+	  #content-code-html{
+        text-align: left;
+        margin:0 auto;
+        background-color: #111827;
+        color: white;
+		padding-top: 1.5rem;
+	  }
       #content-code{
         text-align: left;
         margin:0 auto;
