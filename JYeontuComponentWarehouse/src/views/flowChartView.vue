@@ -179,7 +179,7 @@
       this.code = `
           <flowchart :chartData = "chartData"></flowchart>
           <div></div>
-          <div></div>
+          <div><span></span></div>
 
           import flowchart from '@/components/flowchart.vue'
 

@@ -78,8 +78,9 @@ export default {
 	  let textCode = showCode.match(htmlReg);
 	  textCode = textCode.join('\n');
 	  
-	  let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
-	  textCode = textCode.replace(tagReg,"<span>\<</span><span style='color: #F9273F'>$1</span><span style='color: green'>$2</span>$4<span style='color:yellow'>$5</span>$6\><span>\<</span><span>\/</span><span style='color: #F9273F'>$7</span><span>\></span>")
+	  // let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
+	  let tagReg = /(<)([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*(>)|(<)\/([a-zA-Z]+)(>)/g
+	  textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: #F9273F'>$2</span><span style='color: green'>$3</span>$5<span style='color:yellow'>$6</span>$7$8<span>$9</span><span></span><span style='color: #F9273F'>$10</span><span>$11</span>")
 	  //<flowchart :chartData = "chartData"></flowchart>
 	  //1 flowchart 2 :chartData 5 chartData 7 flowchart
 	  
