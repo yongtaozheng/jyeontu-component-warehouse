@@ -27,8 +27,8 @@
 		name:'flowChartView',
 		components:{
 			flowchart,
-      JTable,
-      codeHeightLight
+			  JTable,
+			  codeHeightLight
 		},
 		data(){
 			return {
@@ -177,10 +177,14 @@
       this.chartData.data = this.chartData.data.concat([...data]);
       this.chartData.data = this.chartData.data.concat([...data]);
       this.code = `
-          <flowchart :chartData = "chartData"></flowchart>
-          <div class="div">测试</div>
-          <div>测试<span>测试</span>测试</div>
-
+          <flowchart :chartData="chartData"></flowchart>
+          <a-b-b-b-b>121</a-b-b-b-b>
+		  12134
+		  <j-table :title="title" :tableData="tableData">
+		  <a-b></a-b>
+		  <a-b-b-b-b></a-b-b-b-b>
+		  </j-table>
+		  
           import flowchart from '@/components/flowchart.vue'
 
           chartData:{

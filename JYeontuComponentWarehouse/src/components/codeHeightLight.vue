@@ -4,7 +4,7 @@
     <div class="content">
       <div class="content-head" :icon="icon" @click="doShowCode()">
         <span class="content-head-text">
-          {{text}}
+          {{isCodeShow ? "收起代码" : "查看代码"}}
         </span>
       </div>
       <div class="content-body" v-show="isCodeShow">
@@ -45,7 +45,6 @@ export default {
     //这里存放数据",
     return {
       icon:'>',
-      text:'查看代码',
       isCodeShow:true,
       showCode:'',
 	    htmlCode:''
@@ -60,11 +59,9 @@ export default {
     doShowCode(){
       if(this.isCodeShow){
         this.isCodeShow = false;
-        this.text = "查看代码";
         this.icon = ">";
       }else{
         this.isCodeShow = true;
-        this.text = "收起代码";
         this.icon = "∨";
       }
     },
@@ -82,21 +79,69 @@ export default {
       //提示已复制
       alter('已复制');
     },
+	t(str){
+		console.log('aaa'+str);
+		return 'aaa' + str;
+	},
+	getColor(type,str){
+		let res = '';
+		let color = this.color;
+		res = '<span style="color:'+ color[type] +'">'+ str +'</span>';
+		return res;
+	},
     replaceKeyWord(){
+	  console.log('replaceKeyWord');
       let colors = this.color;
 	  const contentCodeHtml = document.getElementById('content-code-html');
       let showCode = this.code;
       //html标签
-      let htmlReg = / *<([a-z]+)(.*>.*)<\/([a-z]+)>/g;
+      let htmlReg = /<.*>(.|[\r\n])*<.*>/g;
 	  let textCode = showCode.match(htmlReg);
 	  textCode = textCode.join('\n');
+	  console.log('textCode',textCode);
 
 	  // let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
-	  let tagReg = /(<)([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*(>)|(<)(\/)([a-zA-Z]+)(>)/g
-	  textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: " + colors.tagWordColor + "'>$2</span><span style='color: "+ colors.attrWoedColor +"'>$3</span>$5<span style='color:" + colors.attrValueColor + "'>$6</span>$7$8<span>$9</span><span>$10</span><span style='color: " + colors.tagWordColor + "'>$11</span><span>$12</span>");
+	  // let tagReg = /(<)([a-zA-Z](-*[a-zA-Z])+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*(>)|(<)(\/)([a-zA-Z](-*[a-zA-Z])+)(>)/g
+	  // textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: " + colors.tagWordColor + "'>$2</span><span style='color: "+ colors.attrWoedColor +"'>$4</span>$5<span style='color:" + colors.attrValueColor + "'>$7</span>$8$9<span>$10</span><span>$11</span><span style='color: " + colors.tagWordColor + "'>$12</span><span>$14</span>");
+	  let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
+	  textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
+		  console.log('--------');
+		  console.log("s1",s1);
+		  console.log("s2",s2);
+		  console.log("s3",s3);
+		  console.log("s4",s4);
+		  console.log("s5",s5);
+		  console.log("s6",s6);
+		  console.log("s7",s7);
+		  console.log("s8",s8);
+		  console.log("s9",s9);
+		  console.log("s10",s10);
+		  console.log('--------');
+		  if(s4 == undefined) return '<span>' + s1 + '</span>';
+		  let res = '<span><<span>' + this.getColor('tagWordColor',s4) + ' ';
+		  let flag = false;
+		  s6 = s6.split('></');
+		  // if(s6.length > 1) flag = true;
+		  s6 = s6[0];
+		  s6 = s6.split(' ');
+		  for(let i = 0; i < s6.length; i++){
+			  if(s6[i] !== ''){
+				  let t = s6[i].split('=');
+				  if(t.length == 2){
+					  res += this.getColor('attrWoedColor',t[0]);
+					  res += '=';
+					  res += this.getColor('attrValueColor',t[1]);
+					  res += ' ';
+				  }
+			  }
+		  }
+		  res += '<span>><</span>/' + this.getColor('tagWordColor',s4) + '<span>></span>';
+		  console.log('s1----res----',s1,res);
+		  return(res);
+	  })
+	  console.log('---textCode---',textCode);
 	  //<flowchart :chartData = "chartData"></flowchart>
 	  //1 flowchart 2 :chartData 5 chartData 7 flowchart
-
 	  contentCodeHtml.innerHTML = textCode;
 
       showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
@@ -118,7 +163,6 @@ export default {
       showCode = showCode.replace(varReg,"<span style='color: " + colors.varWordColor + "'>$1</span>:");
 
       this.showCode = showCode;
-
     }
   },
   //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载

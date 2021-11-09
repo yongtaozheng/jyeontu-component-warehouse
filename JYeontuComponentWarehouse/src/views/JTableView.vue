@@ -1,16 +1,38 @@
 <template>
-  <j-table :title="title"
-           :tableData="tableData">
-  </j-table>
+	<split-horizontal>
+		<template v-slot:header-p>
+			<div class="header">表格组件</div>
+		</template>
+		<template v-slot:left-p>
+			<j-table :title="title"
+					 :tableData="tableData">
+			</j-table>
+		</template>
+		<template v-slot:right-p>
+			<j-table :title="title"
+					 :tableData="tableData">
+			</j-table>
+		</template>
+		<template v-slot:footer-p>
+			<code-height-light :code="code"
+								class="footer">
+				
+			</code-height-light>
+		</template>
+	</split-horizontal>
 </template>
 
 <script>
 import JTable from '@/components/JTable.vue'
+import splitHorizontal from '@/components/pages/splitHorizontal.vue'
+import codeHeightLight from '@/components/codeHeightLight.vue'
 export default {
   name: "JTableView",
   //import引入的组件需要注入到对象中才能使用",
   components: {
     JTable,
+	splitHorizontal,
+	codeHeightLight
   },
   data() {
     //这里存放数据",
@@ -64,6 +86,8 @@ export default {
           'work':'工程师'
         }
       ],
+	  chaetData:{},
+	  code:''
     };
   },
   //监听属性 类似于data概念",
@@ -78,7 +102,60 @@ export default {
 
   //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
   created() {
-
+	  this.code = `
+			<j-table :title="title" :tableData="tableData">
+	        </j-table>
+	  		  
+	  		  title:[
+	  		    {
+	  		      title:'姓名',//展示列名
+	  		      key:'name',//字段名
+	  		      type: '', // 列类型
+	  		      readOnly:true,//是否只读
+	  		      width:'35vw',//列宽度
+	  		      columnStyle: '', // 列样式
+	  		      fixed: false,//是否固定
+	  		      sort: false, // 是否支持排序
+	  		    },
+	  		    {
+	  		      title:'年龄',//展示列名
+	  		      key:'age',//字段名
+	  		      type: '', // 列类型
+	  		      readOnly:false,//是否只读
+	  		      width:'25vw',//列宽度
+	  		      columnStyle: '', // 列样式
+	  		      fixed: false,//是否固定
+	  		      sort: true, // 是否支持排序
+	  		    },
+	  		    {
+	  		      title:'职业',//展示列名
+	  		      key:'work',//字段名
+	  		      type: '', // 列类型
+	  		      readOnly:true,//是否只读
+	  		      width:'40vw',//列宽度
+	  		      columnStyle: '', // 列样式
+	  		      fixed: false,//是否固定
+	  		      sort: false, // 是否支持排序
+	  		    }
+	  		  ],
+	  		  tableData:[
+	  		    {
+	  		      'name':'张三',
+	  		      'age':'18',
+	  		      'work':'法外狂徒'
+	  		    },
+	  		    {
+	  		      'name':'李四',
+	  		      'age':'18',
+	  		      'work':'学生'
+	  		    },
+	  		    {
+	  		      'name':'王五',
+	  		      'age':'22',
+	  		      'work':'工程师'
+	  		    }
+	  		  ],
+	  		 `
   },
   //生命周期 - 挂载之前",html模板未渲染
   beforeMount() {
@@ -87,7 +164,7 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
   mounted() {
-
+	  
   },
 
   //生命周期 - 更新之前",数据模型已更新,html模板未更新
@@ -139,6 +216,14 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+	.header{
+		min-height: 4rem;
+		text-align: center;
+	}
+	.footer{
+		margin-top: 2rem;
+		margin-left: 2%;
+		width:95%;
+	}
 </style>
