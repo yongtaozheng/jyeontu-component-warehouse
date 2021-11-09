@@ -95,31 +95,23 @@ export default {
 	  const contentCodeHtml = document.getElementById('content-code-html');
       let showCode = this.code;
       //html标签
-      let htmlReg = /<.*>(.|[\r\n])*<.*>/g;
+      let htmlReg = /.*<.*>(.|[\r\n])*<.*>/g;
 	  let textCode = showCode.match(htmlReg);
 	  textCode = textCode.join('\n');
-	  console.log('textCode',textCode);
+	  // console.log('textCode',textCode);
 
-	  // let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
-	  // let tagReg = /(<)([a-zA-Z](-*[a-zA-Z])+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*(>)|(<)(\/)([a-zA-Z](-*[a-zA-Z])+)(>)/g
-	  // textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: " + colors.tagWordColor + "'>$2</span><span style='color: "+ colors.attrWoedColor +"'>$4</span>$5<span style='color:" + colors.attrValueColor + "'>$7</span>$8$9<span>$10</span><span>$11</span><span style='color: " + colors.tagWordColor + "'>$12</span><span>$14</span>");
 	  let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
 	  textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
-		  console.log('--------');
-		  console.log("s1",s1);
-		  console.log("s2",s2);
-		  console.log("s3",s3);
-		  console.log("s4",s4);
-		  console.log("s5",s5);
-		  console.log("s6",s6);
-		  console.log("s7",s7);
-		  console.log("s8",s8);
-		  console.log("s9",s9);
-		  console.log("s10",s10);
-		  console.log('--------');
+		  let res = '';
 		  if(s4 == undefined) return '<span>' + s1 + '</span>';
-		  let res = '<span><<span>' + this.getColor('tagWordColor',s4) + ' ';
+		  res += '<span><<span>' + this.getColor('tagWordColor',s4) + ' ';
 		  let flag = false;
+		  let text = s6.match(/>(.*)</);
+		  if(text && text.length > 1){
+			  text = text[1];
+		  }else{
+			  text = '';
+		  }
 		  s6 = s6.split('></');
 		  // if(s6.length > 1) flag = true;
 		  s6 = s6[0];
@@ -135,17 +127,13 @@ export default {
 				  }
 			  }
 		  }
-		  res += '<span>><</span>/' + this.getColor('tagWordColor',s4) + '<span>></span>';
-		  console.log('s1----res----',s1,res);
+		  res += '<span>>' + text + '<</span>/' + this.getColor('tagWordColor',s4) + '<span>></span>';
 		  return(res);
 	  })
-	  console.log('---textCode---',textCode);
-	  //<flowchart :chartData = "chartData"></flowchart>
-	  //1 flowchart 2 :chartData 5 chartData 7 flowchart
 	  contentCodeHtml.innerHTML = textCode;
 
       showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
-
+	  // showCode = showCode.replace(/[\n]/g,'<br/>')
       //字符串
       let regStr = '\'(.*)\'';
       showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color: " + colors.strWordColor + "'>'$1'</span>");
@@ -161,6 +149,8 @@ export default {
 	  let varReg = /(?!color)( [a-zA-Z]+):/g
 	  // console.log(showCode.match(varReg,'g'));
       showCode = showCode.replace(varReg,"<span style='color: " + colors.varWordColor + "'>$1</span>:");
+	  //greyWords
+	  showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color:grey'>$1$2</span>")
 
       this.showCode = showCode;
     }

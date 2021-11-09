@@ -178,12 +178,6 @@
       this.chartData.data = this.chartData.data.concat([...data]);
       this.code = `
           <flowchart :chartData="chartData"></flowchart>
-          <a-b-b-b-b>121</a-b-b-b-b>
-		  12134
-		  <j-table :title="title" :tableData="tableData">
-		  <a-b></a-b>
-		  <a-b-b-b-b></a-b-b-b-b>
-		  </j-table>
 		  
           import flowchart from '@/components/flowchart.vue'
 

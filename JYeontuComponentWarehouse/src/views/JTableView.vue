@@ -71,19 +71,19 @@ export default {
       ],
       tableData:[
         {
-          'name':'张三',
-          'age':'18',
-          'work':'法外狂徒'
+          name:'张三',
+          age:'18',
+          work:'法外狂徒'
         },
         {
-          'name':'李四',
-          'age':'18',
-          'work':'学生'
+          name:'李四',
+          age:'18',
+          work:'学生'
         },
         {
-          'name':'王五',
-          'age':'22',
-          'work':'工程师'
+          name:'王五',
+          age:'22',
+          work:'工程师'
         }
       ],
 	  chaetData:{},
@@ -106,6 +106,9 @@ export default {
 			<j-table :title="title" :tableData="tableData">
 	        </j-table>
 	  		  
+			  /**
+			   * 注释
+			   */
 	  		  title:[
 	  		    {
 	  		      title:'姓名',//展示列名
@@ -140,19 +143,19 @@ export default {
 	  		  ],
 	  		  tableData:[
 	  		    {
-	  		      'name':'张三',
-	  		      'age':'18',
-	  		      'work':'法外狂徒'
+	  		      name:'张三',
+	  		      age:'18',
+	  		      work:'法外狂徒'
 	  		    },
 	  		    {
-	  		      'name':'李四',
-	  		      'age':'18',
-	  		      'work':'学生'
+	  		      name:'李四',
+	  		      age:'18',
+	  		      work:'学生'
 	  		    },
 	  		    {
-	  		      'name':'王五',
-	  		      'age':'22',
-	  		      'work':'工程师'
+	  		      name:'王五',
+	  		      age:'22',
+	  		      work:'工程师'
 	  		    }
 	  		  ],
 	  		 `
