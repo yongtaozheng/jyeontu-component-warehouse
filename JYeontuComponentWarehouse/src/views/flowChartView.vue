@@ -178,8 +178,8 @@
       this.chartData.data = this.chartData.data.concat([...data]);
       this.code = `
           <flowchart :chartData = "chartData"></flowchart>
-          <div></div>
-          <div><span></span></div>
+          <div class="div">测试</div>
+          <div>测试<span>测试</span>测试</div>
 
           import flowchart from '@/components/flowchart.vue'
 

@@ -46,7 +46,7 @@ export default {
     return {
       icon:'>',
       text:'查看代码',
-      isCodeShow:false,
+      isCodeShow:true,
       showCode:'',
 	    htmlCode:''
     };
@@ -93,7 +93,7 @@ export default {
 
 	  // let tagReg = /<([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*><\/([a-z]+)>/g
 	  let tagReg = /(<)([a-z|\-]+)( :*[A-Za-z]+)*((.*=.*")(.*)("))*(>)|(<)(\/)([a-zA-Z]+)(>)/g
-	  textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: " + colors.tagWordColor + "'>$2</span><span style='color: "+ colors.attrWoedColor +"'>$3</span>$5<span style='color:" + colors.attrWoedColor + "'>$6</span>$7$8<span>$9</span><span>$10</span><span style='color: " + colors.tagWordColor + "'>$11</span><span>$12</span>")
+	  textCode = textCode.replace(tagReg,"<span>$1</span><span style='color: " + colors.tagWordColor + "'>$2</span><span style='color: "+ colors.attrWoedColor +"'>$3</span>$5<span style='color:" + colors.attrValueColor + "'>$6</span>$7$8<span>$9</span><span>$10</span><span style='color: " + colors.tagWordColor + "'>$11</span><span>$12</span>");
 	  //<flowchart :chartData = "chartData"></flowchart>
 	  //1 flowchart 2 :chartData 5 chartData 7 flowchart
 
@@ -112,9 +112,10 @@ export default {
         // console.log('------',reg,keyWord[i],code);
       }
       //变量名
-      let varReg = '( .+)(:)(\{|<span style=)';
+      // let varReg = '( .+)(:)({|\[|<span style=)';
+	  let varReg = /(?!color)( [a-zA-Z]+):/g
 	  // console.log(showCode.match(varReg,'g'));
-      showCode = showCode.replace(new RegExp(varReg,'g'),"<span style='color: " + colors.varWordColor + "'>$1</span>$2$3");
+      showCode = showCode.replace(varReg,"<span style='color: " + colors.varWordColor + "'>$1</span>:");
 
       this.showCode = showCode;
 
