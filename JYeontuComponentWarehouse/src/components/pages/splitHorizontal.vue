@@ -11,6 +11,9 @@
 				<slot name="right-p"></slot>
 			</div>
 		</div>
+		<div class="mid-p">
+			<slot name="mid-p"></slot>
+		</div>
 		<div class="view-footer">
 			<slot name="footer-p"></slot>
 		</div>
@@ -24,13 +27,31 @@
 	.view-body{
 	  display: flex;
 	  flex-direction: row;
+	  .mid-p{
+		  width:100%;
+	  }
 	  .left-p{
-	    width: 45%;
+	    width: 60%;
 		margin-left: 2%;
 	  }
 	  .right-p{
-	    width: 45%;
-		margin-left: 5%;
+	    width: 30%;
+		margin-top: 2rem;
+		margin-left: 10%;
 	  }
 	}
+  @media screen and (max-width:1000px) {
+    .view-body{
+      display: flex;
+      flex-direction: column;
+	  margin-left:0;
+      .left-p{
+        width: 100%;
+      }
+      .right-p{
+        width: 80%;
+        margin: 2rem auto;
+      }
+    }
+  }
 </style>

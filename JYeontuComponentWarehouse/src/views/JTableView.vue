@@ -9,8 +9,8 @@
 			</j-table>
 		</template>
 		<template v-slot:right-p>
-			<j-table :title="title"
-					 :tableData="tableData">
+			<j-table :title="title1"
+					 :tableData="tableData1">
 			</j-table>
 		</template>
 		<template v-slot:footer-p>
@@ -86,7 +86,63 @@ export default {
           work:'工程师'
         }
       ],
-	  chaetData:{},
+	  title1:[
+	    {
+	      title:'参数',//展示列名
+	      key:'parameter',//字段名
+	      type: '', // 列类型
+	      readOnly:true,//是否只读
+	      width:'20vw',//列宽度
+	      columnStyle: '', // 列样式
+	      fixed: false,//是否固定
+	      sort: false, // 是否支持排序
+	    },
+	    {
+	      title:'字段名',//展示列名
+	      key:'field',//字段名
+	      type: '', // 列类型
+	      readOnly:true,//是否只读
+	      width:'30vw',//列宽度
+	      columnStyle: '', // 列样式
+	      fixed: false,//是否固定
+	      sort: false, // 是否支持排序
+	    },
+	    {
+	      title:'数据类型',//展示列名
+	      key:'type',//字段名
+	      type: '', // 列类型
+	      readOnly:true,//是否只读
+	      width:'15vw',//列宽度
+	      columnStyle: '', // 列样式
+	      fixed: false,//是否固定
+	      sort: false, // 是否支持排序
+	    },
+	    {
+	      title:'描述',//展示列名
+	      key:'describe',//字段名
+	      type: '', // 列类型
+	      readOnly:true,//是否只读
+	      width:'35vw',//列宽度
+	      columnStyle: '', // 列样式
+	      fixed: false,//是否固定
+	      sort: false, // 是否支持排序
+	    }
+	  ],
+        tableData1:[
+          {
+            'parameter':'title',
+            'field':'表头',
+            'type':'Array',
+            'describe':'详细参数如下'
+          },
+          {
+            'parameter':'tableData',
+            'field':'表数据',
+            'type':'Array',
+            'describe':'详细参数如下'
+          }
+        ],
+	  chatData:{},
 	  code:''
     };
   },
@@ -105,9 +161,13 @@ export default {
 	  this.code = `
 			<j-table :title="title" :tableData="tableData">
 	        </j-table>
+			<!-- <div><div> -->
 	  		  
+			  import JTable from '@/components/JTable.vue'//引入组件
+			  
 			  /**
-			   * 注释
+			   * title中的title字段会作为表头显示
+			   * title中key值代表列名 与 tableData中数据属性对应
 			   */
 	  		  title:[
 	  		    {

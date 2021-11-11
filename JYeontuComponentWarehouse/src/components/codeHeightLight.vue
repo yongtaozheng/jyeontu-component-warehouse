@@ -7,12 +7,10 @@
           {{isCodeShow ? "收起代码" : "查看代码"}}
         </span>
       </div>
+	<div class="code-copy" @click="copyCode()">复制代码</div>
       <div class="content-body" v-show="isCodeShow">
-        <span class="code-copy" @click="copyCode()">复制代码</span>
 		<pre id="content-code-html" class="content-code-html"></pre>
-        <pre id="content-code" class="content-code">
-
-        </pre>
+        <pre id="content-code" class="content-code"></pre>
       </div>
     </div>
   </div>
@@ -31,13 +29,15 @@ export default {
     color:{
       type: Object,
       default: {
-        keyWordColor:'orange',
-        varWordColor:'purple',
-        tagWordColor:'#F9273F',
-        strWordColor:'green',
-        attrWoedColor:'green',
-        attrValueColor:'yellow'
-
+        keyWord:'orange',
+        varWord:'purple',
+        tagWord:'#F9273F',
+        strWord:'green',
+        attrWord:'green',
+        attrValue:'yellow',
+		methodkeyWord:'#74759b',
+		functionkeyWord:'#2c9678',
+		note:'grey'
       }
     }
   },
@@ -86,71 +86,94 @@ export default {
 	getColor(type,str){
 		let res = '';
 		let color = this.color;
-		res = '<span style="color:'+ color[type] +'">'+ str +'</span>';
+		res = '<span style="color :'+ color[type] +'">'+ str +'</span>';
 		return res;
 	},
     replaceKeyWord(){
-	  console.log('replaceKeyWord');
       let colors = this.color;
 	  const contentCodeHtml = document.getElementById('content-code-html');
       let showCode = this.code;
       //html标签
-      let htmlReg = /.*<.*>(.|[\r\n])*<.*>/g;
+      let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<.*>/g;
 	  let textCode = showCode.match(htmlReg);
 	  textCode = textCode.join('\n');
-	  // console.log('textCode',textCode);
-
+	  textCode = textCode.replace(/[\r]/g,'tab缩进');
+	  textCode = textCode.replace(/[\n]/g,'换行符');
 	  let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
 	  textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
 		  let res = '';
 		  if(s4 == undefined) return '<span>' + s1 + '</span>';
-		  res += '<span><<span>' + this.getColor('tagWordColor',s4) + ' ';
-		  let flag = false;
+		  res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
 		  let text = s6.match(/>(.*)</);
 		  if(text && text.length > 1){
 			  text = text[1];
 		  }else{
 			  text = '';
 		  }
-		  s6 = s6.split('></');
-		  // if(s6.length > 1) flag = true;
+		  s6 = s6.split(/>.*<\//);
 		  s6 = s6[0];
+		  s6 = s6.replace(/ *= */g,'=');
 		  s6 = s6.split(' ');
 		  for(let i = 0; i < s6.length; i++){
 			  if(s6[i] !== ''){
 				  let t = s6[i].split('=');
 				  if(t.length == 2){
-					  res += this.getColor('attrWoedColor',t[0]);
-					  res += '=';
-					  res += this.getColor('attrValueColor',t[1]);
-					  res += ' ';
+					  res += this.getColor('attrWord',t[0]);
+					  res += ' = ';
+					  res += this.getColor('attrValue',t[1]);
+					  if(i < s6.length - 1) res += ' ';
 				  }
 			  }
 		  }
-		  res += '<span>>' + text + '<</span>/' + this.getColor('tagWordColor',s4) + '<span>></span>';
+		  res += '<span>>' + text + '<</span>/' + this.getColor('tagWord',s4) + '<span>></span>';
 		  return(res);
 	  })
+	  textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
+	  textCode = textCode.replace(/换行符/g,'<br/>');
 	  contentCodeHtml.innerHTML = textCode;
 
       showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
-	  // showCode = showCode.replace(/[\n]/g,'<br/>')
+	  
+	  
+	  // showCode = showCode.replace(/[\t]/g,'\t ')
+	  
       //字符串
       let regStr = '\'(.*)\'';
-      showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color: " + colors.strWordColor + "'>'$1'</span>");
-      //js关键字
+      showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>'$1'</span>");
+      
+	  //js关键字
       let keyWord = ['import','from','require','let','var','const','this','true','false'];
       for(let i = 0; i < keyWord.length; i++){
         let regKeyWord = '('+ keyWord[i] + ')';
-        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color: " + colors.keyWordColor + "'>$1</span>");
+        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$1</span>");
         // console.log('------',reg,keyWord[i],code);
       }
+	  
+	  //js方法
+	  let functions = /([a-zA-Z0-9_]+)\(\)/g;
+	  let functionKeyWord = showCode.match(functions) || [];
+	  functionKeyWord = functionKeyWord.map((item) => {
+							return item.slice(0,item.length - 2)
+						})
+	  for(let i = 0; i < functionKeyWord.length; i++){
+	    let regFunctionKeyWord = '('+ functionKeyWord[i] + ')';
+	    showCode = showCode.replace(new RegExp(regFunctionKeyWord,'g'),"<span style='color : " + colors.functionkeyWord + "'>$1</span>");
+	  }
+	  
+	  let methodKeyWord = ['setTimeout','toString','praseInt','praseFloat'];
+	  for(let i = 0; i < methodKeyWord.length; i++){
+	    let regMethodKeyWord = '('+ methodKeyWord[i] + ')';
+	    showCode = showCode.replace(new RegExp(regMethodKeyWord,'g'),"<span style='color : " + colors.methodkeyWord + "'>$1</span>");
+	    // console.log('------',regMethodKeyWord,methodKeyWord[i]);
+	  }
+	  
       //变量名
       // let varReg = '( .+)(:)({|\[|<span style=)';
-	  let varReg = /(?!color)( [a-zA-Z]+):/g
+	  let varReg = /([a-zA-Z]+):/g
 	  // console.log(showCode.match(varReg,'g'));
-      showCode = showCode.replace(varReg,"<span style='color: " + colors.varWordColor + "'>$1</span>:");
+      showCode = showCode.replace(varReg,"<span style='color : " + colors.varWord + "'>$1</span>:");
 	  //greyWords
-	  showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color:grey'>$1$2</span>")
+	  showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color :"+ colors.note +"'>$1$2</span>")
 
       this.showCode = showCode;
     }
@@ -199,48 +222,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .content{
-    .content-head{
-      background-color: grey;
-      height: 2rem;
-      .content-head-text{
-        line-height: 2rem;
-      }
-      &:after{
-        content: attr(icon);
-        color: black;
-        position: relative;
-        float: right;
-        font-size: x-large;
-        margin-right: 10px;
-        line-height: 2rem;
-      }
-    }
-    .content-body{
-      height: 400px;
-      overflow: scroll;
-      .code-copy{
-        cursor: pointer;
-        color: white;
-        float: right;
-        padding: 0.2rem 0.5rem;
-      }
-	  #content-code-html{
-        text-align: left;
-        margin:0 auto;
+	.code-height-light{
         background-color: #111827;
-        color: white;
-		padding-top: 1.5rem;
-	  }
-      #content-code{
-        text-align: left;
-        margin:0 auto;
-        background-color: #111827;
-        color: white;
-        .orange{
-          color: orange;
-        }
-      }
-    }
-  }
+		.content{
+		  .content-head{
+		    background-color: grey;
+		    height: 2rem;
+		    .content-head-text{
+		      line-height: 2rem;
+		    }
+		    &:after{
+		      content: attr(icon);
+		      color: black;
+		      position: relative;
+		      float: right;
+		      font-size: x-large;
+		      margin-right: 10px;
+		      line-height: 2rem;
+		    }
+		  }
+		    .code-copy{
+		      cursor: pointer;
+		      color: white;
+			  text-align: right;
+		      padding: 0.2rem 0.5rem;
+			  
+		    }
+		  .content-body{
+		    height: 400px;
+		    overflow: scroll;
+			  #content-code-html{
+		      text-align: left;
+		      margin:0 auto;
+		      background-color: #111827;
+		      color: white;
+				padding-top: 1.5rem;
+			  }
+		    #content-code{
+		      text-align: left;
+		      margin:0 auto;
+		      background-color: #111827;
+		      color: white;
+		    }
+		  }
+		}
+	}
 </style>

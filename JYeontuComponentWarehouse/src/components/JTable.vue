@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="j-table-content">
     <table class="j-table">
       <tr class="j-table-tr j-table-title">
         <th v-for="(item,index) in title"
@@ -142,41 +142,46 @@ export default{
 </script>
 
 <style lang="scss" scoped>
-.j-table{
-  border-collapse:collapse;
-  .j-table-title{
-
-  }
-  .j-table-tr{
-    border-bottom: 1px solid black;
-    .j-table-tr-th{
-      background-color: #0EB9E5;
-      border-right: 1px solid grey;
-      padding: 4px 4px 4px 4px;
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-    }
-    .j-table-tr-th:last-child{
-      border-right: none;
-    }
-    .j-table-tr-td{
-      border-right: 1px solid grey;
-      padding: 4px 4px 4px 4px;
-      overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-      .j-table-tr-td-input{
-        border: 0;  // 去除未选中状态边框
-        outline: none; // 去除选中状态边框
-        background-color: rgba(0, 0, 0, 0);// 透明背景
-        text-align: center;
-        width: inherit;
-      }
-    }
-    .j-table-tr-td:last-child{
-      border-right: none;
-    }
-  }
+.j-table-content{
+	 overflow:scroll;
+	 overflow-y:hidden;
+	.j-table{
+	  border-collapse:collapse;
+	  .j-table-title{
+	
+	  }
+	  .j-table-tr{
+	    border-bottom: 1px solid black;
+	    .j-table-tr-th{
+	      background-color: #0EB9E5;
+	      border-right: 1px solid grey;
+	      padding: 4px 4px 4px 4px;
+	      overflow: hidden;
+	      text-overflow:ellipsis;
+	      white-space: nowrap;
+	    }
+	    .j-table-tr-th:last-child{
+	      border-right: none;
+	    }
+	    .j-table-tr-td{
+	      border-right: 1px solid grey;
+	      padding: 4px 4px 4px 4px;
+	      overflow: hidden;
+	      text-overflow:ellipsis;
+	      white-space: nowrap;
+		  word-break: break-all;
+	      .j-table-tr-td-input{
+	        border: 0;  // 去除未选中状态边框
+	        outline: none; // 去除选中状态边框
+	        background-color: rgba(0, 0, 0, 0);// 透明背景
+	        text-align: center;
+	        width: inherit;
+	      }
+	    }
+	    .j-table-tr-td:last-child{
+	      border-right: none;
+	    }
+	  }
+	}
 }
 </style>

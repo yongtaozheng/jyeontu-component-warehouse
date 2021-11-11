@@ -51,6 +51,16 @@
     "component": "views/JTableView.vue",
     "children": []
   },{
+    "id": 7,
+    "name": "codeHeightLightView",
+    "path": "/codeHeightLightView",
+    "label": "代码高亮",
+    "select": false,
+    "icon": "icon-calendar",
+    "open": false,
+    "component": "views/codeHeightLightView.vue",
+    "children": []
+  },{
     "id": 4,
     "name": "games",
     "path": "/games",
