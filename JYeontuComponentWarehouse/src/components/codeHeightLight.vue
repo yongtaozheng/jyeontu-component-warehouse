@@ -2,7 +2,7 @@
   <div id="code-height-light" class="code-height-light">
     <input id="copy_content" type="text" value=""  style="position: absolute;top: 0;left: 0;opacity: 0;z-index: -10;"/>
     <div class="content">
-      <div class="content-head" :icon="icon" @click="doShowCode()">
+      <div class="content-head" :icon="isCodeShow ? '∨' : '>'" @click="doShowCode()">
         <span class="content-head-text">
           {{isCodeShow ? "收起代码" : "查看代码"}}
         </span>
