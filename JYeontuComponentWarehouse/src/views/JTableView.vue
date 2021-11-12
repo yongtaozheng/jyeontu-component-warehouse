@@ -160,8 +160,7 @@ export default {
   created() {
 	  this.code = `
 			<j-table :title="title" :tableData="tableData">
-	        </j-table>
-			<!-- <div><div> -->
+			</j-table>
 	  		  
 			  import JTable from '@/components/JTable.vue'//引入组件
 			  
