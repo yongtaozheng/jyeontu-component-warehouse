@@ -44,10 +44,20 @@ export default {
   data() {
     //这里存放数据",
     return {
-      icon:'>',
-      isCodeShow:true,
-      showCode:'',
-	    htmlCode:''
+        icon:'>',
+        isCodeShow:true,
+        showCode:'',
+	    htmlCode:'',
+		jsKeyWord:['import','from','require','let',
+					'var','const','this','true','false',
+					'case','continue','double','for',
+					'package','try','catch','if','while',
+					'else','false','in','switch','export',
+					'return','null','break','delete'],
+		jsKeyObj:['Array','Date','eval','function','hasOwnProperty',
+				'Infinity','isFinite','isNaN','isPrototypeOf','length',
+				'Math','NaN','name','Number','Object','prototype',
+				'String','toString','undefined','valueOf']
     };
   },
   //监听属性 类似于data概念",
@@ -142,9 +152,9 @@ export default {
       showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>'$1'</span>");
       
 	  //js关键字
-      let keyWord = ['import','from','require','let','var','const','this','true','false'];
+      let keyWord = this.jsKeyWord;
       for(let i = 0; i < keyWord.length; i++){
-        let regKeyWord = '('+ keyWord[i] + ')';
+        let regKeyWord = '('+ keyWord[i] + ' )';
         showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$1</span>");
         // console.log('------',reg,keyWord[i],code);
       }
