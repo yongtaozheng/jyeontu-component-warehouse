@@ -1,7 +1,7 @@
 {
   "name": "routerConfig",
   "menu": [{
-    "id": "1",
+    "id": 1,
     "name": "home",
     "path": "/homePage",
     "label": "首页",
@@ -36,7 +36,7 @@
     "path": "/flowChartView",
     "label": "流程图",
     "select": false,
-    "icon": "icon-calendar",
+    "icon": "icon-icon__liuchengtu",
     "open": false,
     "component": "views/flowChartView.vue",
     "children": []
@@ -46,7 +46,7 @@
     "path": "/JTableView",
     "label": "表格",
     "select": false,
-    "icon": "icon-calendar",
+    "icon": "icon-biaoge",
     "open": false,
     "component": "views/JTableView.vue",
     "children": []
@@ -56,7 +56,7 @@
     "path": "/codeHeightLightView",
     "label": "代码高亮",
     "select": false,
-    "icon": "icon-calendar",
+    "icon": "icon-daima",
     "open": false,
     "component": "views/codeHeightLightView.vue",
     "children": []
@@ -69,17 +69,6 @@
     "icon": "icon-number",
     "open": false,
     "component": "",
-    "children": [{
-      "id": 401,
-      "name": "tetris",
-      "path": "/tetris",
-      "label": "俄罗斯方块",
-      "select": false,
-      "icon": "icon-number",
-      "open": false,
-      "component": "views/games/tetris.vue",
-      "children": []
-    }
-    ]
+    "children": []
   }]
 }

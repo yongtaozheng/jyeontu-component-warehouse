@@ -31,11 +31,11 @@
 		  width:100%;
 	  }
 	  .left-p{
-	    width: 60%;
+	    width: 42%;
 		margin-left: 2%;
 	  }
 	  .right-p{
-	    width: 30%;
+	    width: 42%;
 		margin-top: 2rem;
 		margin-left: 10%;
 	  }
