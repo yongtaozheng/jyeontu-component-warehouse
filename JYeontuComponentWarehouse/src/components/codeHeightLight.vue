@@ -52,8 +52,8 @@ export default {
 					'var','const','this','true','false',
 					'case','continue','double','for',
 					'package','try','catch','if','while',
-					'else','false','in','switch','export',
-					'return','null','break','delete'],
+					'else','false','switch','export',
+					'return','null','break','delete '],
 		jsKeyObj:['Array','Date','eval','function','hasOwnProperty',
 				'Infinity','isFinite','isNaN','isPrototypeOf','length',
 				'Math','NaN','name','Number','Object','prototype',
@@ -152,12 +152,14 @@ export default {
       showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>'$1'</span>");
       
 	  //js关键字
-      let keyWord = this.jsKeyWord;
+      let keyWord = [...this.jsKeyWord];
+	  keyWord = keyWord.concat([...this.jsKeyObj]);
       for(let i = 0; i < keyWord.length; i++){
-        let regKeyWord = '('+ keyWord[i] + ' )';
-        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$1</span>");
+        let regKeyWord = '(([\t|\r| ])('+ keyWord[i] + ')( |,|\\.|\\(|;))';
+        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"$2<span style='color : " + colors.keyWord + "'>$3</span>$4");
         // console.log('------',reg,keyWord[i],code);
       }
+	  
 	  
 	  //js方法
 	  let functions = /([a-zA-Z0-9_]+)\(\)/g;
