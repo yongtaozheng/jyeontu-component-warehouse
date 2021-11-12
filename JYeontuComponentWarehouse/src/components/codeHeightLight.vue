@@ -155,8 +155,8 @@ export default {
       let keyWord = [...this.jsKeyWord];
 	  keyWord = keyWord.concat([...this.jsKeyObj]);
       for(let i = 0; i < keyWord.length; i++){
-        let regKeyWord = '(([\t|\r| ])('+ keyWord[i] + ')( |,|\\.|\\(|;))';
-        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"$2<span style='color : " + colors.keyWord + "'>$3</span>$4");
+        let regKeyWord = '((([\\t|\\r|\\n| ])*('+ keyWord[i] + '))( |,|\\.|\\(|;))';
+        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$2</span>$5");
         // console.log('------',reg,keyWord[i],code);
       }
 	  
