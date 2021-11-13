@@ -21,7 +21,7 @@
 		<template v-slot:footer-p>
 			<code-height-light :code="code"
 								class="footer">
-				
+
 			</code-height-light>
 		</template>
 	</split-horizontal>
@@ -112,26 +112,27 @@ export default {
   },
   created() {
   	this.code = `
-	<div class = "header" >电子屏数字</div>
-	
-	import electronicNumber from '@/components/electronicNumber'
-	
-	numbers:[],
-	numberColor:'#8076a3',
-	numberSize:'1rem'
-	
-	mounted(){
-	  this.getTime();
-	},
-	methods:{
-	  getTime(){
-	    let day = getToday('yyyy-mm-dd hh:MM:ss');
-	    this.numbers = [day];
-	    setTimeout(()=>{
-	      this.getTime();
-	    },1000);
-	  }
-	}
+            <electronicNumber :numbers="numbers" :number-color="numberColor" :number-size="numberSize" >
+            </electronicNumber>
+
+            import electronicNumber from '@/components/electronicNumber'
+
+            numbers:[],
+            numberColor:'#8076a3',
+            numberSize:'1rem'
+
+            mounted(){
+              this.getTime();
+            },
+            methods:{
+              getTime(){
+                let day = getToday('yyyy-mm-dd hh:MM:ss');
+                this.numbers = [day];
+                setTimeout(()=>{
+                  this.getTime();
+                },1000);
+              }
+            }
 	`
   },
   mounted(){
