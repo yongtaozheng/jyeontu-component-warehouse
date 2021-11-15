@@ -1,7 +1,12 @@
 <template>
 	<split-horizontal>
 		<template v-slot:header-p>
-			<div class="header">日历组件</div>
+			<div class="title">
+				日历组件（JYeontuCalendar）
+				<div class="detail">
+					日历组件
+				</div>
+			</div>
 		</template>
 		<template v-slot:left-p>
 		  <div class="content">
@@ -157,6 +162,16 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+	.title{
+		font-size: x-large;
+		text-align: left;
+		margin-bottom: 1rem;
+		.detail{
+			font-size: medium;
+			color: dimgrey;
+			margin-top: 1rem;
+		}
+	}
   .content{
     margin:auto auto;
     // width: 50%;

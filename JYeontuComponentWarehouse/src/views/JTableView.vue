@@ -1,7 +1,12 @@
 <template>
 	<split-horizontal>
 		<template v-slot:header-p>
-			<div class="header">表格组件</div>
+			<div class="title">
+				表格组件（JTable）
+				<div class="detail">
+					表格组件
+				</div>
+			</div>
 		</template>
 		<template v-slot:left-p>
 			<j-table :title="title"
@@ -279,6 +284,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.title{
+		font-size: x-large;
+		text-align: left;
+		margin-bottom: 1rem;
+		.detail{
+			font-size: medium;
+			color: dimgrey;
+			margin-top: 1rem;
+		}
+	}
 	.header{
 		min-height: 4rem;
 		text-align: center;

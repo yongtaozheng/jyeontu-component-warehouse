@@ -1,7 +1,13 @@
 <template>
 	<split-horizontal>
 		<template v-slot:header-p>
-			<div class="header">电子屏数字</div>
+			<div class="title">
+				电子屏数字（electronicNumber）
+				<div class="detail">
+					电子屏风格数字组件
+				</div>
+			</div>
+			<div class="header"></div>
 		</template>
 		<template v-slot:left-p>
 			<div class="content">
@@ -150,6 +156,16 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+	.title{
+		font-size: x-large;
+		text-align: left;
+		margin-bottom: 1rem;
+		.detail{
+			font-size: medium;
+			color: dimgrey;
+			margin-top: 1rem;
+		}
+	}
   .content{
     margin:auto auto;
     width: 50%;

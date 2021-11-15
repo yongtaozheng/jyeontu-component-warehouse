@@ -1,22 +1,28 @@
 <template>
-  <div>
-    <div class="view-body">
-      <div class="flowchart-body">
-        <flowchart :chartData = "chartData"></flowchart>
-      </div>
-      <div class="table-body">
-        <div>流程图chartData配置表</div>
-        <j-table :title="title"
-                 :tableData="tableData">
-        </j-table>
-        <div style="margin-top: 2rem;">流程项data配置表</div>
-        <j-table :title="title"
-                 :tableData="tableData1">
-        </j-table>
-      </div>
-    </div>
-    <code-height-light :code="code"></code-height-light>
-  </div>
+	<div>
+		<div class="title">
+			流程图组件（flowchart）
+			<div class="detail">
+				可拖拽流程图组件
+			</div>
+		</div>
+		<div class="view-body">
+			<div class="flowchart-body">
+				<flowchart :chartData = "chartData"></flowchart>
+			</div>
+			<div class="table-body">
+				<div>流程图chartData配置表</div>
+				<j-table :title="title"
+						 :tableData="tableData">
+				</j-table>
+				<div style="margin-top: 2rem;">流程项data配置表</div>
+				<j-table :title="title"
+						 :tableData="tableData1">
+				</j-table>
+			</div>
+		</div>
+		<code-height-light :code="code"></code-height-light>
+	</div>
 </template>
 
 <script>
@@ -231,6 +237,16 @@
 </script>
 
 <style lang="scss" scoped>
+	.title{
+		font-size: x-large;
+		text-align: left;
+		margin-bottom: 1rem;
+		.detail{
+			font-size: medium;
+			color: dimgrey;
+			margin-top: 1rem;
+		}
+	}
   .view-body{
     display: flex;
     flex-direction: row;

@@ -97,13 +97,13 @@
 				this.vChartDataList = [... this.chartData.data];
 				//是否可拖拽
 				if(this.chartData.dragAble){
-					window.addEventListener('mouseup',this.handleMouseup);
-					window.addEventListener('mouseover',this.handleMouseover);
-					window.addEventListener('touchend',this.handleMouseup);
-					window.addEventListener('touchmove',this.handleMouseover);
+					document.getElementById('flow-chart').addEventListener('mouseup',this.handleMouseup);
+					document.getElementById('flow-chart').addEventListener('mouseover',this.handleMouseover);
+					document.getElementById('flow-chart').addEventListener('touchend',this.handleMouseup);
+					document.getElementById('flow-chart').addEventListener('touchmove',this.handleMouseover);
 				}
 				this.preventEvent();
-        this.initStyle();
+				this.initStyle();
 				this.initData();
 				window.onresize = this.onReSize;
 			},

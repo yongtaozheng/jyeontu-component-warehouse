@@ -20,6 +20,7 @@
 				<button class="btn" @click="doTestCode()">点击调用</button>
 				结果：<div class="result">{{testResult}}</div>
 			</div>
+			<j-drop-down-box></j-drop-down-box>
 		</div>
 	</div>
 	
@@ -28,10 +29,12 @@
 <script>
 	var dateTool = require('@/utils/dateTool.js');
 	import JTable from '@/components/JTable.vue'
+	import JDropDownBox from '@/components/common/JDropDownBox.vue'
 	export default {
 		name:"dateToolView",
 		components:{
-			JTable
+			JTable,
+			JDropDownBox
 		},
 		data() {
 			return {

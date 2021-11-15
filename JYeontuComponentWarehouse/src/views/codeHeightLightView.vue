@@ -1,7 +1,12 @@
 <template>
 	<split-horizontal>
 		<template v-slot:header-p>
-			<div class="header">代码高亮组件</div>
+			<div class="title">
+				代码高亮组件（codeHeightLight）
+				<div class="detail">
+					自定义代码关键字高亮组件
+				</div>
+			</div>
 		</template>
 		<template v-slot:mid-p>
 			<j-table :title="title1"
@@ -172,6 +177,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+	.title{
+		font-size: x-large;
+		text-align: left;
+		margin-bottom: 1rem;
+		.detail{
+			font-size: medium;
+			color: dimgrey;
+			margin-top: 1rem;
+		}
+	}
 	.header{
 		min-height: 4rem;
 		text-align: center;
