@@ -61,6 +61,38 @@
     "component": "views/codeHeightLightView.vue",
     "children": []
   },{
+    "id": 8,
+    "name": "utilsTools",
+    "path": "",
+    "label": "工具函数",
+    "select": false,
+    "icon": "icon-daima",
+    "open": false,
+    "component": "",
+    "children": [
+		{
+			"id": 801,
+			"name": "dateToolView",
+			"path": "/dateToolView",
+			"label": "时间处理",
+			"select": false,
+			"icon": "icon-daima",
+			"open": false,
+			"component": "views/utilsTools/dateToolView.vue",
+			"children": []
+		},{
+			"id": 802,
+			"name": "numsFormatView",
+			"path": "/numsFormatView",
+			"label": "数字处理",
+			"select": false,
+			"icon": "icon-daima",
+			"open": false,
+			"component": "views/utilsTools/numsFormatView.vue",
+			"children": []
+		}
+	]
+  },{
     "id": 4,
     "name": "games",
     "path": "/games",

@@ -25,7 +25,7 @@
                  v-model="item[item1.key]"
                  class="j-table-tr-td-input"
           />
-          <span v-else>{{item[item1.key]}}</span>
+          <span :title="item[item1.key]" v-else>{{item[item1.key]}}</span>
         </td>
       </tr>
     </table>
@@ -147,6 +147,7 @@ export default{
 	 overflow-y:hidden;
 	.j-table{
 	  border-collapse:collapse;
+	  table-layout:fixed;
 	  .j-table-title{
 	
 	  }
@@ -166,9 +167,10 @@ export default{
 	    .j-table-tr-td{
 	      border-right: 1px solid grey;
 	      padding: 4px 4px 4px 4px;
-	      overflow: hidden;
+	      // overflow: hidden;
 	      text-overflow:ellipsis;
-	      white-space: nowrap;
+	      // white-space: nowrap;
+		  word-wrap:break-word;
 		  word-break: break-all;
 	      .j-table-tr-td-input{
 	        border: 0;  // 去除未选中状态边框

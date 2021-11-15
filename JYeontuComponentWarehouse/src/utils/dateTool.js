@@ -31,7 +31,7 @@ export const getMonthDays = function (year, month) {
     month = parseInt(month) - 1
     if (month < 0 || month > 11) return ''
     let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    if (this.isLeap(year)) {
+    if (isLeap(year)) {
         months[1] = 29
     }
     return months[month]
@@ -50,7 +50,7 @@ export const zero = function (str) {
  * @param {string} str  日期格式
  * @return {string} 格式化日期
  */
-export const getToday = function (str) {
+export const getToday = function (str = "yyyy-mm-dd") {
     const date = new Date();
     const year = date.getFullYear(),
         month = zero(date.getMonth() + 1),
@@ -74,6 +74,77 @@ export const getToday = function (str) {
             break;
         case "yyyy":
             res = year;
+            break;
+		case "mm":
+			res = month;
+			break;
+		case "dd":
+			res = day;
+			break;
+		case "hh":
+			res = hour;
+			break;
+		case "MM":
+			res = minute;
+			break;
+		case "ss":
+			res = second;
+			break;
+        case "mm-dd":
+            res = month + '-' + day;
+            break;
+        default:
+            res = '参数错误';
+            break;
+    }
+    return res;
+}
+/**
+ * 将时间按照所传入的时间格式进行转换
+ * @param {string} value  日期
+ * @param {string} formatStr  日期格式
+ * @return {string} 格式化日期
+ */
+export const dateFormat = function (value,formatStr = 'yyyy-mm-dd') {
+	console.log('111',value,formatStr);
+    const date = new Date(value);
+    const year = date.getFullYear(),
+        month = zero(date.getMonth() + 1),
+        day = zero(date.getDate()),
+        hour = zero(date.getHours()),
+        minute = zero(date.getMinutes()),
+        second = zero(date.getSeconds());
+    let res = '';
+    switch (formatStr){
+        case "yyyy-mm-dd":
+            res = year + '-' + month + '-' + day;
+            break;
+        case "mm-dd-yyyy":
+            res = month + '-' + day + '-' + year;
+            break;
+        case "yyyy-mm-dd hh:MM:ss":
+            res = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+            break;
+        case "hh:MM:ss":
+            res = hour + ':' + minute + ':' + second;
+            break;
+        case "yyyy":
+            res = year;
+			break;
+		case "mm":
+			res = month;
+			break;
+		case "dd":
+			res = day;
+			break;
+		case "hh":
+			res = hour;
+			break;
+		case "MM":
+			res = minute;
+			break;
+		case "ss":
+			res = second;
             break;
         case "mm-dd":
             res = month + '-' + day;
@@ -127,4 +198,30 @@ export const getTomorrow = function (str){
     }
     year += 1;
     return year + '-' + '01' + '-' + '01';
+}
+/**
+ * 获取前n天日期
+ * @param {string} n  当前日期
+ * @return {string} 前n天日期
+ */
+export const beforeDay = function (date,n){
+	let res = dateFormat(date);
+	n = parseInt(n);
+	console.log('--beforeDay---',date,n,res);
+	while(n--){
+		res = getYesterday(res);
+	}
+	return res;
+}
+/**
+ * 获取后n天日期
+ * @param {string} n  当前日期
+ * @return {string} 后n天日期
+ */
+export const afterDay = function (date,n){
+	let res = dateFormat(date);
+	while(n--){
+		res = getTomorrow(res);
+	}
+	return res;
 }
