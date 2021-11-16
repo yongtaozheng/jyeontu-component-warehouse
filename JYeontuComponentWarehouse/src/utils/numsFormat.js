@@ -182,6 +182,7 @@ var intToRoman = function(num) {
     const ones     = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
 
     const roman = [];
+	num = parseInt(num);
     roman.push(thousands[Math.floor(num / 1000)]);
     roman.push(hundreds[Math.floor(num % 1000 / 100)]);
     roman.push(tens[Math.floor(num % 100 / 10)]);

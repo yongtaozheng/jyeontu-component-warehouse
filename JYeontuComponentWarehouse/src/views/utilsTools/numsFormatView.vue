@@ -1,5 +1,5 @@
 <template>
-	<div class="dateToolView">
+	<div class="numsFormatView">
 		<div class="title">
 			数字处理函数（numsFormat）
 			<div class="detail">
@@ -9,8 +9,7 @@
 		<div class="explain">
 			<div class="title">说明</div>
 			<j-table :title="title"
-					 :tableData="tableData"
-					 >
+					 :tableData="tableData">
 			</j-table>
 		</div>
 		<div class="test">
@@ -20,7 +19,8 @@
 				<button class="btn" @click="doTestCode()">点击调用</button>
 				结果：<div class="result">{{testResult}}</div>
 			</div> -->
-			<method-test :methodData = "methodData"></method-test>
+			<method-test :methodData = "methodData"
+						:util="'numsFormat'"></method-test>
 		</div>
 		<div class="code-content">
 			<div class="title">代码</div>
@@ -32,12 +32,12 @@
 </template>
 
 <script>
-	var dateTool = require('@/utils/dateTool.js');
+	var numsFormat = require('@/utils/numsFormat.js');
 	import JTable from '@/components/JTable.vue'
 	import methodTest from '@/components/common/methodTest.vue'
 	import codeHeightLight from '@/components/codeHeightLight.vue'
 	export default {
-		name:"dateToolView",
+		name:"numsFormatView",
 		components:{
 			JTable,
 			methodTest,
@@ -45,91 +45,64 @@
 		},
 		data() {
 			return {
-				testMethod:"dateFormat('2021-11-15 22:22:22','yyyy-mm-dd')",
 				testResult:'',
 				methodData:[
 					{
-						name:'dateFormat',
+						name:'numberToWords',
 						params:[
 							{
-								name:'日期(必填)',
-								value:dateTool.getToday(),
-								required:true,
-							},
-							{
-								name:'格式(默认yyyy-mm-dd)',
+								name:'数字(必填)',
 								value:'',
-								required:false,
-								options:[
-									'yyyy-mm-dd',
-									'mm-dd-yyyy',
-									'yyyy-mm-dd hh:MM:ss',
-									'hh:MM:ss',
-									'yyyy',
-									'mm',
-									'dd',
-									'hh',
-									'MM',
-									'ss',
-									'mm-dd'
-								]
+								required:true,
 							}
 						]
 					},
 					{
-						name:'getToday',
+						name:'numberToChineseWords',
 						params:[
 							{
-								name:'格式(默认yyyy-mm-dd)',
+								name:'数字字符串(必填)',
 								value:'',
-								required:false,
-								options:[
-									'yyyy-mm-dd',
-									'mm-dd-yyyy',
-									'yyyy-mm-dd hh:MM:ss',
-									'hh:MM:ss',
-									'yyyy',
-									'mm',
-									'dd',
-									'hh',
-									'MM',
-									'ss',
-									'mm-dd'
-								]
+								required:true,
 							}
 						]
 					},
 					{
-						name:'beforeDay',
+						name:'numberToSplitWords',
 						params:[
 							{
-								name:'日期(必填)',
+								name:'数字字符串(必填)',
 								value:'',
 								required:true,
 							},
 							{
-								name:'前n天(必填)',
+								name:"分隔符(默认为',')",
 								value:'',
-								required:true,
-							},
+								required:false,
+							}
 						]
 					},
 					{
-						name:'afterDay',
+						name:'intToRoman',
 						params:[
 							{
-								name:'日期(必填)',
+								name:'整数数字(必填)',
 								value:'',
 								required:true,
-							},
-							{
-								name:'后n天(必填)',
-								value:'',
-								required:true,
-							},
+							}
 						]
-					}],
-				code:'',
+					},
+					{
+						name:'romanToInt',
+						params:[
+							{
+								name:'罗马数字(必填)',
+								value:'',
+								required:true,
+							}
+						]
+					},
+				],
 				title:[
 					{
 						title:'方法',//展示列名
@@ -164,85 +137,66 @@
 				],
 				tableData:[
 					{
-						'method':'dateFormat(value: String,formatStr: string)',
-						'explain':'将时间按照所传入的时间格式进行转换',
-						'parameter':"value:日期(必填)，formatStr:格式(默认值：'yyyy-mm-dd')",
+						'method':'numberToWords(num: Number)',
+						'explain':'数字转换为英文表示',
+						'parameter':"num:数字",
 					},
 					{
-						'method':'getToday(str: String)',
-						'explain':'获取当前时间并按照所传入的时间格式进行转换',
-						'parameter':"str:格式(默认值：'yyyy-mm-dd')",
+						'method':'numberToChineseWords(str: String)',
+						'explain':'数字转换为大写中文表示',
+						'parameter':"str:数字字符串",
 					},
 					{
-						'method':'beforeDay(date:String,n:Number)',
-						'explain':'获取前n天日期',
-						'parameter':"date:日期，n:前n天",
+						'method':'numberToSplitWords(num:String,separator:String)',
+						'explain':'数字千分位分隔',
+						'parameter':"num:数字字符串,separator:分隔符(默认为',')",
 					},
 					{
-						'method':'afterDay(date:String,n:Number)',
-						'explain':'获取后n天日期',
-						'parameter':"date:日期，n:后n天",
+						'method':'intToRoman(num:Number)',
+						'explain':'整数转罗马数字',
+						'parameter':"num:整数",
 					},
+					{
+						'method':'romanToInt(s:String)',
+						'explain':'罗马数字转整数',
+						'parameter':"s:罗马数字",
+					}
 				],
 				keyWords:[
 					{
-						value:'dateTool',
+						value:'numsFormat',
 						color:'green'
 					}
-				]
+				],
+				code:'',
 			}
 		},
 		created() {
-			// console.log(dateTool.getToday());
+			// console.log(numsFormat.getToday());
 			this.code = `
 		/*
-		*日期处理函数
+		*数字处理函数
 		*/
 	   
-		var dateTool = require('@/utils/dateTool.js');//引入函数
+		var numsFormat = require('@/utils/numsFormat.js');//引入函数
 		
 		//使用函数
-		dateTool.dateFormat('2021-11-15 22:22:22','yyyy-mm-dd');//日期格式化
-		dateTool.getToday('yyyy-mm-dd');//获取今天日期并格式化
-		dateTool.beforeDay('2021-11-15',10);//获取2021-11-15前10天的日期
-		dateTool.afterDay('2021-11-15',10);//获取2021-11-15后10天的日期
+		numsFormat.numberToWords('321123');//数字转换为英文表示
+		numsFormat.numberToChineseWords('321123');//数字转换为大写中文表示
+		numsFormat.numberToSplitWords('321123',',');//数字千分位分隔
+		numsFormat.intToRoman('321123');//整数转罗马数字
+		numsFormat.romanToInt('CCCXII');//罗马数字转整数
 			`
 		},
 		methods:{
-			doTestCode(){
-				let res = this.testMethod;
-				const reg = /(.*)\((.*)\)/g;
-				res = reg.exec(res);
-				let method = res[1],param = res[2];
-				param = param.replace(/\'/g,'');
-				param = param.split(',');
-				console.log('method',method,'param',param);
-				switch(method){
-					case 'getToday':
-						this.testResult = dateTool.getToday(param[0]);
-						break;
-					case 'dateFormat':
-						if(param[1]) this.testResult = dateTool.dateFormat(param[0],param[1]);
-						else this.testResult = dateTool.dateFormat(param[0]);
-						break;
-					case 'beforeDay':
-						this.testResult = dateTool.beforeDay(param[0],param[1]);
-						break;
-					case 'afterDay':
-						this.testResult = dateTool.afterDay(param[0],param[1]);
-						break;
-					default :
-						break;
-				}
-				console.log(res);
-			}
+			
 		}
 		
 	}
 </script>
 
 <style lang="scss" scoped>
-	.dateToolView{
+	.numsFormatView{
 		padding: 0.2rem;
 		.title{
 			font-size: x-large;

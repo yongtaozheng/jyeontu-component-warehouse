@@ -39,7 +39,7 @@
 				<button class="btn" @click="doTestCode()">点击调用</button>
 			</div>
 			<div class="method-item method-result">
-				<span><span class="title-sm">结果：</span>{{result}}</span>
+				<span><span class="title-sm">结果：</span><span class="method-result-span">{{result}}</span></span>
 			</div>
 		</div>
 	</div>
@@ -48,6 +48,7 @@
 <script>
 	import JDropDrowBox from './JDropDownBox.vue'
 	var dateTool = require('@/utils/dateTool.js');
+	var numsFormat = require('@/utils/numsFormat.js');
 	export default{
 		name:"methodTest",
 		props:{
@@ -67,14 +68,14 @@
 				chooseMethod:'',
 				chooseParams:[],
 				result:'',
-				methodRep:'dateTool.getToday()'
+				methodRep:''
 			}
 		},
 		watch:{
 			chooseMethod(val){
 				if(val >= 0){
 					this.methodParams = this.methodData[val].params;
-					this.methodRep = 'dateTool.' + this.methodList[val].value + '(' + ')';
+					this.methodRep = this.util + '.' + this.methodList[val].value + '(' + ')';
 				}else{
 					this.methodRep = '';
 				}
@@ -82,6 +83,7 @@
 		},
 		created() {
 			let methodData = this.methodData;
+			// this.methodRep = this.util + '.' + this.methodList[val].value + '(' + ')';
 			for(let i = 0; i < methodData.length; i++){
 				this.methodList.push({
 					id:i,
@@ -95,7 +97,7 @@
 					chooseMethod = this.chooseMethod,
 					methodParams = this.methodParams;
 					
-				this.methodRep = 'dateTool.' + methodList[chooseMethod].value;
+				this.methodRep = this.util + '.' + methodList[chooseMethod].value;
 				let p = '';
 				for(let i = 0; i < methodParams.length; i++){
 					if(methodParams[i].value != ''){
@@ -117,7 +119,7 @@
 					chooseMethod = this.chooseMethod,
 					methodParams = this.methodParams;
 					
-				this.methodRep = 'dateTool.' + methodList[chooseMethod].value;
+				this.methodRep = this.util + '.' + methodList[chooseMethod].value;
 				let p = '';
 				for(let i = 0; i < methodParams.length; i++){
 					if(methodParams[i].value != ''){
@@ -148,11 +150,14 @@
 					methodParams = this.methodParams;
 				
 				if(methodParams.length == 2 && methodParams[1].value != ''){
-					this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
+					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
+					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
 				}else if(methodParams[0].value != ''){
-					this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value);
+					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value);
+					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value](methodParams[0].value);
 				}else{
-					this.result = dateTool[methodList[chooseMethod].value]();
+					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value]();
+					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value]();
 				}
 			}
 		}
@@ -166,6 +171,7 @@
 		.method-item{
 			display: flex;
 			margin-right: 1rem;
+			margin-top: 0.5rem;
 			.title-sm{
 				color: #2c9678;
 			}
@@ -201,6 +207,9 @@
 		}
 		.method-result{
 			// flex: 3;
+			.method-result-span{
+				border-bottom: 1px black solid;
+			}
 		}
 	}
 </style>

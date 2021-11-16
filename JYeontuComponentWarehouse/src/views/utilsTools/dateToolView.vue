@@ -20,7 +20,8 @@
 				<button class="btn" @click="doTestCode()">点击调用</button>
 				结果：<div class="result">{{testResult}}</div>
 			</div> -->
-			<method-test :methodData = "methodData"></method-test>
+			<method-test :methodData = "methodData"
+						:util="'dateTool'"></method-test>
 		</div>
 		<div class="code-content">
 			<div class="title">代码</div>
@@ -210,33 +211,7 @@
 			`
 		},
 		methods:{
-			doTestCode(){
-				let res = this.testMethod;
-				const reg = /(.*)\((.*)\)/g;
-				res = reg.exec(res);
-				let method = res[1],param = res[2];
-				param = param.replace(/\'/g,'');
-				param = param.split(',');
-				console.log('method',method,'param',param);
-				switch(method){
-					case 'getToday':
-						this.testResult = dateTool.getToday(param[0]);
-						break;
-					case 'dateFormat':
-						if(param[1]) this.testResult = dateTool.dateFormat(param[0],param[1]);
-						else this.testResult = dateTool.dateFormat(param[0]);
-						break;
-					case 'beforeDay':
-						this.testResult = dateTool.beforeDay(param[0],param[1]);
-						break;
-					case 'afterDay':
-						this.testResult = dateTool.afterDay(param[0],param[1]);
-						break;
-					default :
-						break;
-				}
-				console.log(res);
-			}
+			
 		}
 		
 	}
