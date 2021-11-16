@@ -5,7 +5,13 @@
 					@focus="focusInput()"
 					@input="bindInput()"
 					v-model="inputData"
+					v-if="!readOnly"
 					class="box-input"/>
+			<div @click="arrowClick()"
+					v-if="readOnly"
+					class="box-input">
+					{{inputData}}
+			</div>
 			<div class="icon icon-close" 
 				@click="clearInput()"
 				v-show="boxIsShow"
@@ -34,17 +40,29 @@
 	export default{
 		name:"JDropDownBox",
 		props:{
+			defIndex:{
+				type:String,
+				default:''
+			},
+			value:{
+				type:String,
+				default:''
+			},
 			placeholder:{
 				type:String,
 				default:"请输入"
 			},
 			filter:{
 				type:Boolean,
-				default:true,
+				default:false,
 			},
 			closed:{
 				type:Boolean,
 				default:true,
+			},
+			readOnly:{
+				type:Boolean,
+				default:false
 			},
 			selectData:{
 				type:Array,
@@ -78,6 +96,11 @@
 		created() {
 			this.showSelectData = this.selectData;
 		},
+		watch:{
+			inputData(newVal){
+				this.value = newVal;
+			}
+		},
 		methods:{
 			arrowClick(){
 				this.boxIsShow = !this.boxIsShow;
@@ -85,6 +108,8 @@
 			clearInput(){
 				this.inputData = '';
 				this.showSelectData = this.selectData;
+				this.$emit('selectItem','');
+				this.$emit('selectIndexValue',this.defIndex,'');
 			},
 			focusInput(){
 				this.boxIsShow = true;
@@ -104,6 +129,8 @@
 			},
 			selectItem(itemData){
 				this.inputData = itemData.value;
+				this.$emit('selectItem',itemData.id);
+				this.$emit('selectIndexValue',this.defIndex,itemData.value);
 				this.boxIsShow = false;
 			}
 		}
@@ -112,12 +139,12 @@
 
 <style lang="scss" scoped>
 	.drop-down-box{
-		border: lightskyblue 1px solid;
-		background-color: whitesmoke;
+		// border: lightskyblue 1px solid;
 		color: black;
 		width: max-content;
-		position: relative;
+		// position: relative;
 		.box-input-box{
+			background-color: whitesmoke;
 			display: flex;
 			line-height: 30px;
 			border: skyblue 1px solid;
@@ -126,6 +153,10 @@
 				outline: none;
 				border: 0;
 				background-color: whitesmoke;
+				min-width: 150px;
+				div{
+					cursor: pointer;
+				}
 			}
 			.icon{
 				line-height: 20px;
@@ -145,6 +176,9 @@
 			}
 		}
 		.box-area{
+			background-color: whitesmoke;
+			border: lightskyblue 1px solid;
+			color:#61649f;
 			max-height: 6.25rem;
 			overflow: scroll;
 			// overflow-y: hidden;

@@ -1,7 +1,7 @@
 <template>
 	<div class="dateToolView">
 		<div class="title">
-			数字处理函数（dateTool）
+			数字处理函数（numsFormat）
 			<div class="detail">
 				日期格式转换及常用日期获取
 			</div>
@@ -15,28 +15,121 @@
 		</div>
 		<div class="test">
 			<div class="title">测试</div>
-			<div class="test-method">
+			<!-- <div class="test-method">
 				方法：<input class="method" v-model="testMethod"></input>
 				<button class="btn" @click="doTestCode()">点击调用</button>
 				结果：<div class="result">{{testResult}}</div>
-			</div>
+			</div> -->
+			<method-test :methodData = "methodData"></method-test>
+		</div>
+		<div class="code-content">
+			<div class="title">代码</div>
+			<code-height-light :code = "code"
+							:keyWords = "keyWords">
+			</code-height-light>
 		</div>
 	</div>
-	
 </template>
 
 <script>
 	var dateTool = require('@/utils/dateTool.js');
 	import JTable from '@/components/JTable.vue'
+	import methodTest from '@/components/common/methodTest.vue'
+	import codeHeightLight from '@/components/codeHeightLight.vue'
 	export default {
 		name:"dateToolView",
 		components:{
-			JTable
+			JTable,
+			methodTest,
+			codeHeightLight
 		},
 		data() {
 			return {
 				testMethod:"dateFormat('2021-11-15 22:22:22','yyyy-mm-dd')",
 				testResult:'',
+				methodData:[
+					{
+						name:'dateFormat',
+						params:[
+							{
+								name:'日期(必填)',
+								value:dateTool.getToday(),
+								required:true,
+							},
+							{
+								name:'格式(默认yyyy-mm-dd)',
+								value:'',
+								required:false,
+								options:[
+									'yyyy-mm-dd',
+									'mm-dd-yyyy',
+									'yyyy-mm-dd hh:MM:ss',
+									'hh:MM:ss',
+									'yyyy',
+									'mm',
+									'dd',
+									'hh',
+									'MM',
+									'ss',
+									'mm-dd'
+								]
+							}
+						]
+					},
+					{
+						name:'getToday',
+						params:[
+							{
+								name:'格式(默认yyyy-mm-dd)',
+								value:'',
+								required:false,
+								options:[
+									'yyyy-mm-dd',
+									'mm-dd-yyyy',
+									'yyyy-mm-dd hh:MM:ss',
+									'hh:MM:ss',
+									'yyyy',
+									'mm',
+									'dd',
+									'hh',
+									'MM',
+									'ss',
+									'mm-dd'
+								]
+							}
+						]
+					},
+					{
+						name:'beforeDay',
+						params:[
+							{
+								name:'日期(必填)',
+								value:'',
+								required:true,
+							},
+							{
+								name:'前n天(必填)',
+								value:'',
+								required:true,
+							},
+						]
+					},
+					{
+						name:'afterDay',
+						params:[
+							{
+								name:'日期(必填)',
+								value:'',
+								required:true,
+							},
+							{
+								name:'后n天(必填)',
+								value:'',
+								required:true,
+							},
+						]
+					}],
+				code:'',
 				title:[
 					{
 						title:'方法',//展示列名
@@ -91,10 +184,29 @@
 						'parameter':"date:日期，n:后n天",
 					},
 				],
+				keyWords:[
+					{
+						value:'dateTool',
+						color:'green'
+					}
+				]
 			}
 		},
 		created() {
-			console.log(dateTool.getToday());
+			// console.log(dateTool.getToday());
+			this.code = `
+		/*
+		*日期处理函数
+		*/
+	   
+		var dateTool = require('@/utils/dateTool.js');//引入函数
+		
+		//使用函数
+		dateTool.dateFormat('2021-11-15 22:22:22','yyyy-mm-dd');//日期格式化
+		dateTool.getToday('yyyy-mm-dd');//获取今天日期并格式化
+		dateTool.beforeDay('2021-11-15',10);//获取2021-11-15前10天的日期
+		dateTool.afterDay('2021-11-15',10);//获取2021-11-15后10天的日期
+			`
 		},
 		methods:{
 			doTestCode(){
@@ -162,6 +274,9 @@
 				min-width: 20rem;
 				border-bottom: 1px solid dimgrey;
 			}
+		}
+		.code-content{
+			margin-top: 3rem;
 		}
 	}
 </style>

@@ -117,6 +117,7 @@ export default {
     padding: 0.5rem 1rem;
     font-size: large;
     font-weight: bold;
+	z-index: 99;
   }
   .selectedM{
     background-color: #374151;

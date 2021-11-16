@@ -106,7 +106,6 @@ export const getToday = function (str = "yyyy-mm-dd") {
  * @return {string} 格式化日期
  */
 export const dateFormat = function (value,formatStr = 'yyyy-mm-dd') {
-	console.log('111',value,formatStr);
     const date = new Date(value);
     const year = date.getFullYear(),
         month = zero(date.getMonth() + 1),
@@ -205,9 +204,9 @@ export const getTomorrow = function (str){
  * @return {string} 前n天日期
  */
 export const beforeDay = function (date,n){
+	if(date.split('-').length < 3) return '日期格式错误';
 	let res = dateFormat(date);
 	n = parseInt(n);
-	console.log('--beforeDay---',date,n,res);
 	while(n--){
 		res = getYesterday(res);
 	}
@@ -219,6 +218,7 @@ export const beforeDay = function (date,n){
  * @return {string} 后n天日期
  */
 export const afterDay = function (date,n){
+	if(date.split('-').length < 3) return '日期格式错误';
 	let res = dateFormat(date);
 	while(n--){
 		res = getTomorrow(res);

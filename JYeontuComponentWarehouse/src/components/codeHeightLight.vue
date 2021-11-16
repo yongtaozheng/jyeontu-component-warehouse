@@ -26,6 +26,10 @@ export default {
       type: String,
       default: ""
     },
+	keyWords:{
+		type:Array,
+		default:[]
+	},
     color:{
       type: Object,
       default: {
@@ -106,44 +110,47 @@ export default {
       //html标签
       let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<.*>/g;
 	  let textCode = showCode.match(htmlReg);
-	  textCode = textCode.join('\n');
-	  textCode = textCode.replace(/[\r]/g,'tab缩进');
-	  textCode = textCode.replace(/[\n]/g,'换行符');
-	  let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
-	  textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
-		  let res = '';
-		  if(s4 == undefined) return '<span>' + s1 + '</span>';
-		  res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
-		  let text = s6.match(/>(.*)</);
-		  if(text && text.length > 1){
-			  text = text[1];
-		  }else{
-			  text = '';
-		  }
-		  s6 = s6.split(/>.*<\//);
-		  s6 = s6[0];
-		  s6 = s6.replace(/ *= */g,'=');
-		  s6 = s6.split(' ');
-		  for(let i = 0; i < s6.length; i++){
-			  if(s6[i] !== ''){
-				  let t = s6[i].split('=');
-				  if(t.length == 2){
-					  res += this.getColor('attrWord',t[0]);
-					  res += ' = ';
-					  res += this.getColor('attrValue',t[1]);
-					  if(i < s6.length - 1) res += ' ';
+	  if(textCode != null){
+		textCode = textCode.join('\n');
+		textCode = textCode.replace(/[\r]/g,'tab缩进');
+		textCode = textCode.replace(/[\n]/g,'换行符');
+		let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
+		textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
+				  let res = '';
+				  if(s4 == undefined) return '<span>' + s1 + '</span>';
+				  res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
+				  let text = s6.match(/>(.*)</);
+				  if(text && text.length > 1){
+					  text = text[1];
+				  }else{
+					  text = '';
 				  }
-			  }
-		  }
-		  res += '<span>>' + text + '<</span>/' + this.getColor('tagWord',s4) + '<span>></span>';
-		  return(res);
-	  })
-	  textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
-	  textCode = textCode.replace(/换行符/g,'<br/>');
-	  contentCodeHtml.innerHTML = textCode;
-
-      showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
-	  
+				  s6 = s6.split(/>.*<\//);
+				  s6 = s6[0];
+				  s6 = s6.replace(/ *= */g,'=');
+				  s6 = s6.split(' ');
+				  for(let i = 0; i < s6.length; i++){
+					  if(s6[i] !== ''){
+						  let t = s6[i].split('=');
+						  if(t.length == 2){
+							  res += this.getColor('attrWord',t[0]);
+							  res += ' = ';
+							  res += this.getColor('attrValue',t[1]);
+							  if(i < s6.length - 1) res += ' ';
+						  }
+					  }
+				  }
+				  res += '<span>>' + text + '<</span>/' + this.getColor('tagWord',s4) + '<span>></span>';
+				  return(res);
+		})
+		textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
+		textCode = textCode.replace(/换行符/g,'<br/>');
+		contentCodeHtml.innerHTML = textCode;
+		
+		showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
+	  }else{
+		contentCodeHtml.style.display='none';
+	  }
 	  
 	  // showCode = showCode.replace(/[\t]/g,'\t ')
 	  
@@ -151,15 +158,21 @@ export default {
       let regStr = '\'(.*)\'';
       showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>'$1'</span>");
       
-	  //js关键字
+      //js关键字
       let keyWord = [...this.jsKeyWord];
-	  keyWord = keyWord.concat([...this.jsKeyObj]);
+      keyWord = keyWord.concat([...this.jsKeyObj]);
       for(let i = 0; i < keyWord.length; i++){
         let regKeyWord = '((([\\t|\\r|\\n| ])*('+ keyWord[i] + '))( |,|\\.|\\(|;))';
         showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$2</span>$5");
         // console.log('------',reg,keyWord[i],code);
       }
 	  
+	  //自定义关键字
+	  let keyWords = [...this.keyWords];
+	  for(let i = 0; i < keyWords.length; i++){
+	    let regKeyWord = '('+ keyWords[i].value + ')';
+	    showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + keyWords[i].color + " !important;'>$1</span>");
+	  }
 	  
 	  //js方法
 	  let functions = /([a-zA-Z0-9_]+)\(\)/g;

@@ -73,6 +73,7 @@ export default {
   display:-webkit-flex;
   align-items:center;
   flex-direction: row-reverse;
+  z-index: 99;
 }
 
 @keyframes blink {
