@@ -172,7 +172,6 @@
 			}
 		},
 		created() {
-			// console.log(numsFormat.getToday());
 			this.code = `
 		/*
 		*数字处理函数

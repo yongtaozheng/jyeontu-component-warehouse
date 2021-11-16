@@ -175,7 +175,7 @@ export const numberToChineseWords = money => {
   * @param {number} num 整数
   * @return {string} 罗马数字
   */
-var intToRoman = function(num) {
+export const intToRoman = function(num) {
     const thousands = ["", "M", "MM", "MMM"];
     const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
     const tens     = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];
@@ -195,7 +195,7 @@ var intToRoman = function(num) {
  * @param {string} s 罗马数字
  * @return {number} 整数
  */
-var romanToInt = function(s) {
+export const romanToInt = function(s) {
     const symbolValues = new Map();
     symbolValues.set('I', 1);
     symbolValues.set('V', 5);
