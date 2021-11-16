@@ -66,7 +66,7 @@
     "path": "",
     "label": "工具函数",
     "select": false,
-    "icon": "icon-daima",
+    "icon": "icon-gongju1",
     "open": false,
     "component": "",
     "children": [
@@ -76,7 +76,7 @@
 			"path": "/dateToolView",
 			"label": "时间处理",
 			"select": false,
-			"icon": "icon-daima",
+			"icon": "icon-shijian1",
 			"open": false,
 			"component": "views/utilsTools/dateToolView.vue",
 			"children": []
@@ -86,7 +86,7 @@
 			"path": "/numsFormatView",
 			"label": "数字处理",
 			"select": false,
-			"icon": "icon-daima",
+			"icon": "icon-shuzishurukuang",
 			"open": false,
 			"component": "views/utilsTools/numsFormatView.vue",
 			"children": []
@@ -98,7 +98,7 @@
     "path": "/games",
     "label": "游戏",
     "select": false,
-    "icon": "icon-number",
+    "icon": "icon-youxiyouxiji",
     "open": false,
     "component": "",
     "children": []

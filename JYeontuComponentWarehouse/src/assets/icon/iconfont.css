@@ -1,17 +1,33 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2846995 */
-  src: url('iconfont.woff2?t=1636704291603') format('woff2'),
-       url('iconfont.woff?t=1636704291603') format('woff'),
-       url('iconfont.ttf?t=1636704291603') format('truetype');
+  src: url('iconfont.woff2?t=1637053196279') format('woff2'),
+       url('iconfont.woff?t=1637053196279') format('woff'),
+       url('iconfont.ttf?t=1637053196279') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
-  font-size: 18px;
+  font-size: 16px;
   font-style: normal;
+  color:deepskyblue;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: skyblue;
+}
+
+.icon-youxiyouxiji:before {
+  content: "\e61e";
+}
+
+.icon-shuzishurukuang:before {
+  content: "\e69c";
+}
+
+.icon-gongju1:before {
+  content: "\e607";
+}
+
+.icon-shijian1:before {
+  content: "\e612";
 }
 
 .icon-daima:before {
