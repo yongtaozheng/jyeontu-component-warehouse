@@ -1,17 +1,18 @@
 # JYeontu组件仓库
 
 #### 介绍
-日常开发组件库
+日常开发组件/工具库
+vue组件 + js函数工具
 
 #### 软件架构
-软件架构说明
+
 
 
 #### 安装教程
+1.  git clone 
+2.  npm install
+3.  npm run serve
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 #### 效果预览
 [预览地址](http://jyeontu.xyz/JYeontuComponents/#/homePage)
 
@@ -19,8 +20,8 @@
 
 #### 使用说明
 
-1.  JYeontuCalendar：[https://blog.csdn.net/Twinkle_sone/article/details/120465663](http://https://blog.csdn.net/Twinkle_sone/article/details/120465663)
-2.  electronicNumber：[https://blog.csdn.net/Twinkle_sone/article/details/120582994](https://blog.csdn.net/Twinkle_sone/article/details/120582994)
+1.  JYeontuCalendar（日历组件）：[https://blog.csdn.net/Twinkle_sone/article/details/120465663](http://https://blog.csdn.net/Twinkle_sone/article/details/120465663)
+2.  electronicNumber（电子屏数字组件）：[https://blog.csdn.net/Twinkle_sone/article/details/120582994](https://blog.csdn.net/Twinkle_sone/article/details/120582994)
 3.  xxxx
 
 #### 参与贡献
