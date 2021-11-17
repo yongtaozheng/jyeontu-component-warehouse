@@ -91,6 +91,12 @@ export default {
             'field':'关键字颜色配置',
             'type':'Object',
             'describe':'详细参数如下'
+          },
+          {
+            'parameter':'keyWords',
+            'field':'自定义高亮关键字',
+            'type':'Array',
+            'describe':"如：keyWords:[{value:'numsFormat',color:'green'}]"
           }
         ],
 	  code:''
@@ -109,7 +115,10 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
   created() {
 	  this.code = `
-		<code-height-light :code = "code" class = "footer"></code-height-light>
+		<code-height-light :code = "code" 
+				:keyWords = "keyWords" 
+				:color = "color">
+		</code-height-light>
 
 		//引入组件
 		import codeHeightLight from '@/components/codeHeightLight.vue'
@@ -125,6 +134,19 @@ export default {
 			code: {
 				type: String,
 				default: ''
+			},
+			keyWords:{
+				type:Array,
+				default:[
+					{
+						value:'关键字1',
+						color:'颜色1'
+					},
+					{
+						value:'关键字2',
+						color:'颜色2'
+					}
+				]
 			},
 			color:{
 				type: Object,

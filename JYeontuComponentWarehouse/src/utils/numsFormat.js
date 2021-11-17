@@ -176,6 +176,8 @@ export const numberToChineseWords = money => {
   * @return {string} 罗马数字
   */
 export const intToRoman = function(num) {
+	//num > 0 && num <= 3999
+	if(num <= 0 || num > 3999) return '数字范围应该为1~3999';
     const thousands = ["", "M", "MM", "MMM"];
     const hundreds = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"];
     const tens     = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"];

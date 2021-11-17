@@ -90,6 +90,16 @@
 			"open": false,
 			"component": "views/utilsTools/numsFormatView.vue",
 			"children": []
+		},{
+			"id": 803,
+			"name": "strToolView",
+			"path": "/strToolView",
+			"label": "字符串处理",
+			"select": false,
+			"icon": "icon-zifuchuanchulimoban",
+			"open": false,
+			"component": "views/utilsTools/strToolView.vue",
+			"children": []
 		}
 	]
   },{

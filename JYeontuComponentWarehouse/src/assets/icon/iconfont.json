@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "4579372",
+      "name": "字符串处理模板",
+      "font_class": "zifuchuanchulimoban",
+      "unicode": "e661",
+      "unicode_decimal": 58977
+    },
+    {
+      "icon_id": "8832745",
+      "name": "龙卷风",
+      "font_class": "huaban1",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
       "icon_id": "397919",
       "name": "游戏，游戏机",
       "font_class": "youxiyouxiji",

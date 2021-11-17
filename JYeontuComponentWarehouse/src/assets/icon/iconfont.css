@@ -1,17 +1,25 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2846995 */
-  src: url('iconfont.woff2?t=1637053196279') format('woff2'),
-       url('iconfont.woff?t=1637053196279') format('woff'),
-       url('iconfont.ttf?t=1637053196279') format('truetype');
+  src: url('iconfont.woff2?t=1637117545466') format('woff2'),
+       url('iconfont.woff?t=1637117545466') format('woff'),
+       url('iconfont.ttf?t=1637117545466') format('truetype');
 }
 
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
   font-style: normal;
-  color:deepskyblue;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: deepskyblue;
+}
+
+.icon-zifuchuanchulimoban:before {
+  content: "\e661";
+}
+
+.icon-huaban1:before {
+  content: "\e61f";
 }
 
 .icon-youxiyouxiji:before {

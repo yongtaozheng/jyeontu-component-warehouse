@@ -49,6 +49,7 @@
 	import JDropDrowBox from './JDropDownBox.vue'
 	var dateTool = require('@/utils/dateTool.js');
 	var numsFormat = require('@/utils/numsFormat.js');
+	var strTool = require('@/utils/strTool.js');
 	export default{
 		name:"methodTest",
 		props:{
@@ -74,8 +75,17 @@
 		watch:{
 			chooseMethod(val){
 				if(val >= 0){
-					this.methodParams = this.methodData[val].params;
-					this.methodRep = this.util + '.' + this.methodList[val].value + '(' + ')';
+					let methodParams = this.methodData[val].params;
+					this.methodParams = methodParams;
+					this.methodRep = this.util + '.' + this.methodList[val].value;
+					let p = '';
+					for(let i = 0; i < methodParams.length; i++){
+						if(methodParams[i].value != ''){
+							if(i > 0) p += ',';
+							p += '\'' + methodParams[i].value + '\'';
+						}
+					}
+					this.methodRep += '(' + p + ')';
 				}else{
 					this.methodRep = '';
 				}
@@ -152,12 +162,15 @@
 				if(methodParams.length == 2 && methodParams[1].value != ''){
 					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
 					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
+					else if(this.util == 'strTool') this.result = strTool[methodList[chooseMethod].value](methodParams[0].value,methodParams[1].value);
 				}else if(methodParams[0].value != ''){
 					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value](methodParams[0].value);
 					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value](methodParams[0].value);
+					else if(this.util == 'strTool') this.result = strTool[methodList[chooseMethod].value](methodParams[0].value);
 				}else{
 					if(this.util == 'dateTool') this.result = dateTool[methodList[chooseMethod].value]();
 					else if(this.util == 'numsFormat') this.result = numsFormat[methodList[chooseMethod].value]();
+					else if(this.util == 'strTool') this.result = strTool[methodList[chooseMethod].value]();
 				}
 			}
 		}

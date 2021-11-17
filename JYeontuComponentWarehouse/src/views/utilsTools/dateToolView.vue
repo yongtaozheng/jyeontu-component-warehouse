@@ -15,11 +15,6 @@
 		</div>
 		<div class="test">
 			<div class="title">测试</div>
-			<!-- <div class="test-method">
-				方法：<input class="method" v-model="testMethod"></input>
-				<button class="btn" @click="doTestCode()">点击调用</button>
-				结果：<div class="result">{{testResult}}</div>
-			</div> -->
 			<method-test :methodData = "methodData"
 						:util="'dateTool'"></method-test>
 		</div>
@@ -106,12 +101,12 @@
 						params:[
 							{
 								name:'日期(必填)',
-								value:'',
+								value:dateTool.getToday(),
 								required:true,
 							},
 							{
 								name:'前n天(必填)',
-								value:'',
+								value:15,
 								required:true,
 							},
 						]
@@ -121,12 +116,12 @@
 						params:[
 							{
 								name:'日期(必填)',
-								value:'',
+								value:dateTool.getToday(),
 								required:true,
 							},
 							{
 								name:'后n天(必填)',
-								value:'',
+								value:15,
 								required:true,
 							},
 						]
