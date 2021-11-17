@@ -61,6 +61,16 @@
     "component": "views/codeHeightLightView.vue",
     "children": []
   },{
+    "id": 9,
+    "name": "canvasBroadView",
+    "path": "/canvasBroadView",
+    "label": "canvas画板",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+    "component": "views/canvasBroadView.vue",
+    "children": []
+  },{
     "id": 8,
     "name": "utilsTools",
     "path": "",

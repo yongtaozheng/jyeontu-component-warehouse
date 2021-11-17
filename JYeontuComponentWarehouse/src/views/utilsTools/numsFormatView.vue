@@ -177,7 +177,7 @@
 		numsFormat.numberToWords('321123');//数字转换为英文表示
 		numsFormat.numberToChineseWords('321123');//数字转换为大写中文表示
 		numsFormat.numberToSplitWords('321123',',');//数字千分位分隔
-		numsFormat.intToRoman('321123');//整数转罗马数字
+		numsFormat.intToRoman('123');//整数转罗马数字
 		numsFormat.romanToInt('CCCXII');//罗马数字转整数
 			`
 		},
