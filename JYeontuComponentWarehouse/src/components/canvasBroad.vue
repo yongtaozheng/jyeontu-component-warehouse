@@ -1,51 +1,112 @@
 <template>
-	<div id="container">
-	    <canvas id="canvas" width="600" height="300">浏览器不支持canvas<!-- 如果不支持会显示这段文字 --></canvas>
-	    <div class="section">
-			<button class="btn" @click="setBackGround()">清空画布</button>
-		</div>
-		<div class="section">
-	        <span class="info">选择画笔颜色：</span>
-			<input class="input-color" type="color" v-model="penColor" />
-	        <!-- <button :class="getColorSelect('yellow')" style="background-color:yellow;" @click='setPenColor("yellow");'>YELLOW</button>
-	        <button :class="getColorSelect('red')" style="background-color:red;" @click='setPenColor("red");'>RED</button>
-	        <button :class="getColorSelect('blue')" style="background-color:blue;" @click='setPenColor("blue");'>BLUE</button>
-	        <button :class="getColorSelect('green')" style="background-color:green;" @click='setPenColor("green");'>GREEN</button>
-	        <button :class="getColorSelect('#fff')" style="background-color:black;color:#fff" @click='setPenColor("black");'>BLACK</button> -->
-	    </div>
-		<div class="section">
-		    <span class="info">设置背景颜色：</span>
-			<input class="input-color" type="color" v-model="brackGroudColor" />
-		</div>
-	    <div class="section">
-	        <span class="info">选择橡皮擦：</span>
-	        <button class="btn colorBtn" :style="'background-color:' + brackGroudColor + ';'" @click='setPenColor();'>WHITE</button>
-	    </div>
-	    <div class="section">
-	        <span class="info">选择画笔大小：</span>
-			<progress :value="progressValue" 
-					id="progress"
-					max="1" 
-					@click="setPenWidth">
-					{{progressValue}} %
-			</progress>
-	        <!-- <button :class="getWidthSelect(4)" @click="setPenWidth(4);">4PX</button>
-	        <button :class="getWidthSelect(8)" @click="setPenWidth(8);">8PX</button>
-	        <button :class="getWidthSelect(16)" @click="setPenWidth(16);">16PX</button> -->
-	    </div>
-	    <div class="section">
-	        <span class="info">输出画板内容到下面的图片：</span>
-	        <button class="btn" @click="createImage();">EXPORT</button>
-	    </div>
-	    <img id="image_png">
+	<div id="canvas-broad">
+	    <canvas id="canvas" :width="width" :height="height">浏览器不支持canvas<!-- 如果不支持会显示这段文字 --></canvas>
+	    <j-tab-bar v-if="toolsTabList"
+				:tabList="tabList"
+				:showTab="showTab">
+			<template v-slot:back-ground-color>
+				<div class="section">
+				    <span class="info">设置背景颜色：</span>
+					<input class="btn input-color" type="color" v-model="brackGroudColor" />
+				</div>
+			</template>
+			<template v-slot:pen-color>
+				<div class="section">
+				    <span class="info">选择画笔颜色：</span>
+					<input class="btn input-color" type="color" v-model="penColor" />
+				</div>
+			</template>
+			<template v-slot:eraser>
+				<div class="section">
+				    <span class="info">选择橡皮擦：</span>
+				    <button class="btn colorBtn" :style="'background-color:' + brackGroudColor + ';'" @click='setPenColor();'>{{brackGroudColor}}</button>
+				</div>
+				<div class="section">
+					<button class="btn" @click="setBackGround()">清空画布</button>
+				</div>
+			</template>
+			<template v-slot:pen-size>
+				<div class="section">
+					<span class="info">选择画笔大小：</span>
+					<progress :value="progressValue" 
+							style="cursor: pointer;"
+							id="progress"
+							max="1" 
+							:title="progressValue * 100 +'%'"
+							@click="setPenWidth">
+					</progress>
+					<span style="margin-left: 0.3125rem;">{{progressValue * 100}} %</span>
+				</div>
+			</template>
+		</j-tab-bar>
+		<template v-if="!toolsTabList">
+			<div class="section">
+				<button class="btn" @click="setBackGround()">清空画布</button>
+			</div>
+			<div class="section">
+				<span class="info">选择画笔颜色：</span>
+				<input class="input-color" type="color" v-model="penColor" />
+			</div>
+			<div class="section">
+				<span class="info">设置背景颜色：</span>
+				<input class="input-color" type="color" v-model="brackGroudColor" />
+			</div>
+			<div class="section">
+				<span class="info">选择橡皮擦：</span>
+				<button class="btn colorBtn" :style="'background-color:' + brackGroudColor + ';'" @click='setPenColor();'>{{brackGroudColor}}</button>
+			</div>
+			<div class="section">
+				<span class="info">选择画笔大小：</span>
+				<progress :value="progressValue" 
+						style="cursor: pointer;"
+						id="progress"
+						max="1" 
+						:title="progressValue * 100 +'%'"
+						@click="setPenWidth">
+				</progress>
+				<span style="margin-left: 0.3125rem;">{{progressValue * 100}} %</span>
+			</div>
+			<div class="section">
+				<span class="info">输出画板内容到下面的图片：</span>
+				<button class="btn" @click="createImage();">EXPORT</button>
+			</div>
+			<img id="image_png">
+		</template>
 	</div>
 </template>
 
 <script>
+	import JTabBar from '@/components/pages/JTabBar';
 	export default{
 		name:'canvasBroad',
 		props:{
-			
+			height:{
+				type:Number,
+				default:-1
+			},
+			width:{
+				type:Number,
+				default:-1
+			},
+			defaultPenColor:{
+				type:String,
+				default:'#000000'
+			},
+			defaultPenSize:{
+				type:Number,
+				default:4
+			},
+			defaultBackGroundColor:{
+				type:String,
+				default:"#ffffff"
+			},
+			toolsTabList:{
+				type:Boolean,
+				default:false
+			}
+		},
+		components:{
+			JTabBar
 		},
 		watch:{
 			brackGroudColor:{
@@ -62,7 +123,21 @@
 				startAxisX:0,
 				startAxisY:0,
 				brackGroudColor:"#ffffff",
-				progressValue:0.2
+				progressValue:0.2,
+				tabList:[{
+					label:'背景颜色',
+					id:'back-ground-color'
+				},{
+					label:'画笔颜色',
+					id:'pen-color'
+				},{
+					label:'橡皮擦',
+					id:'eraser'
+				},{
+					label:'画笔大小',
+					id:'pen-size'
+				}],
+				showTab:0
 			}
 		},
 		created(){
@@ -72,12 +147,25 @@
 			this.init();
 		},
 		methods:{
+			//页面初始化
 			init(){
-				// console.log('init');
+				let height = this.height;
+				let width = this.width;
+				if(width == -1){
+					const cbw = document.getElementById('canvas-broad');
+					width = cbw.offsetWidth * 0.9;
+					height = cbw.offsetHeight * 0.6;
+					this.width = width;
+					this.height = height;
+				}
+				this.penColor = this.defaultPenColor;
+				this.brackGroudColor = this.defaultBackGroundColor;
+				this.penWidth = this.defaultPenSize;
+				
 				let canvas = document.getElementById('canvas'); //获取canvas标签
 				let ctx = canvas.getContext("2d");//创建 context 对象
 				ctx.fillStyle = this.brackGroudColor;//画布背景色
-				ctx.fillRect(0,0,600,300);//在画布上绘制 600x300 的矩形，从左上角开始 (0,0)
+				ctx.fillRect(0,0,width,height);//在画布上绘制 width * height 的矩形，从左上角开始 (0,0)
 				canvas.addEventListener("mousemove",this.drawing); //鼠标移动事件
 				canvas.addEventListener("mousedown",this.penDown); //鼠标按下事件
 				canvas.addEventListener("mouseup",this.penUp); //鼠标弹起事件
@@ -98,7 +186,7 @@
 				const canvas = document.getElementById('canvas'); //获取canvas标签
 				const ctx = canvas.getContext("2d");//创建 context 对象
 				ctx.fillStyle = this.brackGroudColor;//画布背景色
-				ctx.fillRect(0,0,600,300);//在画布上绘制 600x300 的矩形，从左上角开始 (0,0)
+				ctx.fillRect(0,0,this.width,this.height);//在画布上绘制 600x300 的矩形，从左上角开始 (0,0)
 			},
 			setPenWidth(event){
 				const progress = document.getElementById('progress');
@@ -110,10 +198,6 @@
 				if(color == '') this.penColor = this.brackGroudColor;
 			    else this.penColor = color;
 			},
-			//设置画笔粗细
-			// setPenWidth(type){
-			//     this.penWidth = type
-			// },
 			penDown(event){
 			    this.penClick = true;
 			    this.startAxisX = event.pageX;
@@ -125,15 +209,18 @@
 			drawing(event){
 			    if(!this.penClick) return;
 				const canvas = document.getElementById('canvas'); //获取canvas标签
-				const ctx = canvas.getContext("2d");//创建 context 对象
+				const ctx = canvas.getContext("2d");//创建 contextconst canvas = document.getElementById('canvas');  对象
 			    const stopAxisX = event.pageX;
 			    const stopAxisY = event.pageY;
 				const left = document.getElementById('leftMenu');
 				const lw = (left.offsetWidth || 0) / 2;
 			    ctx.beginPath();
 			    //由于整体设置了水平居中，因此需要做特殊处理：window.screen.availWidth/2 -300
-			    ctx.moveTo(this.startAxisX-(window.screen.availWidth/2 -300) - lw,this.startAxisY - lw);//moveTo(x,y) 定义线条开始坐标
-			    ctx.lineTo(stopAxisX-(window.screen.availWidth/2 -300) - lw,stopAxisY - lw);//lineTo(x,y) 定义线条结束坐标
+				const wsaW = window.screen.availWidth;
+				const cl = canvas.offsetLeft;
+				const ct = canvas.offsetTop;
+			    ctx.moveTo(this.startAxisX-cl,this.startAxisY - ct);//moveTo(x,y) 定义线条开始坐标
+			    ctx.lineTo(stopAxisX-cl,stopAxisY - ct	);//lineTo(x,y) 定义线条结束坐标
 			    ctx.strokeStyle = this.penColor;
 			    ctx.lineWidth = this.penWidth;
 			    ctx.lineCap = "round";
@@ -155,9 +242,8 @@
 	    margin: 0;
 	    padding: 0;
 	}
-	#container{
+	#canvas-broad{
 	    margin: 0 auto;
-	    width: 600px;
 	    /*text-align: center;*/
 	}
 	#canvas{
@@ -173,6 +259,7 @@
 	    border-radius: 10px;
 	    border: 1px solid #aaa;/*去掉<button>默认边框*/
 	    outline:none;/*去掉<button>选中时的默认边框*/
+		cursor: pointer;
 	}
 	.input-color{
 	    width:70px;

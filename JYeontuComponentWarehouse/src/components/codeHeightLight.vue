@@ -274,13 +274,13 @@ export default {
 			  
 		    }
 		  .content-body{
-		    height: 400px;
+		    max-height: 400px;
 		    overflow: scroll;
 			  #content-code-html{
-		      text-align: left;
-		      margin:0 auto;
-		      background-color: #111827;
-		      color: white;
+				text-align: left;
+				margin:0 auto;
+				background-color: #111827;
+				color: white;
 				padding-top: 1.5rem;
 			  }
 		    #content-code{
