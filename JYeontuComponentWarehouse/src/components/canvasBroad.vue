@@ -35,8 +35,15 @@
 							:title="progressValue * 100 +'%'"
 							@click="setPenWidth">
 					</progress>
-					<span style="margin-left: 0.3125rem;">{{progressValue * 100}} %</span>
+					<span style="margin-left: 0.3125rem;">{{20 * progressValue}}px</span>
 				</div>
+			</template>
+			<template v-slot:export>
+				<div class="section">
+					<span class="info">输出画板内容到下面的图片：</span>
+					<button class="btn" @click="createImage();">EXPORT</button>
+				</div>
+				<img id="image_png">
 			</template>
 		</j-tab-bar>
 		<template v-if="!toolsTabList">
@@ -64,7 +71,7 @@
 						:title="progressValue * 100 +'%'"
 						@click="setPenWidth">
 				</progress>
-				<span style="margin-left: 0.3125rem;">{{progressValue * 100}} %</span>
+				<span style="margin-left: 0.3125rem;">{{20 * progressValue}}px</span>
 			</div>
 			<div class="section">
 				<span class="info">输出画板内容到下面的图片：</span>
@@ -136,6 +143,9 @@
 				},{
 					label:'画笔大小',
 					id:'pen-size'
+				},{
+					label:'导出图片',
+					id:'export'
 				}],
 				showTab:0
 			}
@@ -229,7 +239,9 @@
 			    this.startAxisY = stopAxisY;
 			},
 			createImage() {
-			    var img_png_src = canvas.toDataURL("image/png"); //将画板保存为图片格式的函数
+				console.log('-------');
+				const canvas = document.getElementById('canvas'); //获取canvas标签
+			    const img_png_src = canvas.toDataURL("image/png"); //将画板保存为图片格式的函数
 			    // console.log('=====',img_png_src);//data:image/png;base64,iVBOR.....
 			    document.getElementById("image_png").src = img_png_src;
 			}

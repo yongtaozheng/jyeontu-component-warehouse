@@ -9,11 +9,16 @@
 			</div>
 		</template>
 		<template v-slot:left-p>
-			<canvas-broad class="canvas-baroad"
-						:toolsTabList="true"
-						:height="height"
-						:width="width">
-			</canvas-broad>
+			<div class="broad-title">
+				我的画板
+			</div>
+			<div class="broad-contain">
+				<canvas-broad class="canvas-baroad"
+							:toolsTabList="true"
+							:height="height"
+							:width="width">
+				</canvas-broad>
+			</div>
 		</template>
 		<template v-slot:right-p>
 			<j-table :title="title1"
@@ -152,9 +157,14 @@
 </script>
 
 <style lang="scss" scoped="scoped">
-	.canvas-baroad{
-		height: 300px;
-		width: 600px;
+	.broad-title{
+		line-height: 3rem;
+	}
+	.broad-contain{
+		.canvas-baroad{
+			// height: 300px;
+			// width: 600px;
+		}
 	}
 	.title{
 		font-size: x-large;
