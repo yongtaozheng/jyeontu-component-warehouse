@@ -10,6 +10,7 @@
           <button v-if="item.sort"
                   @click="sortByKey(item.key,index)"
                   :title="getSortWay(item)"
+				  class="sort-btn"
           >sort</button>
         </th>
       </tr>
@@ -160,6 +161,13 @@ export default{
 	      overflow: hidden;
 	      text-overflow:ellipsis;
 	      white-space: nowrap;
+		  .sort-btn{
+			background-color: dodgerblue;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			margin-left: 0.2rem;
+		  }
 	    }
 	    .j-table-tr-th:last-child{
 	      border-right: none;

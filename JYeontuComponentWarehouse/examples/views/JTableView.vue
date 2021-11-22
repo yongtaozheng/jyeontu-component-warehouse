@@ -44,7 +44,7 @@ export default {
           key:'name',//字段名
           type: '', // 列类型
           readOnly:true,//是否只读
-          width:'35vw',//列宽度
+          width:'25vw',//列宽度
           columnStyle: '', // 列样式
           fixed: false,//是否固定
           sort: false, // 是否支持排序
@@ -54,7 +54,7 @@ export default {
           key:'age',//字段名
           type: '', // 列类型
           readOnly:false,//是否只读
-          width:'25vw',//列宽度
+          width:'15vw',//列宽度
           columnStyle: '', // 列样式
           fixed: false,//是否固定
           sort: true, // 是否支持排序
@@ -64,7 +64,7 @@ export default {
           key:'work',//字段名
           type: '', // 列类型
           readOnly:true,//是否只读
-          width:'40vw',//列宽度
+          width:'50vw',//列宽度
           columnStyle: '', // 列样式
           fixed: false,//是否固定
           sort: false, // 是否支持排序
@@ -249,32 +249,6 @@ export default {
   activated() {
 
   },
-
-
-  // "http-get请求": {
-  //   "prefix": "httpget",
-  //     "body": [
-  //     "this.\({",
-  //     "url: this.\\$http.adornUrl(''),",
-  //     "method: 'get',",
-  //     "params: this.\\$http.adornParams({})",
-  //     "}).then(({ data }) => {",
-  //     "})"
-  //   ],
-  //     "description": "httpGET请求"
-  // },
-  // "http-post请求": {
-  //   "prefix": "httppost",
-  //     "body": [
-  //     "this.\({",
-  //     "url: this.\\$http.adornUrl(''),",
-  //     "method: 'post',",
-  //     "data: this.\\$http.adornData(data, false)",
-  //     "}).then(({ data }) => { });"
-  //   ],
-  //     "description": "httpPOST请求"
-  // }
-  // }
 }
 </script>
 

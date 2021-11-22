@@ -16,7 +16,7 @@
     "path": "/installView",
     "label": "安装",
     "selected": true,
-    "icon": "icon-home",
+    "icon": "icon-anzhuangbao",
     "open": true,
     "component": "views/installView.vue",
     "children": []
