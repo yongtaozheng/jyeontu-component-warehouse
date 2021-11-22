@@ -81,10 +81,10 @@ export default {
         }
         temp += `${menu[i].label.trim()}`
         if (!menu[i].open && menu[i].children && menu[i].children.length > 0) {
-          temp += `<i style="margin-left: 1rem" class="el-icon-arrow-down" style="margin-right: 5px;"></i>`
+          temp += `<i style="margin-left: 1rem" class="el-icon-arrow-right" style="margin-right: 5px;"></i>`
         } else {
           if (menu[i].open && menu[i].children && menu[i].children.length > 0) {
-            temp += `<i style="margin-left: 1rem" class="el-icon-arrow-up" style="margin-right: 5px;"></i>`
+            temp += `<i style="margin-left: 1rem" class="el-icon-arrow-down" style="margin-right: 5px;"></i>`
           }
         }
         temp += `</div>`
