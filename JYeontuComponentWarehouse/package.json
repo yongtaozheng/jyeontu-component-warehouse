@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "set port=8081 && vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+	"lib": "vue-cli-service build --target lib --name jvuewhell --dest lib packages/index.js"
   },
   "dependencies": {
 	"@typescript-eslint/eslint-plugin": "^4.28.2",
