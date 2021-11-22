@@ -2,7 +2,7 @@
 	<split-horizontal>
 		<template v-slot:header-p>
 			<div class="title">
-				canvas画板组件（canvasBroad）
+				canvas画板组件（JCanvasBroad）
 				<div class="detail">
 					canvas画板组件
 				</div>

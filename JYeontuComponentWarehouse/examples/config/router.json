@@ -11,6 +11,16 @@
     "component": "views/homePage/homePage.vue",
     "children": []
   },{
+    "id": 10,
+    "name": "installView",
+    "path": "/installView",
+    "label": "安装",
+    "selected": true,
+    "icon": "icon-home",
+    "open": true,
+    "component": "views/installView.vue",
+    "children": []
+  },{
     "id": 2,
     "name": "calendar",
     "path": "/calendar",

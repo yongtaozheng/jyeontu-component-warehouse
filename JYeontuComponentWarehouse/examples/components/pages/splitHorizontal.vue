@@ -24,6 +24,26 @@
 </script>
 
 <style lang="scss" scoped>
+	.view-header{
+		.title{
+			font-size: x-large;
+			text-align: left;
+			margin-bottom: 1rem;
+			.detail{
+				font-size: medium;
+				color: dimgrey;
+				margin-top: 1rem;
+			}
+			.code{
+				margin-top: 1rem;
+				border: 0.5px solid lightslategrey;
+				padding: 1rem;
+				font-size: medium;
+				color: black;
+				line-height: 1.5rem;
+			}
+		}
+	}
 	.view-body{
 	  display: flex;
 	  flex-direction: row;

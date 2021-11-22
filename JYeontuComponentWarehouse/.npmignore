@@ -1,3 +1,5 @@
 examples/
 packages/
 public/
+node_modules/
+dist/

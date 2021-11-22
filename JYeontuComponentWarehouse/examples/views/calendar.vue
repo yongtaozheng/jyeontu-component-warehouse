@@ -2,7 +2,7 @@
 	<split-horizontal>
 		<template v-slot:header-p>
 			<div class="title">
-				日历组件（JYeontuCalendar）
+				日历组件（JCalendar）
 				<div class="detail">
 					日历组件
 				</div>

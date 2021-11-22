@@ -1,7 +1,10 @@
 {
-  "name": "default",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@jyeontu/jvuewheel",
+  "version": "0.1.1",
+  "license": "MIT",
+  "keyword": "vue components",
+  "description":"vue组件库封装",
+  "main": "lib/jvuewhell.umd.min.js",
   "scripts": {
     "serve": "set port=8081 && vue-cli-service serve",
     "build": "vue-cli-service build",

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="title">
-			流程图组件（flowchart）
+			流程图组件（JFlowchart）
 			<div class="detail">
 				可拖拽流程图组件
 			</div>
