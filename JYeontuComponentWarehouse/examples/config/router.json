@@ -81,6 +81,16 @@
     "component": "views/canvasBroadView.vue",
     "children": []
   },{
+    "id": 11,
+    "name": "JNumRollingView",
+    "path": "/JNumRollingView",
+    "label": "数字滚动变化效果",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+    "component": "views/JNumRollingView.vue",
+    "children": []
+  },{
     "id": 8,
     "name": "utilsTools",
     "path": "",

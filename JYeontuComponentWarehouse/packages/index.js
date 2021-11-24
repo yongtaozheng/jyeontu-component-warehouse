@@ -4,6 +4,7 @@ import JCanvasBroad from './JCanvasBroad'
 import JCodeHeightLight from './JCodeHeightLight'
 import JFlowChart from './JFlowChart'
 import JElectronicNumber from './JElectronicNumber'
+import JNumRolling from './JNumRolling'
 
 // 存储组件列表
 const components = [
@@ -12,7 +13,8 @@ const components = [
 	JCanvasBroad,
 	JCodeHeightLight,
 	JFlowChart,
-	JElectronicNumber
+	JElectronicNumber,
+	JNumRolling
 ]
 
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
