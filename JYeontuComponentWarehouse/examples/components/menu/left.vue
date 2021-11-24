@@ -117,6 +117,12 @@ export default {
     font-size: large;
     font-weight: bold;
 	z-index: 99;
+	overflow: scroll;
+	top:0;
+	bottom:0;
+	position:fixed;
+	overflow-y:scroll;
+	overflow-x:hidden;
   }
   .selectedM{
     background-color: #374151;
