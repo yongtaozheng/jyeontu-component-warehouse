@@ -100,6 +100,11 @@ export default {
 	  font-size: small !important;
     margin-left: 0px;
   }
+	.menuBtn {
+	  position: fixed;
+	  top: 1rem;
+	  display: inline-block !important;
+	}
 }
 body {
   margin: 0 0;
@@ -128,7 +133,8 @@ body {
 }
 
 .menuBtn {
-  position: absolute;
+  position: fixed;
   top: 1rem;
+  // display: none !important;
 }
 </style>

@@ -44,7 +44,7 @@ export default {
     return {
       numbers:[],
       numberColor:'#8076a3',
-      numberSize:'1rem',
+      numberSize:'2rem',
 	  code:'',
 	  title:[
 	   {

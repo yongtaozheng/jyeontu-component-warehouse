@@ -54,12 +54,14 @@
 	    width: 42%;
 		margin-left: 2%;
 		height: inherit;
+		display: flex;
 	  }
 	  .right-p{
 	    width: 42%;
 		margin-top: 2rem;
 		margin-left: 10%;
 		height: inherit;
+		display: flex;
 	  }
 	}
   @media screen and (max-width:1000px) {
