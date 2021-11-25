@@ -5208,12 +5208,12 @@ JElectronicNumber.install = function (Vue) {
 
 
 /* harmony default export */ var packages_JElectronicNumber = (JElectronicNumber);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0efa5e40-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/JNumRolling/src/JNumRolling.vue?vue&type=template&id=147dcfcb&
-var JNumRollingvue_type_template_id_147dcfcb_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"j-num-rolling",attrs:{"id":"j-num-rolling"}}),_c('div',{on:{"click":function($event){return _vm.changAnime()}}},[_vm._v("点我")])])}
-var JNumRollingvue_type_template_id_147dcfcb_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0efa5e40-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./packages/JNumRolling/src/JNumRolling.vue?vue&type=template&id=caefd5e6&
+var JNumRollingvue_type_template_id_caefd5e6_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+var JNumRollingvue_type_template_id_caefd5e6_staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"j-num-rolling",attrs:{"id":"j-num-rolling"}})])}]
 
 
-// CONCATENATED MODULE: ./packages/JNumRolling/src/JNumRolling.vue?vue&type=template&id=147dcfcb&
+// CONCATENATED MODULE: ./packages/JNumRolling/src/JNumRolling.vue?vue&type=template&id=caefd5e6&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.fill.js
 var es6_array_fill = __webpack_require__("6c7b");
@@ -5224,7 +5224,6 @@ var es6_array_fill = __webpack_require__("6c7b");
 
 
 
-//
 //
 //
 //
@@ -5432,8 +5431,8 @@ var JNumRollingvue_type_style_index_0_lang_scss_ = __webpack_require__("ecd8");
 
 var JNumRolling_component = normalizeComponent(
   src_JNumRollingvue_type_script_lang_js_,
-  JNumRollingvue_type_template_id_147dcfcb_render,
-  JNumRollingvue_type_template_id_147dcfcb_staticRenderFns,
+  JNumRollingvue_type_template_id_caefd5e6_render,
+  JNumRollingvue_type_template_id_caefd5e6_staticRenderFns,
   false,
   null,
   null,
