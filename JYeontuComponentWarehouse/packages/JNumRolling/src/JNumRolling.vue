@@ -3,7 +3,6 @@
 		<div id="j-num-rolling" class="j-num-rolling">
 			
 		</div>
-		<div @click="changAnime()">点我</div>
 	</div>
 </template>
 
