@@ -91,6 +91,16 @@
     "component": "views/JNumRollingView.vue",
     "children": []
   },{
+    "id": 12,
+    "name": "JStepsView",
+    "path": "/JStepsView",
+    "label": "步骤条",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+    "component": "views/JStepsView.vue",
+    "children": []
+  },{
     "id": 8,
     "name": "utilsTools",
     "path": "",
