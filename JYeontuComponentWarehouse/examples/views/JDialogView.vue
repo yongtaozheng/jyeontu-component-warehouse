@@ -2,17 +2,17 @@
 	<split-horizontal>
 		<template v-slot:header-p>
 			<div class="title">
-				步骤条（JSteps）
+				对话弹窗（JDialog）
 				<div class="detail">
-					用于引导用户按照流程完成任务的导航条，显示当前所在步骤
+					页面弹出窗口
 				</div>
 			</div>
 		</template>
 		<template v-slot:left-p>
 		  <div class="content">
-			<j-steps>
+			<j-dialog>
 				
-			</j-steps>
+			</j-dialog>
 		  </div>
 		</template>
 		<template v-slot:right-p>
@@ -31,7 +31,7 @@
 <script>
 import splitHorizontal from '@/components/pages/splitHorizontal.vue'
 export default {
-  name:'JStepsView',
+  name:'JDialogView',
   components:{
 	splitHorizontal,
   },

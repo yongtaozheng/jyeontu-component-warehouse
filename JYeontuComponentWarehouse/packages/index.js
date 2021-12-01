@@ -5,6 +5,7 @@ import JCodeHeightLight from './JCodeHeightLight'
 import JFlowChart from './JFlowChart'
 import JElectronicNumber from './JElectronicNumber'
 import JNumRolling from './JNumRolling'
+import JDialog from './JDialog'
 
 // 存储组件列表
 const components = [
@@ -14,7 +15,8 @@ const components = [
 	JCodeHeightLight,
 	JFlowChart,
 	JElectronicNumber,
-	JNumRolling
+	JNumRolling,
+	JDialog
 ]
 
 // 定义 install 方法，接收 Vue 作为参数。如果使用 use 注册插件，则所有的组件都将被注册
