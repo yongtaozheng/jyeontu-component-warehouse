@@ -91,6 +91,38 @@
     "component": "views/JNumRollingView.vue",
     "children": []
   },{
+    "id": 12,
+    "name": "JStepsView",
+    "path": "/JStepsView",
+    "label": "步骤条",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+	"hide":true,
+    "component": "views/JStepsView.vue",
+    "children": []
+  },{
+    "id": 13,
+    "name": "JDialogView",
+    "path": "/JDialogView",
+    "label": "弹窗",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+	"hide":true,
+    "component": "views/JDialogView.vue",
+    "children": []
+  },{
+    "id": 14,
+    "name": "JHoverBtnView",
+    "path": "/JHoverBtnView",
+    "label": "悬浮按钮",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+    "component": "views/JHoverBtnView.vue",
+    "children": []
+  },{
     "id": 8,
     "name": "utilsTools",
     "path": "",

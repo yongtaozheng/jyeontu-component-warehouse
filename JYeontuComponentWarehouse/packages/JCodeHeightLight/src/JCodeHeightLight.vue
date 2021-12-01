@@ -57,7 +57,7 @@ export default {
 					'case','continue','double','for',
 					'package','try','catch','if','while',
 					'else','false','switch','export',
-					'return','null','break','delete '],
+					'return','null','break','delete','alert','default'],
 		jsKeyObj:['Array','Date','eval','function','hasOwnProperty',
 				'Infinity','isFinite','isNaN','isPrototypeOf','length',
 				'Math','NaN','name','Number','Object','prototype',

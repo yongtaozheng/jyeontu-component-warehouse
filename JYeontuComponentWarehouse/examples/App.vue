@@ -58,7 +58,7 @@ export default {
       c.style.marginLeft = parseInt(aWidth) + 'px'
       c.style.padding = '2rem'
       a.style.marginTop = parseInt(bHeight) + 'px'
-      console.log(aWidth,bWidth);
+      // console.log(aWidth,bWidth);
     }
   },
   mounted () {
@@ -70,71 +70,75 @@ export default {
 </script>
 
 <style lang="scss">
-.router-viewContent{
-  //height: calc(100vh - 60px);
-  //width: 100%;
-}
-.drawer-left-content{
-  display: none;
-}
-.top-content{
-  position: fixed;
-}
-.left-content{
-  display: block;
-  position: fixed;
-}
-
-@media screen and (max-width:1000px) {
-  .drawer-left-content{
-    display: block;
-  }
-  .left-content{
+	body{
+		overflow-x:hidden;
+	}
+	.router-viewContent{
+	  //height: calc(100vh - 60px);
+	  //width: 100%;
+		overflow-x:hidden;
+	}
+	.drawer-left-content{
 	  display: none;
-    position: fixed;
-  }
-  #leftMenu{
-	font-size: small !important;
-  }
-  #routerViewContent{
-	  font-size: small !important;
-    margin-left: 0px;
-  }
+	}
+	.top-content{
+	  position: fixed;
+	}
+	.left-content{
+	  display: block;
+	  position: fixed;
+	}
+
+	@media screen and (max-width:1000px) {
+	  .drawer-left-content{
+		display: block;
+	  }
+	  .left-content{
+		  display: none;
+		position: fixed;
+	  }
+	  #leftMenu{
+		font-size: small !important;
+	  }
+	  #routerViewContent{
+		  font-size: small !important;
+		margin-left: 0px;
+	  }
+		.menuBtn {
+		  position: fixed;
+		  top: 1rem;
+		  display: inline-block !important;
+		}
+	}
+	body {
+	  margin: 0 0;
+	}
+
+	.el-drawer {
+	  width: auto !important;
+	}
+
+	.el-drawer__header {
+	  padding: 10px 20px 0 !important;
+	  padding-bottom: 25px !important;
+	  margin-bottom: 0 !important;
+	  background-color: #374151;
+	}
+
+	#app {
+	  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+	  -webkit-font-smoothing: antialiased;
+	  -moz-osx-font-smoothing: grayscale;
+	  text-align: center;
+	  color: #2c3e50;
+	  /*margin-top: 60px;*/
+	  width: 100vw;
+	  min-height: 100vh;
+	}
+
 	.menuBtn {
 	  position: fixed;
 	  top: 1rem;
-	  display: inline-block !important;
+	  // display: none !important;
 	}
-}
-body {
-  margin: 0 0;
-}
-
-.el-drawer {
-  width: auto !important;
-}
-
-.el-drawer__header {
-  padding: 10px 20px 0 !important;
-  padding-bottom: 25px !important;
-  margin-bottom: 0 !important;
-  background-color: #374151;
-}
-
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /*margin-top: 60px;*/
-  width: 100vw;
-  min-height: 100vh;
-}
-
-.menuBtn {
-  position: fixed;
-  top: 1rem;
-  // display: none !important;
-}
 </style>

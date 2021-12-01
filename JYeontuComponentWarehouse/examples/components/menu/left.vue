@@ -68,6 +68,7 @@ export default {
       //           </div>`
       // }
       for (let i = 0; i < menu.length; i++) {
+		if(menu[i].hide == true) continue;
         temp += `<div style="width: max-content">
                     <div class="menuOption" onclick="chooseNode(${menu[i].id})"
                             style="text-indent: ${floor}em;
