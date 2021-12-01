@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	import {_toLittleCamel,camelTo_} from '../../utils/strTool'
+	import {camelTo_} from '../../utils/strTool'
 	export default{
 		name:'JHoverBtn',
 		props:{
@@ -61,7 +61,6 @@
 			this.preventEvent();
 			window.addEventListener('mouseup',this.handleMouseup);
 			window.addEventListener('mouseover',this.handleMouseover);
-			console.log(this.$props);
 		},
 		methods:{
 			getStyle(res = ''){

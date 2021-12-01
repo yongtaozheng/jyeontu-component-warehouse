@@ -1,10 +1,10 @@
 <template>
   <div id="leftMenu">
+	  
   </div>
 </template>
 
 <script>
-
 export default {
   name: 'left',
   data () {
@@ -69,7 +69,7 @@ export default {
       // }
       for (let i = 0; i < menu.length; i++) {
 		if(menu[i].hide == true) continue;
-        temp += `<div style="width: max-content">
+        temp += `<div style="width: max-content,background-color: ${menu[i].selected ? '#A78BFA' : ''};">
                     <div class="menuOption" onclick="chooseNode(${menu[i].id})"
                             style="text-indent: ${floor}em;
                             background-color: ${menu[i].selected ? '#A78BFA' : ''};
@@ -108,7 +108,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
   #leftMenu{
     min-height: calc(100vh - 44px - 1rem);
     background-color: #1F2937;
@@ -124,11 +124,14 @@ export default {
 	position:fixed;
 	overflow-y:scroll;
 	overflow-x:hidden;
-  }
-  .selectedM{
-    background-color: #374151;
-  }
-  .menuOption{
-    cursor: pointer;
+	.selectedM{
+		background-color: #374151;
+	}
+	.menuOption{
+		cursor: pointer;
+		&:hover{
+			color: yellow;
+		}
+	}
   }
 </style>
