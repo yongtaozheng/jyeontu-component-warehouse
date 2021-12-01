@@ -44,7 +44,9 @@ export default {
     return {
 		code:'',
 		btnStyle:{
-			"fontSize":'small'
+			"fontSize":'small',
+			"top":'60vh',
+			"left":'90vw'
 		},
 		tableTitle:[
 			{
@@ -159,7 +161,9 @@ export default {
 			data(){
 			  return {
 				  btnStyle:{
-					"fontSize":'small'
+					"fontSize":'small',
+					"top":'60vh',
+					"left":'90vw'
 				  },
 			  }
 			},
