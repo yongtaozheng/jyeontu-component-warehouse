@@ -1,8 +1,10 @@
 <template>
 	<div class="j-dialog">
-		<div class="mask"></div>
+		<div class="mask" v-if="JDialogIsShow"></div>
 		<div class="j-dialog-content">
-			<div class="j-dialog-header"></div>
+			<div class="j-dialog-header">
+				<div class="j-dialog-header-title"></div>
+			</div>
 			<div class="j-dialog-main"></div>
 			<div class="j-dialog-footer"></div>
 		</div>
@@ -16,6 +18,9 @@
 		name:'JDialog',
 		props:{
 			
+		},
+		data:{
+			JDialogIsShow:false
 		}
 	}
 </script>

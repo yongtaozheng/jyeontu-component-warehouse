@@ -98,6 +98,7 @@
     "select": false,
     "icon": "icon-huaban",
     "open": false,
+	"hide":true,
     "component": "views/JStepsView.vue",
     "children": []
   },{
@@ -108,7 +109,18 @@
     "select": false,
     "icon": "icon-huaban",
     "open": false,
+	"hide":true,
     "component": "views/JDialogView.vue",
+    "children": []
+  },{
+    "id": 14,
+    "name": "JHoverBtnView",
+    "path": "/JHoverBtnView",
+    "label": "悬浮按钮",
+    "select": false,
+    "icon": "icon-huaban",
+    "open": false,
+    "component": "views/JHoverBtnView.vue",
     "children": []
   },{
     "id": 8,
