@@ -10,8 +10,13 @@
 		</template>
 		<template v-slot:left-p>
 		  <div class="content">
-			<j-dialog>
-				
+			<j-dialog :title="title"
+					closable="true"
+					:btnList="btnList">
+				<template v-slot:j-dialog-main-content>
+					<p>人生就像海洋</p>
+					<p>只有意志坚强的人才能到达彼岸</p>
+				</template>
 			</j-dialog>
 		  </div>
 		</template>
@@ -37,12 +42,22 @@ export default {
   },
   data(){
     return {
-		nums:'999999',
-		numStyle:{
-			border:'2px solid skyblue',
-			boxShadow:'10px 10px 5px #185D8C',
-			marginLeft:'0.5rem',
-		},
+		title:"我是标题",
+		btnList:[
+			{
+				text:'取消',
+				style:{
+					backgroundColor:'orangered'
+				},
+				click:'close'
+			},
+			{
+				text:'确认',
+				style:{
+					backgroundColor:'seagreen'
+				}
+			}
+		],
 		code:'',
 		tableTitle:[
 			{
@@ -88,90 +103,70 @@ export default {
 		],
 		tableData:[
 			{
-				'parameter':'nums',
-				'field':'数字',
+				'parameter':'title',
+				'field':'标题',
 				'type':'String',
-				'describe':'需要滚动的数字'
+				'describe':'左上角显示标题'
 			},
 			{
-				'parameter':'fontSize',
-				'field':'数字尺寸，行高',
-				'type':'Number',
-				'describe':'默认为4，fone-size为参数除于3'
+				'parameter':'closable',
+				'field':'点击遮罩关闭弹窗',
+				'type':'Boolean',
+				'describe':'默认为false'
 			},
 			{
-				'parameter':'stepTime',
-				'field':'滚动速度',
-				'type':'Number',
-				'describe':'每走一步的时间(ms)，默认值为200'
-			},
-			{
-				'parameter':'fixNum',
-				'field':'保留小数点',
-				'type':'Number',
-				'describe':'数字保留小数点，默认为2'
-			},
-			{
-				'parameter':'numStyle',
-				'field':'自定义数字格子样式',
-				'type':'Object',
-				'describe':''
-			},
-			{
-				'parameter':'refreshTime',
-				'field':'数字刷新间隔',
-				'type':'Number',
-				'describe':'数字刷新间隔(s)，默认为3'
+				'parameter':'btnList',
+				'field':'底部按钮列表',
+				'type':'Array',
+				'describe':'具体配置如下代码'
 			}
 		],
 	}
   },
   created() {
   	this.code = `
-		<j-num-rolling :nums = "nums" 
-			:fixNum = "2" 
-			:stepTime = "200" 
-			:refreshTime = "2" 
-			:fontSize = "4" 
-			:numStyle = "numStyle">
-			
-		</j-num-rolling>
+		<j-dialog :title="title" 
+			closable="true" 
+			:btnList="btnList">
+			<template v-slot:j-dialog-main-content>
+				<div>人生就像海洋</div>
+				<div>只有意志坚强的人才能到达彼岸</div>
+			</template>
+		</j-dialog>
 		
 		data(){
 		  return {
-			nums:'999999',
-			numStyle:{
-				border:'2px solid skyblue',
-				boxShadow:'10px 10px 5px #185D8C',
-				marginLeft:'0.5rem',
-			},
+			title:"我是标题",
+			btnList:[
+				{
+					text:'取消',
+					style:{
+						backgroundColor:'orangered'
+					},
+					click:'close'
+				},
+				{
+					text:'确认',
+					style:{
+						backgroundColor:'seagreen'
+					}
+				}
+			]
 		  }
 		},
 		mounted() {
-			this.autoChange();
+			
 		},
 		methods:{
-		  //自动增加数字，测试
-		  autoChange(){
-		  	this.nums = parseFloat(this.nums) + 12345.67;
-		  	setTimeout(()=>{
-		  		this.autoChange();
-		  	},5000);
-		  },
+		  
 		}
 	`
   },
   mounted() {
-  	this.autoChange();
+	  
   },
   methods:{
-    //自动增加数字，测试
-    autoChange(){
-    	this.nums = parseFloat(this.nums) + 12345.67;
-    	setTimeout(()=>{
-    		this.autoChange();
-    	},5000);
-    },
+	  
   }
 }
 </script>

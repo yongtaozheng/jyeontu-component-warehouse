@@ -110,7 +110,7 @@
     "select": false,
     "icon": "icon-danchuang",
     "open": false,
-	"hide":true,
+	"hide":false,
     "component": "views/JDialogView.vue",
     "children": []
   },{

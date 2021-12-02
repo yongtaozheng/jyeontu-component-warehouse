@@ -103,48 +103,54 @@ export default {
 		res = '<span style="color :'+ color[type] +'">'+ str +'</span>';
 		return res;
 	},
+	replaceDfs(tagReg,textCode){
+		let res = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
+			let res = '';
+			if(s4 == undefined) return '<span>' + s1 + '</span>';
+			res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
+			let text = s6.match(/>(.*)</);
+			if(text && text.length > 1){
+			  text = this.replaceDfs(tagReg,text[1]);
+				console.log('text',text);
+			}else{
+			  text = '';
+			}
+			s6 = s6.split(/>.*<\//);
+			s6 = s6[0];
+			s6 = s6.replace(/ *= */g,'=');
+			s6 = s6.split(' ');
+			for(let i = 0; i < s6.length; i++){
+			  if(s6[i] !== ''){
+				  let t = s6[i].split('=');
+				  if(t.length == 2){
+					  res += this.getColor('attrWord',t[0]);
+					  res += ' = ';
+					  res += this.getColor('attrValue',t[1]);
+					  if(i < s6.length - 1) res += ' ';
+				  }
+			  }
+			}
+			res += '<span>>' + text + '<</span>/' + this.getColor('tagWord',s4) + '<span>></span>';
+			return(res);
+		})
+		return res;
+	},
     replaceKeyWord(){
       let colors = this.color;
 	  const contentCodeHtml = document.getElementById('content-code-html');
       let showCode = this.code;
       //html标签
-      let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<.*>/g;
+      let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<\/.*>/g;
 	  let textCode = showCode.match(htmlReg);
 	  if(textCode != null){
 		textCode = textCode.join('\n');
-		textCode = textCode.replace(/[\r]/g,'tab缩进');
+		textCode = textCode.replace(/[\t]/g,'缩进符');
 		textCode = textCode.replace(/[\n]/g,'换行符');
 		let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
-		textCode = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
-				  let res = '';
-				  if(s4 == undefined) return '<span>' + s1 + '</span>';
-				  res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
-				  let text = s6.match(/>(.*)</);
-				  if(text && text.length > 1){
-					  text = text[1];
-				  }else{
-					  text = '';
-				  }
-				  s6 = s6.split(/>.*<\//);
-				  s6 = s6[0];
-				  s6 = s6.replace(/ *= */g,'=');
-				  s6 = s6.split(' ');
-				  for(let i = 0; i < s6.length; i++){
-					  if(s6[i] !== ''){
-						  let t = s6[i].split('=');
-						  if(t.length == 2){
-							  res += this.getColor('attrWord',t[0]);
-							  res += ' = ';
-							  res += this.getColor('attrValue',t[1]);
-							  if(i < s6.length - 1) res += ' ';
-						  }
-					  }
-				  }
-				  res += '<span>>' + text + '<</span>/' + this.getColor('tagWord',s4) + '<span>></span>';
-				  return(res);
-		})
+		textCode = this.replaceDfs(tagReg,textCode);
 		textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
 		textCode = textCode.replace(/换行符/g,'<br/>');
+		textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
 		contentCodeHtml.innerHTML = textCode;
 		
 		showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
