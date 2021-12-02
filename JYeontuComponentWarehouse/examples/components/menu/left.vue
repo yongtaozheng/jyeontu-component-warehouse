@@ -5,6 +5,7 @@
 </template>
 
 <script>
+const router = require('@/config/router.json')
 export default {
   name: 'left',
   data () {
@@ -16,7 +17,6 @@ export default {
     getNewMenu () {
       let menu = []
       let id = 0
-      const router = require('@/config/router.json')
       menu = router.menu
       if (localStorage.jyeontuRouteId !== undefined && localStorage.jyeontuMenu !== undefined) {
         menu = JSON.parse(localStorage.jyeontuMenu)
@@ -75,10 +75,14 @@ export default {
                             background-color: ${menu[i].selected ? '#A78BFA' : ''};
                             cursor: pointer;
                             margin-top: 1rem;">`
+		let iconColor = router.iconColor;
         if (menu[i].icon.split('-')[0] === 'el') {
-          temp += `<i class="${menu[i].icon}" style="margin-right: 5px;"></i>`
+			if(menu[i].iconColor){
+				iconColor = menu[i].iconColor;
+			}
+          temp += `<i class="${menu[i].icon}" style="margin-right: 5px;color:${iconColor};"></i>`
         } else if (menu[i].icon.split('-')[0] === 'icon') {
-          temp += `<i class="iconfont ${menu[i].icon}" style="margin-right: 5px;"></i>`
+          temp += `<i class="iconfont ${menu[i].icon}" style="margin-right: 5px;color:${iconColor};"></i>`
         }
         temp += `${menu[i].label.trim()}`
         if (!menu[i].open && menu[i].children && menu[i].children.length > 0) {

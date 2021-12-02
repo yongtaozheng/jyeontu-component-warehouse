@@ -1,5 +1,6 @@
 {
   "name": "routerConfig",
+  "iconColor":"deepskyblue",
   "menu": [{
     "id": 1,
     "name": "home",
@@ -86,7 +87,7 @@
     "path": "/JNumRollingView",
     "label": "数字滚动变化效果",
     "select": false,
-    "icon": "icon-huaban",
+    "icon": "icon-shuzidizeng",
     "open": false,
     "component": "views/JNumRollingView.vue",
     "children": []
@@ -107,7 +108,7 @@
     "path": "/JDialogView",
     "label": "弹窗",
     "select": false,
-    "icon": "icon-huaban",
+    "icon": "icon-danchuang",
     "open": false,
 	"hide":true,
     "component": "views/JDialogView.vue",
@@ -118,7 +119,7 @@
     "path": "/JHoverBtnView",
     "label": "悬浮按钮",
     "select": false,
-    "icon": "icon-huaban",
+    "icon": "icon-xuanfuanniufadongtai",
     "open": false,
     "component": "views/JHoverBtnView.vue",
     "children": []

@@ -6,6 +6,27 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "12550674",
+      "name": "弹窗",
+      "font_class": "danchuang",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "18545906",
+      "name": "悬浮按钮发动态",
+      "font_class": "xuanfuanniufadongtai",
+      "unicode": "e6e8",
+      "unicode_decimal": 59112
+    },
+    {
+      "icon_id": "24043661",
+      "name": "数字递增",
+      "font_class": "shuzidizeng",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
       "icon_id": "2679664",
       "name": "安装包",
       "font_class": "anzhuangbao",
