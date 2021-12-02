@@ -103,6 +103,26 @@ export default {
 		res = '<span style="color :'+ color[type] +'">'+ str +'</span>';
 		return res;
 	},
+	dfs(text){
+		let l = [],r = [];
+		let res = [];
+		for(let i = 0; i < text.length; i++){
+			if(text[i] == '<'){
+				if(text[i+1] == '/'){
+					let j = i + 2;
+					while(text[j] != '>'){
+						j++;
+					}
+					//if(l.length == 1) 
+					res.push(text.slice(l.pop(),j+1));
+					//else l.pop();
+				}else{
+					l.push(i);
+				}
+			}
+		}
+		return res;
+	},
 	replaceDfs(tagReg,textCode){
 		let res = textCode.replace(tagReg,(s1,s2,s3,s4,s5,s6,s7,s8,s9,s10) => {
 			let res = '';
@@ -110,8 +130,8 @@ export default {
 			res += '<span><<span>' + this.getColor('tagWord',s4) + ' ';
 			let text = s6.match(/>(.*)</);
 			if(text && text.length > 1){
-			  text = this.replaceDfs(tagReg,text[1]);
-				console.log('text',text);
+				text = text[1];
+			  // text = this.replaceDfs(tagReg,text[1]);
 			}else{
 			  text = '';
 			}
@@ -147,7 +167,11 @@ export default {
 		textCode = textCode.replace(/[\t]/g,'缩进符');
 		textCode = textCode.replace(/[\n]/g,'换行符');
 		let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
-		textCode = this.replaceDfs(tagReg,textCode);
+		let t = this.dfs(textCode);
+		for(let i = 0; i < t.length; i++){
+			textCode = textCode.replace(t[t.length - 1 - i],this.replaceDfs(tagReg,t[t.length - 1 - i]));
+		}
+		//textCode = this.replaceDfs(tagReg,textCode);
 		textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
 		textCode = textCode.replace(/换行符/g,'<br/>');
 		textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
