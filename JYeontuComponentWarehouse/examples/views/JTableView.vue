@@ -161,7 +161,7 @@ export default {
   created() {
 	  this.code = `
 			<j-table :title="title" 
-				:tableData="tableData">
+					:tableData="tableData">
 			</j-table>
 			  
 			  /**

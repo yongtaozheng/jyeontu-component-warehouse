@@ -134,12 +134,12 @@ export default {
   created() {
   	this.code = `
 		<j-num-rolling :nums = "nums" 
-			:fixNum = "2" 
-			:stepTime = "200" 
-			:refreshTime = "2" 
-			:fontSize = "4" 
-			:numStyle = "numStyle">
-			
+					:fixNum = "2" 
+					:stepTime = "200" 
+					:refreshTime = "2" 
+					:fontSize = "4" 
+					:numStyle = "numStyle">
+				
 		</j-num-rolling>
 		
 		data(){

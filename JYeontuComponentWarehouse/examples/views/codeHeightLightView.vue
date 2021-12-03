@@ -115,6 +115,13 @@ export default {
 				:keyWords = "keyWords" 
 				:color = "color">
 		</j-code-height-light>
+		<!-- 注释 -->
+		<div class = 'body'>
+			<div class = 'title'>标题</div>
+			<div class = 'main'>
+				<span>内容</span>
+			</div>
+		</div>
 		
 		/**
 		 * 组件参数配置如下

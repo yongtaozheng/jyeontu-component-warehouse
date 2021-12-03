@@ -93,29 +93,24 @@ export default {
       //提示已复制
       alter('已复制');
     },
-	t(str){
-		console.log('aaa'+str);
-		return 'aaa' + str;
-	},
 	getColor(type,str){
 		let res = '';
 		let color = this.color;
 		res = '<span style="color :'+ color[type] +'">'+ str +'</span>';
 		return res;
 	},
-	dfs(text){
+	findTag(text){
 		let l = [],r = [];
 		let res = [];
 		for(let i = 0; i < text.length; i++){
 			if(text[i] == '<'){
+				if(text[i + 1] == '!') continue;
 				if(text[i+1] == '/'){
 					let j = i + 2;
 					while(text[j] != '>'){
 						j++;
 					}
-					//if(l.length == 1) 
 					res.push(text.slice(l.pop(),j+1));
-					//else l.pop();
 				}else{
 					l.push(i);
 				}
@@ -131,14 +126,11 @@ export default {
 			let text = s6.match(/>(.*)</);
 			if(text && text.length > 1){
 				text = text[1];
-			  // text = this.replaceDfs(tagReg,text[1]);
 			}else{
 			  text = '';
 			}
 			s6 = s6.split(/>.*<\//);
-			s6 = s6[0];
-			s6 = s6.replace(/ *= */g,'=');
-			s6 = s6.split(' ');
+			s6 = s6[0].replace(/ *= */g,'=').split(' ');
 			for(let i = 0; i < s6.length; i++){
 			  if(s6[i] !== ''){
 				  let t = s6[i].split('=');
@@ -147,6 +139,14 @@ export default {
 					  res += ' = ';
 					  res += this.getColor('attrValue',t[1]);
 					  if(i < s6.length - 1) res += ' ';
+				  }else{
+					  t = s6[i].split(':');
+					  if(t.length == 2){
+						  res += this.getColor('attrWord',t[0]);
+						  res += ':';
+						  res += this.getColor('attrValue',t[1]);
+						  if(i < s6.length - 1) res += ' ';
+					  }
 				  }
 			  }
 			}
@@ -163,26 +163,20 @@ export default {
       let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<\/.*>/g;
 	  let textCode = showCode.match(htmlReg);
 	  if(textCode != null){
-		textCode = textCode.join('\n');
-		textCode = textCode.replace(/[\t]/g,'缩进符');
-		textCode = textCode.replace(/[\n]/g,'换行符');
+		textCode = textCode.join('\n').replace(/[\t]/g,'缩进符').replace(/[\n]/g,'换行符');
 		let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
-		let t = this.dfs(textCode);
+		let t = this.findTag(textCode);
 		for(let i = 0; i < t.length; i++){
 			textCode = textCode.replace(t[t.length - 1 - i],this.replaceDfs(tagReg,t[t.length - 1 - i]));
 		}
-		//textCode = this.replaceDfs(tagReg,textCode);
-		textCode.replace(/(<!--)(.*)(-->)/g,"<pre ></pre>");
+		textCode = textCode.replace(/(<!--)(.*)(-->)/g,"<span style=\"color:"+ colors.note +";\"><span><</span><span>!--</span>$2<span>--</span><span>></span>");
 		textCode = textCode.replace(/换行符/g,'<br/>');
-		textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;&nbsp;&nbsp;');
+		textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;');
 		contentCodeHtml.innerHTML = textCode;
-		
 		showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
 	  }else{
 		contentCodeHtml.style.display='none';
 	  }
-	  
-	  // showCode = showCode.replace(/[\t]/g,'\t ')
 	  
       //字符串
       let regStr = '\'(.*)\'';
@@ -194,7 +188,6 @@ export default {
       for(let i = 0; i < keyWord.length; i++){
         let regKeyWord = '((([\\t|\\r|\\n| ])*('+ keyWord[i] + '))( |,|\\.|\\(|;))';
         showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$2</span>$5");
-        // console.log('------',reg,keyWord[i],code);
       }
 	  
 	  //自定义关键字
@@ -219,17 +212,12 @@ export default {
 	  for(let i = 0; i < methodKeyWord.length; i++){
 	    let regMethodKeyWord = '('+ methodKeyWord[i] + ')';
 	    showCode = showCode.replace(new RegExp(regMethodKeyWord,'g'),"<span style='color : " + colors.methodkeyWord + "'>$1</span>");
-	    // console.log('------',regMethodKeyWord,methodKeyWord[i]);
 	  }
 	  
       //变量名
-      // let varReg = '( .+)(:)({|\[|<span style=)';
 	  let varReg = /([a-zA-Z]+):/g
-	  // console.log(showCode.match(varReg,'g'));
       showCode = showCode.replace(varReg,"<span style='color : " + colors.varWord + "'>$1</span>:");
-	  //greyWords
 	  showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color :"+ colors.note +"'>$1$2</span>")
-
       this.showCode = showCode;
     }
   },

@@ -117,9 +117,9 @@ export default {
   created() {
   	this.code = `
 		<j-calendar :title="title" 
-			:bgSrc="bgSrc" 
-			@selectDay="selectDay" 
-			@changeMonth="changeMonth">
+					:bgSrc="bgSrc" 
+					@selectDay="selectDay" 
+					@changeMonth="changeMonth">
 		</j-calendar>
 		
 		data(){

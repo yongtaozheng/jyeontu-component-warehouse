@@ -132,9 +132,9 @@
 		created() {
 			this.code = `
 			<j-canvas-broad class="canvas-baroad" 
-					:toolsTabList="true" 
-					:height="height" 
-					:width="width">
+						:toolsTabList="true" 
+						:height="height" 
+						:width="width">
 			</j-canvas-broad>
 			
 			data(){

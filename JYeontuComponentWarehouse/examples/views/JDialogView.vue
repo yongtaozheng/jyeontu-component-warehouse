@@ -16,6 +16,7 @@
 				<template v-slot:j-dialog-main-content>
 					<p>人生就像海洋</p>
 					<p>只有意志坚强的人才能到达彼岸</p>
+					<!-- 注释 -->
 				</template>
 			</j-dialog>
 		  </div>
@@ -126,8 +127,8 @@ export default {
   created() {
   	this.code = `
 		<j-dialog :title="title" 
-			closable="true" 
-			:btnList="btnList">
+				closable="true" 
+				:btnList="btnList">
 			<template v-slot:j-dialog-main-content>
 				<div>人生就像海洋</div>
 				<div>只有意志坚强的人才能到达彼岸</div>

@@ -151,10 +151,10 @@ export default {
   created() {
   	this.code = `
 		<j-hover-btn bgColor = 'pink' 
-			width = '80' 
-			text = '按钮文字' 
-			:btn-style = "btnStyle" 
-			@hoverBtnClick = "hoverBtnClick()">
+					width = '80' 
+					text = '按钮文字' 
+					:btn-style = "btnStyle" 
+					@hoverBtnClick = "hoverBtnClick()">
 			
 		</j-hover-btn>
 		export default {

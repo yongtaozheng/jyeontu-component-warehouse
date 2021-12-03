@@ -113,8 +113,8 @@ export default {
   created() {
   	this.code = `
             <j-electronic-number :numbers="numbers" 
-			:number-color="numberColor" 
-			:number-size="numberSize" >
+								:number-color="numberColor" 
+								:number-size="numberSize" >
             </j-electronic-number>
 
             numbers:[],
