@@ -11,7 +11,9 @@
 		<template v-slot:left-p>
 		  <div class="content">
 			<j-dialog :title="title"
+					ref = "JDialog"
 					closable="true"
+					@confirm ="confirm"
 					:btnList="btnList">
 				<template v-slot:j-dialog-main-content>
 					<p>人生就像海洋</p>
@@ -56,7 +58,8 @@ export default {
 				text:'确认',
 				style:{
 					backgroundColor:'seagreen'
-				}
+				},
+				click:'confirm'
 			}
 		],
 		code:'',
@@ -150,7 +153,8 @@ export default {
 					text:'确认',
 					style:{
 						backgroundColor:'seagreen'
-					}
+					},
+					click:'confirm'
 				}
 			]
 		  }
@@ -159,7 +163,10 @@ export default {
 			
 		},
 		methods:{
-		  
+		  confirm(){
+		  		console.log('confirm');
+		  		this.$refs.JDialog.closeDialog();
+		  }
 		}
 	`
   },
@@ -167,7 +174,10 @@ export default {
 	  
   },
   methods:{
-	  
+	  confirm(){
+		console.log('confirm');
+		this.$refs.JDialog.closeDialog();
+	  }
   }
 }
 </script>
