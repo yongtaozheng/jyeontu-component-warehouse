@@ -42,6 +42,8 @@ export default {
           node[i].selected = true
           node[i].open = !node[i].open
           this.$router.push(node[i].path)
+		  window.scroll(0,0);
+		  window.scrollTo(0,0);
           localStorage.setItem('jyeontuRouteId', node[i].id)
           localStorage.setItem('jyeontuMenu', JSON.stringify(this.menu))
           if (node[i].children && node[i].children.length > 0) {
