@@ -152,8 +152,8 @@
 					let x = event.pageX,y = event.pageY;
 					this.operateDom.style.position = 'fixed';
 					this.operateDom.style.opacity = '0.5';
-					this.operateDom.style.left = x - w / 2 + 'px';
-					this.operateDom.style.top = y - h / 2 + 'px';
+					this.operateDom.style.left = x - w / 2 - window.scrollX + 'px';
+					this.operateDom.style.top = y - h / 2 - window.scrollY + 'px';
 					let {tx,ty} = this.getItemCoords(x,y);
 					let oldInd = this.oldInd;
 					if(oldInd >= 0){
