@@ -57,11 +57,13 @@ export default {
 					'case','continue','double','for',
 					'package','try','catch','if','while',
 					'else','false','switch','export',
-					'return','null','break','delete','alert','default'],
+					'return','null','break','delete','alert','default',
+					'console','log','error'],
 		jsKeyObj:['Array','Date','eval','function','hasOwnProperty',
 				'Infinity','isFinite','isNaN','isPrototypeOf','length',
 				'Math','NaN','name','Number','Object','prototype',
-				'String','toString','undefined','valueOf']
+				'String','toString','undefined','valueOf'],
+		methodKeyWord:['setTimeout','toString','praseInt','praseFloat'],
     };
   },
   //监听属性 类似于data概念",
@@ -129,8 +131,7 @@ export default {
 			}else{
 			  text = '';
 			}
-			s6 = s6.split(/>.*<\//);
-			s6 = s6[0].replace(/ *= */g,'=').split(' ');
+			s6 = s6.split(/>.*<\//)[0].replace(/ *= */g,'=').split(' ');
 			for(let i = 0; i < s6.length; i++){
 			  if(s6[i] !== ''){
 				  let t = s6[i].split('=');
@@ -156,73 +157,76 @@ export default {
 		return res;
 	},
     replaceKeyWord(){
-      let colors = this.color;
-	  const contentCodeHtml = document.getElementById('content-code-html');
-      let showCode = this.code;
-      //html标签
-      let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<\/.*>/g;
-	  let textCode = showCode.match(htmlReg);
-	  if(textCode != null){
-		textCode = textCode.join('\n').replace(/[\t]/g,'缩进符').replace(/[\n]/g,'换行符');
-		let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
-		let t = this.findTag(textCode);
-		for(let i = 0; i < t.length; i++){
-			textCode = textCode.replace(t[t.length - 1 - i],this.replaceDfs(tagReg,t[t.length - 1 - i]));
+		let colors = this.color;
+		const contentCodeHtml = document.getElementById('content-code-html');
+		let showCode = this.code;
+		//html标签
+		let htmlReg = /.*<(.|[\r\n])*>(.|[\r\n])*<\/.*>/g;
+		let textCode = showCode.match(htmlReg);
+		if(textCode != null){
+			textCode = textCode.join('\n').replace(/[\t]/g,'缩进符').replace(/[\n]/g,'换行符');
+			let tagReg = /((<)([a-zA-Z](-*[a-zA-Z])+)(.*)(>))|((<\/)([a-zA-Z](-*[a-zA-Z])+)(>))/g
+			let t = this.findTag(textCode);
+			for(let i = 0; i < t.length; i++){
+				textCode = textCode.replace(t[t.length - 1 - i],this.replaceDfs(tagReg,t[t.length - 1 - i]));
+			}
+			textCode = textCode.replace(/(<!--)(.*)(-->)/g,"<span style=\"color:"+ colors.note +";\"><span><</span><span>!--</span>$2<span>--</span><span>></span>");
+			textCode = textCode.replace(/换行符/g,'<br/>');
+			textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;');
+			contentCodeHtml.innerHTML = textCode;
+			showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
+		}else{
+			contentCodeHtml.style.display='none';
 		}
-		textCode = textCode.replace(/(<!--)(.*)(-->)/g,"<span style=\"color:"+ colors.note +";\"><span><</span><span>!--</span>$2<span>--</span><span>></span>");
-		textCode = textCode.replace(/换行符/g,'<br/>');
-		textCode = textCode.replace(/缩进符/g,'&nbsp;&nbsp;');
-		contentCodeHtml.innerHTML = textCode;
-		showCode = showCode.replace(new RegExp(htmlReg,'g'),"");
-	  }else{
-		contentCodeHtml.style.display='none';
-	  }
-	  
-      //字符串
-      let regStr = '\'(.*)\'';
-      showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>'$1'</span>");
-      
-      //js关键字
-      let keyWord = [...this.jsKeyWord];
-      keyWord = keyWord.concat([...this.jsKeyObj]);
-      for(let i = 0; i < keyWord.length; i++){
-        let regKeyWord = '((([\\t|\\r|\\n| ])*('+ keyWord[i] + '))( |,|\\.|\\(|;))';
-        showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$2</span>$5");
-      }
-	  
-	  //自定义关键字
-	  let keyWords = [...this.keyWords];
-	  for(let i = 0; i < keyWords.length; i++){
-	    let regKeyWord = '('+ keyWords[i].value + ')';
-	    showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + keyWords[i].color + " !important;'>$1</span>");
-	  }
-	  
-	  //js方法
-	  let functions = /([a-zA-Z0-9_]+)\(\)/g;
-	  let functionKeyWord = showCode.match(functions) || [];
-	  functionKeyWord = functionKeyWord.map((item) => {
-							return item.slice(0,item.length - 2)
-						})
-	  for(let i = 0; i < functionKeyWord.length; i++){
-	    let regFunctionKeyWord = '('+ functionKeyWord[i] + ')';
-	    showCode = showCode.replace(new RegExp(regFunctionKeyWord,'g'),"<span style='color : " + colors.functionkeyWord + "'>$1</span>");
-	  }
-	  
-	  let methodKeyWord = ['setTimeout','toString','praseInt','praseFloat'];
-	  for(let i = 0; i < methodKeyWord.length; i++){
-	    let regMethodKeyWord = '('+ methodKeyWord[i] + ')';
-	    showCode = showCode.replace(new RegExp(regMethodKeyWord,'g'),"<span style='color : " + colors.methodkeyWord + "'>$1</span>");
-	  }
-	  
-      //变量名
-	  let varReg = /([a-zA-Z]+):/g
-      showCode = showCode.replace(varReg,"<span style='color : " + colors.varWord + "'>$1</span>:");
-	  showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color :"+ colors.note +"'>$1$2</span>")
-      this.showCode = showCode;
+
+		//字符串
+		let regStr = '(\'|\")(.*)(\'|\")';
+		showCode = showCode.replace(new RegExp(regStr,'g'),"<span style='color : " + colors.strWord + "'>$1$2$3</span>");
+
+		//js关键字
+		let keyWord = [...this.jsKeyWord];
+		keyWord = keyWord.concat([...this.jsKeyObj]);
+		for(let i = 0; i < keyWord.length; i++){
+			let regKeyWord = '((([\\t|\\r|\\n| ])*('+ keyWord[i] + '))( |,|\\.|\\(|;))';
+			showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + colors.keyWord + "'>$2</span>$5");
+		}
+
+		//自定义关键字
+		let keyWords = [...this.keyWords];
+		for(let i = 0; i < keyWords.length; i++){
+			let regKeyWord = '('+ keyWords[i].value + ')';
+			showCode = showCode.replace(new RegExp(regKeyWord,'g'),"<span style='color : " + keyWords[i].color + " !important;'>$1</span>");
+		}
+
+		//js方法
+		let functions = /([a-zA-Z0-9_]+)\([A-Za-z,0-9]*\)/g;
+		let functionKeyWord = showCode.match(functions) || [];
+		functionKeyWord = functionKeyWord.map((item) => {
+			return item.slice(0,item.indexOf('('))
+		}).sort((a,b)=>{
+			return b.length - a.length;
+		});
+		for(let i = 0; i < functionKeyWord.length; i++){
+			let regFunctionKeyWord = '('+ functionKeyWord[i] + ')';
+			showCode = showCode.replace(new RegExp(regFunctionKeyWord,'g'),"<span style='color : " + colors.functionkeyWord + "'>$1</span>");
+		}
+		//内置方法
+		let methodKeyWord = [...methodKeyWord];
+		for(let i = 0; i < methodKeyWord.length; i++){
+			let regMethodKeyWord = '('+ methodKeyWord[i] + ')';
+			showCode = showCode.replace(new RegExp(regMethodKeyWord,'g'),"<span style='color : " + colors.methodkeyWord + "'>$1</span>");
+		}
+
+		//变量名
+		let varReg = /([a-zA-Z]+):/g
+		showCode = showCode.replace(varReg,"<span style='color : " + colors.varWord + "'>$1</span>:");
+		showCode = showCode.replace(/(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,"<span style='color :"+ colors.note +"'>$1$2</span>")
+		this.showCode = showCode;
     }
   },
   //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载
   beforeCreate() {
+	  
   },
 
   //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
@@ -236,9 +240,9 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
   mounted() {
-    let contentCode = document.getElementById('content-code');
-    this.replaceKeyWord();
-    contentCode.innerHTML = this.showCode;
+	let contentCode = document.getElementById('content-code');
+	this.replaceKeyWord();
+	contentCode.innerHTML = this.showCode;
   },
 
   //生命周期 - 更新之前",数据模型已更新,html模板未更新

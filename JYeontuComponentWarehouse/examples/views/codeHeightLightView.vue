@@ -159,6 +159,14 @@ export default {
 				}
 			}
 		},
+		methods:{
+			test(){
+				console.log('test');
+			},
+			testP(p1,p2){
+				console.log(p1,p2);
+			}
+		}
 		 `
   },
   //生命周期 - 挂载之前",html模板未渲染
