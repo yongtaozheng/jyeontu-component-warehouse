@@ -124,6 +124,17 @@
     "component": "views/JHoverBtnView.vue",
     "children": []
   },{
+    "id": 15,
+    "name": "JFloatDivView",
+    "path": "/JFloatDivView",
+    "label": "div文字环绕效果",
+    "select": false,
+    "icon": "icon-xuanfuanniufadongtai",
+    "open": false,
+	"hide":true,
+    "component": "views/JFloatDivView.vue",
+    "children": []
+  },{
     "id": 8,
     "name": "utilsTools",
     "path": "",
