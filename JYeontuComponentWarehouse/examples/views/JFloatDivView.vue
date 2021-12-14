@@ -1,9 +1,7 @@
 <template>
-	<j-float-div></j-float-div>
+    <j-float-div></j-float-div>
 </template>
 
-<script>
-</script>
+<script></script>
 
-<style>
-</style>
+<style></style>

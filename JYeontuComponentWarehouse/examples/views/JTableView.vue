@@ -1,177 +1,172 @@
 <template>
-	<split-horizontal>
-		<template v-slot:header-p>
-			<div class="title">
-				表格组件（JTable）
-				<div class="detail">
-					表格组件
-				</div>
-			</div>
-		</template>
-		<template v-slot:left-p>
-			<j-table :title="title"
-					 :tableData="tableData">
-			</j-table>
-		</template>
-		<template v-slot:right-p>
-			<j-table :title="title1"
-					 :tableData="tableData1">
-			</j-table>
-		</template>
-		<template v-slot:footer-p>
-			<j-code-height-light :code="code"
-								class="footer">
-
-			</j-code-height-light>
-		</template>
-	</split-horizontal>
+    <split-horizontal>
+        <template v-slot:header-p>
+            <div class="title">
+                表格组件（JTable）
+                <div class="detail">
+                    表格组件
+                </div>
+            </div>
+        </template>
+        <template v-slot:left-p>
+            <j-table :title="title" :tableData="tableData"> </j-table>
+        </template>
+        <template v-slot:right-p>
+            <j-table :title="title1" :tableData="tableData1"> </j-table>
+        </template>
+        <template v-slot:footer-p>
+            <j-code-height-light :code="code" class="footer">
+            </j-code-height-light>
+        </template>
+    </split-horizontal>
 </template>
 
 <script>
-import splitHorizontal from '@/components/pages/splitHorizontal.vue'
+import splitHorizontal from "@/components/pages/splitHorizontal.vue";
 export default {
-  name: "JTableView",
-  //import引入的组件需要注入到对象中才能使用",
-  components: {
-	splitHorizontal
-  },
-  data() {
-    //这里存放数据",
-    return {
-      title:[
-        {
-          title:'姓名',//展示列名
-          key:'name',//字段名
-          type: '', // 列类型
-          readOnly:true,//是否只读
-          width:'25vw',//列宽度
-          columnStyle: '', // 列样式
-          fixed: false,//是否固定
-          sort: false, // 是否支持排序
-        },
-        {
-          title:'年龄',//展示列名
-          key:'age',//字段名
-          type: '', // 列类型
-          readOnly:false,//是否只读
-          width:'15vw',//列宽度
-          columnStyle: '', // 列样式
-          fixed: false,//是否固定
-          sort: true, // 是否支持排序
-        },
-        {
-          title:'职业',//展示列名
-          key:'work',//字段名
-          type: '', // 列类型
-          readOnly:true,//是否只读
-          width:'50vw',//列宽度
-          columnStyle: '', // 列样式
-          fixed: false,//是否固定
-          sort: false, // 是否支持排序
-        }
-      ],
-      tableData:[
-        {
-            name:'张三',
-            age:'18',
-            work:'法外狂徒',
-            children:[
+    name: "JTableView",
+    //import引入的组件需要注入到对象中才能使用",
+    components: {
+        splitHorizontal
+    },
+    data() {
+        //这里存放数据",
+        return {
+            title: [
                 {
-                    name:'张三111',
-                    age:'18',
-                    work:'法外狂徒',
-                    children:[
+                    title: "姓名", //展示列名
+                    key: "name", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "25vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                },
+                {
+                    title: "年龄", //展示列名
+                    key: "age", //字段名
+                    type: "", // 列类型
+                    readOnly: false, //是否只读
+                    width: "15vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: true // 是否支持排序
+                },
+                {
+                    title: "职业", //展示列名
+                    key: "work", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "50vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                }
+            ],
+            tableData: [
+                {
+                    name: "张三",
+                    age: "18",
+                    work: "法外狂徒",
+                    children: [
                         {
-                            name:'张三222',
-                            age:'18',
-                            work:'法外狂徒',
-                        }]
-                }]
-        },
-        {
-          name:'李四',
-          age:'18',
-          work:'学生'
-        },
-        {
-          name:'王五',
-          age:'22',
-          work:'工程师'
-        }
-      ],
-	  title1:[
-	    {
-	      title:'参数',//展示列名
-	      key:'parameter',//字段名
-	      type: '', // 列类型
-	      readOnly:true,//是否只读
-	      width:'20vw',//列宽度
-	      columnStyle: '', // 列样式
-	      fixed: false,//是否固定
-	      sort: false, // 是否支持排序
-	    },
-	    {
-	      title:'字段名',//展示列名
-	      key:'field',//字段名
-	      type: '', // 列类型
-	      readOnly:true,//是否只读
-	      width:'30vw',//列宽度
-	      columnStyle: '', // 列样式
-	      fixed: false,//是否固定
-	      sort: false, // 是否支持排序
-	    },
-	    {
-	      title:'数据类型',//展示列名
-	      key:'type',//字段名
-	      type: '', // 列类型
-	      readOnly:true,//是否只读
-	      width:'15vw',//列宽度
-	      columnStyle: '', // 列样式
-	      fixed: false,//是否固定
-	      sort: false, // 是否支持排序
-	    },
-	    {
-	      title:'描述',//展示列名
-	      key:'describe',//字段名
-	      type: '', // 列类型
-	      readOnly:true,//是否只读
-	      width:'35vw',//列宽度
-	      columnStyle: '', // 列样式
-	      fixed: false,//是否固定
-	      sort: false, // 是否支持排序
-	    }
-	  ],
-        tableData1:[
-          {
-            'parameter':'title',
-            'field':'表头',
-            'type':'Array',
-            'describe':'详细参数如下'
-          },
-          {
-            'parameter':'tableData',
-            'field':'表数据',
-            'type':'Array',
-            'describe':'详细参数如下'
-          }
-        ],
-	  chatData:{},
-	  code:''
-    };
-  },
-  //监听属性 类似于data概念",
-  computed: {},
-  //监控data中的数据变化",
-  watch: {},
-  //方法集合",
-  methods: {},
-  //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载
-  beforeCreate() {
-  },
+                            name: "张三111",
+                            age: "18",
+                            work: "法外狂徒",
+                            children: [
+                                {
+                                    name: "张三222",
+                                    age: "18",
+                                    work: "法外狂徒"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "李四",
+                    age: "18",
+                    work: "学生"
+                },
+                {
+                    name: "王五",
+                    age: "22",
+                    work: "工程师"
+                }
+            ],
+            title1: [
+                {
+                    title: "参数", //展示列名
+                    key: "parameter", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "20vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                },
+                {
+                    title: "字段名", //展示列名
+                    key: "field", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "30vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                },
+                {
+                    title: "数据类型", //展示列名
+                    key: "type", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "15vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                },
+                {
+                    title: "描述", //展示列名
+                    key: "describe", //字段名
+                    type: "", // 列类型
+                    readOnly: true, //是否只读
+                    width: "35vw", //列宽度
+                    columnStyle: "", // 列样式
+                    fixed: false, //是否固定
+                    sort: false // 是否支持排序
+                }
+            ],
+            tableData1: [
+                {
+                    parameter: "title",
+                    field: "表头",
+                    type: "Array",
+                    describe: "详细参数如下"
+                },
+                {
+                    parameter: "tableData",
+                    field: "表数据",
+                    type: "Array",
+                    describe: "详细参数如下"
+                }
+            ],
+            chatData: {},
+            code: ""
+        };
+    },
+    //监听属性 类似于data概念",
+    computed: {},
+    //监控data中的数据变化",
+    watch: {},
+    //方法集合",
+    methods: {},
+    //生命周期 - 创建之前",数据模型未加载,方法未加载,html模板未加载
+    beforeCreate() {},
 
-  //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
-  created() {
-	  this.code = `
+    //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
+    created() {
+        this.code = `
 			<j-table :title="title"
 					:tableData="tableData">
 			</j-table>
@@ -229,59 +224,45 @@ export default {
 	  		      work:'工程师'
 	  		    }
 	  		  ],
-	  		 `
-  },
-  //生命周期 - 挂载之前",html模板未渲染
-  beforeMount() {
+	  		 `;
+    },
+    //生命周期 - 挂载之前",html模板未渲染
+    beforeMount() {},
 
-  },
+    //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
+    mounted() {},
 
-  //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
-  mounted() {
-
-  },
-
-  //生命周期 - 更新之前",数据模型已更新,html模板未更新
-  beforeUpdate() {
-
-  },
-  //生命周期 - 更新之后",数据模型已更新,html模板已更新
-  updated() {
-
-  },
-  //生命周期 - 销毁之前",
-  beforeDestroy() {
-
-  },
-  destroyed() {
-
-  },
-  //生命周期 - 销毁完成",
-  //如果页面有keep-alive缓存功能，这个函数会触发",
-  activated() {
-
-  },
-}
+    //生命周期 - 更新之前",数据模型已更新,html模板未更新
+    beforeUpdate() {},
+    //生命周期 - 更新之后",数据模型已更新,html模板已更新
+    updated() {},
+    //生命周期 - 销毁之前",
+    beforeDestroy() {},
+    destroyed() {},
+    //生命周期 - 销毁完成",
+    //如果页面有keep-alive缓存功能，这个函数会触发",
+    activated() {}
+};
 </script>
 
 <style lang="scss" scoped>
-	.title{
-		font-size: x-large;
-		text-align: left;
-		margin-bottom: 1rem;
-		.detail{
-			font-size: medium;
-			color: dimgrey;
-			margin-top: 1rem;
-		}
-	}
-	.header{
-		min-height: 4rem;
-		text-align: center;
-	}
-	.footer{
-		margin-top: 2rem;
-		margin-left: 2%;
-		width:95%;
-	}
+.title {
+    font-size: x-large;
+    text-align: left;
+    margin-bottom: 1rem;
+    .detail {
+        font-size: medium;
+        color: dimgrey;
+        margin-top: 1rem;
+    }
+}
+.header {
+    min-height: 4rem;
+    text-align: center;
+}
+.footer {
+    margin-top: 2rem;
+    margin-left: 2%;
+    width: 95%;
+}
 </style>

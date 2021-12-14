@@ -1,39 +1,52 @@
 {
-  "name": "@jyeontu/jvuewheel",
-  "version": "0.1.4",
-  "license": "MIT",
-  "keyword": "vue components",
-  "description":"vue组件库封装",
-  "main": "lib/jvuewhell.umd.min.js",
-  "scripts": {
-    "serve": "set port=8081 && vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-	"lib": "vue-cli-service build --target lib --name jvuewhell --dest lib packages/index.js"
-  },
-  "dependencies": {
-	"@typescript-eslint/eslint-plugin": "^4.28.2",
-	"@typescript-eslint/parser": "^4.28.2",
-    "core-js": "^2.6.5",
-    "element-ui": "^2.15.3",
-    "highlight.js": "^11.3.1",
-    "node-sass": "^4.14.1",
-    "sass": "^1.37.5",
-    "scss": "^0.2.4",
-    "scss-loader": "0.0.1",
-    "vue": "^2.6.10",
-    "vue-codemirror": "^4.0.6",
-    "vue-highlightjs": "^1.3.3",
-    "vue-router": "^3.5.2"
-  },
-  "devDependencies": {
-	"eslint-config-standard": "12.0.0",
-    "sass-loader": "^8.0.2",
-    "style-loader": "^3.2.1",
-    "vue-style-loader": "^4.1.3",
-    "@vue/cli-plugin-babel": "^3.8.0",
-    "@vue/cli-service": "^3.8.0",
-    "vue-template-compiler": "^2.6.10",
-    "compression-webpack-plugin": "^8.0.1"
-  }
+    "name": "@jyeontu/jvuewheel",
+    "version": "0.1.4",
+    "license": "MIT",
+    "keyword": "vue components",
+    "description": "vue组件库封装",
+    "main": "lib/jvuewhell.umd.min.js",
+    "scripts": {
+        "serve": "set port=8081 && vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "eslint --ext .js,.vue packages",
+        "lib": "vue-cli-service build --target lib --name jvuewhell --dest lib packages/index.js"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,js,vue}": "eslint --fix"
+    },
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "^4.28.2",
+        "@typescript-eslint/parser": "^4.28.2",
+        "eslint": "^3.19.0",
+        "eslint-config-standard": "^10.2.1",
+        "eslint-friendly-formatter": "^3.0.0",
+        "eslint-loader": "^1.7.1",
+        "eslint-plugin-html": "^3.0.0",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-node": "^5.2.0",
+        "eslint-plugin-promise": "^3.4.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "babel-eslint": "^7.1.1",
+        "core-js": "^2.6.5",
+        "element-ui": "^2.15.3",
+        "highlight.js": "^11.3.1",
+        "node-sass": "^4.14.1",
+        "sass": "^1.37.5",
+        "scss": "^0.2.4",
+        "scss-loader": "0.0.1",
+        "vue": "^2.6.10",
+        "vue-codemirror": "^4.0.6",
+        "vue-highlightjs": "^1.3.3",
+        "vue-router": "^3.5.2"
+    },
+    "devDependencies": {
+        "eslint-config-standard": "12.0.0",
+        "sass-loader": "^8.0.2",
+        "style-loader": "^3.2.1",
+        "vue-style-loader": "^4.1.3",
+        "@vue/cli-plugin-babel": "^3.8.0",
+        "@vue/cli-service": "^3.8.0",
+        "vue-template-compiler": "^2.6.10",
+        "compression-webpack-plugin": "^8.0.1"
+    }
 }
