@@ -12,7 +12,7 @@
     "component": "views/homePage/homePage.vue",
     "children": []
   },{
-    "id": 10,
+    "id": 100,
     "name": "installView",
     "path": "/installView",
     "label": "安装",
@@ -20,6 +20,16 @@
     "icon": "icon-anzhuangbao",
     "open": true,
     "component": "views/installView.vue",
+    "children": []
+  },{
+    "id":200,
+    "name":"versionInfo",
+    "path": "/versionInfo",
+    "label": "版本介绍",
+    "selected": true,
+    "icon": "icon-anzhuangbao",
+    "open": true,
+    "component": "views/versionInfo.vue",
     "children": []
   },{
     "id": 2,
@@ -99,7 +109,7 @@
     "select": false,
     "icon": "icon-huaban",
     "open": false,
-	"hide":true,
+	"hide":false,
     "component": "views/JStepsView.vue",
     "children": []
   },{

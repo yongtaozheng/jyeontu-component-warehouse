@@ -21,7 +21,7 @@
 		<template v-slot:footer-p>
 			<j-code-height-light :code="code"
 								class="footer">
-				
+
 			</j-code-height-light>
 		</template>
 	</split-horizontal>
@@ -72,9 +72,21 @@ export default {
       ],
       tableData:[
         {
-          name:'张三',
-          age:'18',
-          work:'法外狂徒'
+            name:'张三',
+            age:'18',
+            work:'法外狂徒',
+            children:[
+                {
+                    name:'张三111',
+                    age:'18',
+                    work:'法外狂徒',
+                    children:[
+                        {
+                            name:'张三222',
+                            age:'18',
+                            work:'法外狂徒',
+                        }]
+                }]
         },
         {
           name:'李四',
@@ -160,10 +172,10 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）",数据模型已加载，方法已加载,html模板已加载,html模板未渲染
   created() {
 	  this.code = `
-			<j-table :title="title" 
+			<j-table :title="title"
 					:tableData="tableData">
 			</j-table>
-			  
+
 			  /**
 			   * title中的title字段会作为表头显示
 			   * title中key值代表列名 与 tableData中数据属性对应
@@ -226,7 +238,7 @@ export default {
 
   //生命周期 - 挂载完成（可以访问DOM元素）",html模板已渲染
   mounted() {
-	  
+
   },
 
   //生命周期 - 更新之前",数据模型已更新,html模板未更新
