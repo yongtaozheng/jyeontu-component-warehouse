@@ -27,7 +27,7 @@
     "path": "/versionInfo",
     "label": "版本介绍",
     "selected": true,
-    "icon": "icon-anzhuangbao",
+    "icon": "icon-banbenxinxi",
     "open": true,
     "component": "views/versionInfo.vue",
     "children": []
