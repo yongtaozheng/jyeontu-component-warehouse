@@ -256,14 +256,12 @@ export default {
             } else {
                 contentCodeHtml.style.display = "none";
             }
-
             //字符串
             let regStr = "('|\")(.*)('|\")";
             showCode = showCode.replace(
                 new RegExp(regStr, "g"),
                 "<span style='color : " + colors.strWord + "'>$1$2$3</span>"
             );
-
             //js关键字
             let keyWord = [...this.jsKeyWord];
             keyWord = keyWord.concat([...this.jsKeyObj]);
@@ -275,7 +273,6 @@ export default {
                     "<span style='color : " + colors.keyWord + "'>$2</span>$5"
                 );
             }
-
             //自定义关键字
             let keyWords = [...this.keyWords];
             for (let i = 0; i < keyWords.length; i++) {
@@ -287,7 +284,6 @@ export default {
                         " !important;'>$1</span>"
                 );
             }
-
             //js方法
             let functions = /([a-zA-Z0-9_]+)\([A-Za-z,0-9]*\)/g;
             let functionKeyWord = showCode.match(functions) || [];
@@ -318,13 +314,13 @@ export default {
                         "'>$1</span>"
                 );
             }
-
             //变量名
             let varReg = /([a-zA-Z]+):/g;
             showCode = showCode.replace(
                 varReg,
                 "<span style='color : " + colors.varWord + "'>$1</span>:"
             );
+            //注释
             showCode = showCode.replace(
                 /(\/\/.*)|(\/\*.*([\r\n].*)*\*\/)/g,
                 "<span style='color :" + colors.note + "'>$1$2</span>"

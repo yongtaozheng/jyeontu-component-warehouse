@@ -119,51 +119,50 @@ export default {
 				<span>内容</span>
 			</div>
 		</div>
-		
-		/**
-		 * 组件参数配置如下
-		 */
-		props: {
-			code: {
-				type: String,
-				default: ''
-			},
-			keyWords:{
-				type:Array,
-				default:[
-					{
-						value:'关键字1',
-						color:'颜色1'
-					},
-					{
-						value:'关键字2',
-						color:'颜色2'
-					}
-				]
-			},
-			color:{
-				type: Object,
-				default: {
-					keyWord:'orange',//js关键字
-					varWord:'purple',//js变量
-					tagWord:'#F9273F',//html标签
-					strWord:'green',//字符串变量值
-					attrWord:'green',//html属性
-					attrValue:'yellow',//html属性值
-					methodkeyWord:'#74759b',//js方法
-					functionkeyWord:'#2c9678',//自定义函数
-					note:'grey'//注释
-				}
-			}
-		},
-		methods:{
-			test(){
-				console.log('test');
-			},
-			testP(p1,p2){
-				console.log(p1,p2);
-			}
-		}
+        /**
+         * 组件参数配置如下
+         */
+        props: {
+            code: {
+                type: String,
+                default: ''
+            },
+            keyWords:{
+                type:Array,
+                default:[
+                    {
+                        value:'关键字1',
+                        color:'颜色1'
+                    },
+                    {
+                        value:'关键字2',
+                        color:'颜色2'
+                    }
+                ]
+            },
+            color:{
+                type: Object,
+                default: {
+                    keyWord:'orange',//js关键字
+                    varWord:'purple',//js变量
+                    tagWord:'#F9273F',//html标签
+                    strWord:'green',//字符串变量值
+                    attrWord:'green',//html属性
+                    attrValue:'yellow',//html属性值
+                    methodkeyWord:'#74759b',//js方法
+                    functionkeyWord:'#2c9678',//自定义函数
+                    note:'grey'//注释
+                }
+            }
+        },
+        methods:{
+            test(){
+                console.log('test');
+            },
+            testP(p1,p2){
+                console.log(p1,p2);
+            }
+        }
 		 `;
     },
     //生命周期 - 挂载之前",html模板未渲染
