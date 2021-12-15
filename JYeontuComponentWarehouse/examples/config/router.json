@@ -1,178 +1,219 @@
 {
-  "name": "routerConfig",
-  "menu": [{
-    "id": 1,
-    "name": "home",
-    "path": "/homePage",
-    "label": "首页",
-    "selected": true,
-    "icon": "icon-home",
-    "open": true,
-    "component": "views/homePage/homePage.vue",
-    "children": []
-  },{
-    "id": 10,
-    "name": "installView",
-    "path": "/installView",
-    "label": "安装",
-    "selected": true,
-    "icon": "icon-anzhuangbao",
-    "open": true,
-    "component": "views/installView.vue",
-    "children": []
-  },{
-    "id": 2,
-    "name": "calendar",
-    "path": "/calendar",
-    "label": "日历",
-    "select": false,
-    "icon": "icon-calendar",
-    "open": false,
-    "component": "views/calendar.vue",
-    "children": []
-  },{
-    "id": 3,
-    "name": "electronicNumber",
-    "path": "/electronicNumber",
-    "label": "电子屏数字",
-    "select": false,
-    "icon": "icon-number",
-    "open": false,
-    "component": "views/electronicNumber.vue",
-    "children": []
-  },{
-    "id": 5,
-    "name": "flowChartView",
-    "path": "/flowChartView",
-    "label": "流程图",
-    "select": false,
-    "icon": "icon-icon__liuchengtu",
-    "open": false,
-    "component": "views/flowChartView.vue",
-    "children": []
-  },{
-    "id": 6,
-    "name": "JTableView",
-    "path": "/JTableView",
-    "label": "表格",
-    "select": false,
-    "icon": "icon-biaoge",
-    "open": false,
-    "component": "views/JTableView.vue",
-    "children": []
-  },{
-    "id": 7,
-    "name": "codeHeightLightView",
-    "path": "/codeHeightLightView",
-    "label": "代码高亮",
-    "select": false,
-    "icon": "icon-daima",
-    "open": false,
-    "component": "views/codeHeightLightView.vue",
-    "children": []
-  },{
-    "id": 9,
-    "name": "canvasBroadView",
-    "path": "/canvasBroadView",
-    "label": "canvas画板",
-    "select": false,
-    "icon": "icon-huaban",
-    "open": false,
-    "component": "views/canvasBroadView.vue",
-    "children": []
-  },{
-    "id": 11,
-    "name": "JNumRollingView",
-    "path": "/JNumRollingView",
-    "label": "数字滚动变化效果",
-    "select": false,
-    "icon": "icon-huaban",
-    "open": false,
-    "component": "views/JNumRollingView.vue",
-    "children": []
-  },{
-    "id": 12,
-    "name": "JStepsView",
-    "path": "/JStepsView",
-    "label": "步骤条",
-    "select": false,
-    "icon": "icon-huaban",
-    "open": false,
-	"hide":true,
-    "component": "views/JStepsView.vue",
-    "children": []
-  },{
-    "id": 13,
-    "name": "JDialogView",
-    "path": "/JDialogView",
-    "label": "弹窗",
-    "select": false,
-    "icon": "icon-huaban",
-    "open": false,
-	"hide":true,
-    "component": "views/JDialogView.vue",
-    "children": []
-  },{
-    "id": 14,
-    "name": "JHoverBtnView",
-    "path": "/JHoverBtnView",
-    "label": "悬浮按钮",
-    "select": false,
-    "icon": "icon-huaban",
-    "open": false,
-    "component": "views/JHoverBtnView.vue",
-    "children": []
-  },{
-    "id": 8,
-    "name": "utilsTools",
-    "path": "",
-    "label": "工具函数",
-    "select": false,
-    "icon": "icon-gongju1",
-    "open": false,
-    "component": "",
-    "children": [
-		{
-			"id": 801,
-			"name": "dateToolView",
-			"path": "/dateToolView",
-			"label": "时间处理",
-			"select": false,
-			"icon": "icon-shijian1",
-			"open": false,
-			"component": "views/utilsTools/dateToolView.vue",
-			"children": []
-		},{
-			"id": 802,
-			"name": "numsFormatView",
-			"path": "/numsFormatView",
-			"label": "数字处理",
-			"select": false,
-			"icon": "icon-shuzishurukuang",
-			"open": false,
-			"component": "views/utilsTools/numsFormatView.vue",
-			"children": []
-		},{
-			"id": 803,
-			"name": "strToolView",
-			"path": "/strToolView",
-			"label": "字符串处理",
-			"select": false,
-			"icon": "icon-zifuchuanchulimoban",
-			"open": false,
-			"component": "views/utilsTools/strToolView.vue",
-			"children": []
-		}
-	]
-  },{
-    "id": 4,
-    "name": "games",
-    "path": "/games",
-    "label": "游戏",
-    "select": false,
-    "icon": "icon-youxiyouxiji",
-    "open": false,
-    "component": "",
-    "children": []
-  }]
+    "name": "routerConfig",
+    "iconColor": "deepskyblue",
+    "menu": [
+        {
+            "id": 1,
+            "name": "home",
+            "path": "/homePage",
+            "label": "首页",
+            "selected": true,
+            "icon": "icon-home",
+            "open": true,
+            "component": "views/homePage/homePage.vue",
+            "children": []
+        },
+        {
+            "id": 100,
+            "name": "installView",
+            "path": "/installView",
+            "label": "安装",
+            "selected": false,
+            "icon": "icon-anzhuangbao",
+            "open": true,
+            "component": "views/installView.vue",
+            "children": []
+        },
+        {
+            "id": 200,
+            "name": "versionInfo",
+            "path": "/versionInfo",
+            "label": "版本介绍",
+            "selected": false,
+            "icon": "icon-banbenxinxi",
+            "open": true,
+            "component": "views/versionInfo.vue",
+            "children": []
+        },
+        {
+            "id": 2,
+            "name": "calendar",
+            "path": "/calendar",
+            "label": "日历",
+            "selected": false,
+            "icon": "icon-calendar",
+            "open": false,
+            "component": "views/calendar.vue",
+            "children": []
+        },
+        {
+            "id": 3,
+            "name": "electronicNumber",
+            "path": "/electronicNumber",
+            "label": "电子屏数字",
+            "selected": false,
+            "icon": "icon-number",
+            "open": false,
+            "component": "views/electronicNumber.vue",
+            "children": []
+        },
+        {
+            "id": 5,
+            "name": "flowChartView",
+            "path": "/flowChartView",
+            "label": "流程图",
+            "selected": false,
+            "icon": "icon-icon__liuchengtu",
+            "open": false,
+            "component": "views/flowChartView.vue",
+            "children": []
+        },
+        {
+            "id": 6,
+            "name": "JTableView",
+            "path": "/JTableView",
+            "label": "表格",
+            "selected": false,
+            "icon": "icon-biaoge",
+            "open": false,
+            "component": "views/JTableView.vue",
+            "children": []
+        },
+        {
+            "id": 7,
+            "name": "codeHeightLightView",
+            "path": "/codeHeightLightView",
+            "label": "代码高亮",
+            "selected": false,
+            "icon": "icon-daima",
+            "open": false,
+            "component": "views/codeHeightLightView.vue",
+            "children": []
+        },
+        {
+            "id": 9,
+            "name": "canvasBroadView",
+            "path": "/canvasBroadView",
+            "label": "canvas画板",
+            "selected": false,
+            "icon": "icon-huaban",
+            "open": false,
+            "component": "views/canvasBroadView.vue",
+            "children": []
+        },
+        {
+            "id": 11,
+            "name": "JNumRollingView",
+            "path": "/JNumRollingView",
+            "label": "数字滚动变化效果",
+            "selected": false,
+            "icon": "icon-shuzidizeng",
+            "open": false,
+            "component": "views/JNumRollingView.vue",
+            "children": []
+        },
+        {
+            "id": 12,
+            "name": "JStepsView",
+            "path": "/JStepsView",
+            "label": "步骤条",
+            "selected": false,
+            "icon": "icon-huaban",
+            "open": false,
+            "hide": false,
+            "component": "views/JStepsView.vue",
+            "children": []
+        },
+        {
+            "id": 13,
+            "name": "JDialogView",
+            "path": "/JDialogView",
+            "label": "弹窗",
+            "selected": false,
+            "icon": "icon-danchuang",
+            "open": false,
+            "hide": false,
+            "component": "views/JDialogView.vue",
+            "children": []
+        },
+        {
+            "id": 14,
+            "name": "JHoverBtnView",
+            "path": "/JHoverBtnView",
+            "label": "悬浮按钮",
+            "selected": false,
+            "icon": "icon-xuanfuanniufadongtai",
+            "open": false,
+            "component": "views/JHoverBtnView.vue",
+            "children": []
+        },
+        {
+            "id": 15,
+            "name": "JFloatDivView",
+            "path": "/JFloatDivView",
+            "label": "div文字环绕效果",
+            "selected": false,
+            "icon": "icon-xuanfuanniufadongtai",
+            "open": false,
+            "hide": true,
+            "component": "views/JFloatDivView.vue",
+            "children": []
+        },
+        {
+            "id": 8,
+            "name": "utilsTools",
+            "path": "",
+            "label": "工具函数",
+            "selected": false,
+            "icon": "icon-gongju1",
+            "open": false,
+            "component": "",
+            "children": [
+                {
+                    "id": 801,
+                    "name": "dateToolView",
+                    "path": "/dateToolView",
+                    "label": "时间处理",
+                    "selected": false,
+                    "icon": "icon-shijian1",
+                    "open": false,
+                    "component": "views/utilsTools/dateToolView.vue",
+                    "children": []
+                },
+                {
+                    "id": 802,
+                    "name": "numsFormatView",
+                    "path": "/numsFormatView",
+                    "label": "数字处理",
+                    "selected": false,
+                    "icon": "icon-shuzishurukuang",
+                    "open": false,
+                    "component": "views/utilsTools/numsFormatView.vue",
+                    "children": []
+                },
+                {
+                    "id": 803,
+                    "name": "strToolView",
+                    "path": "/strToolView",
+                    "label": "字符串处理",
+                    "selected": false,
+                    "icon": "icon-zifuchuanchulimoban",
+                    "open": false,
+                    "component": "views/utilsTools/strToolView.vue",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "games",
+            "path": "/games",
+            "label": "游戏",
+            "selected": false,
+            "icon": "icon-youxiyouxiji",
+            "open": false,
+            "component": "",
+            "children": []
+        }
+    ]
 }
