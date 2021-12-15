@@ -1,53 +1,34 @@
 <template>
-    <div class="j-table-content">
+    <div :id="id" class="j-table-content">
         <table class="j-table">
-            <tr class="j-table-tr j-table-title">
-                <th
-                    v-for="(item, index) in title"
-                    :key="item.key"
-                    class="j-table-tr-th"
-                >
-                    {{ item.title }}
-                    <button
-                        v-if="item.sort"
-                        @click="sortByKey(item.key, index)"
-                        :title="getSortWay(item)"
-                        class="sort-btn"
-                    >
-                        sort
-                    </button>
-                </th>
-            </tr>
-            <tr
-                v-for="(item, index) in tableData"
-                :key="index"
-                class="j-table-tr"
-            >
-                <td
-                    v-for="(item1, index1) in title"
-                    :key="index1"
-                    class="j-table-tr-td"
-                    :style="getStyle(item1)"
-                >
-                    <input
-                        v-if="!item1.readOnly"
-                        v-model="item[item1.key]"
-                        class="j-table-tr-td-input"
-                    />
-                    <span :title="item[item1.key]" v-else>{{
-                        item[item1.key]
-                    }}</span>
-                </td>
-            </tr>
+            <j-tr
+                :key="tableId"
+                :tableId="tableId"
+                :tableData="tableData"
+                :title="title"
+                showTitle="true"
+            ></j-tr>
         </table>
     </div>
 </template>
 
 <script>
 import { _toLittleCamel, camelTo_ } from "../../utils/strTool";
+import JTr from "./JTr.vue";
 export default {
     name: "JTable",
+    components: {
+        JTr
+    },
     props: {
+        tableId: {
+            type: String,
+            default: "1"
+        },
+        id: {
+            type: String,
+            default: "t"
+        },
         title: {
             //表格头
             type: Array,
@@ -107,7 +88,9 @@ export default {
         //初始化表格
         initTable() {
             let title = this.title;
-            let th = document.getElementsByClassName("j-table-tr-th");
+            let t = document.getElementById(this.id);
+            let th = t.getElementsByClassName("j-table-tr-th");
+            console.log(this.id, th);
             // console.log('initTable',th,title);
             for (let i = 0; i < title.length; i++) {
                 if (title[i].width) {
