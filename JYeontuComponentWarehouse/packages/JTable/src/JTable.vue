@@ -90,7 +90,7 @@ export default {
             let title = this.title;
             let t = document.getElementById(this.id);
             let th = t.getElementsByClassName("j-table-tr-th");
-            console.log(this.id, th);
+            // console.log(this.id, th);
             // console.log('initTable',th,title);
             for (let i = 0; i < title.length; i++) {
                 if (title[i].width) {

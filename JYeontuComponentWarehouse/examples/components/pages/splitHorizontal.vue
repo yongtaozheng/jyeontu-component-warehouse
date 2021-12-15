@@ -57,7 +57,7 @@
     }
     .right-p {
         width: 42%;
-        margin-top: 2rem;
+        // margin-top: 2rem;
         margin-left: 10%;
         height: inherit;
         display: flex;

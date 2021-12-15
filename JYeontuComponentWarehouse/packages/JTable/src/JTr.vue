@@ -39,7 +39,7 @@
                         <span
                             v-if="item.children && index1 == 0"
                             @click="cellClick(index)"
-                            style="cursor: pointer;"
+                            style="cursor: pointer;color:skyblue;font-weight:bold;"
                         >
                             {{
                                 expendList.indexOf(tableId + "-" + index) == -1
@@ -107,7 +107,7 @@ export default {
         cellClick(index) {
             let flag = this.tableId + "-" + index;
             let ind = this.expendList.indexOf(flag);
-            console.log(flag, ind, this.expendList);
+            // console.log(flag, ind, this.expendList);
             if (ind == -1) {
                 this.expendList.push(flag);
             } else {
@@ -211,6 +211,7 @@ export default {
 <style lang="scss" scoped>
 .j-tr-content {
     border-bottom: 1px solid black;
+    margin-bottom: 1rem;
     &:last-child {
         border-bottom: none;
     }
