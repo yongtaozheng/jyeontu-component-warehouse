@@ -1,8 +1,9 @@
 {
   "name": "saveCodeSnippetsAndReusePlugins",
   "displayName": "saveCodeSnippetsAndReusePlugins",
+  "publisher": "jyeontu",
   "description": "代码片段保存复用插件",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "author": "JYeontn <jyeontu@163.com>",
   "engines": {
     "vscode": "^1.95.0"
@@ -10,6 +11,10 @@
   "categories": [
     "Snippets"
   ],
+  "keywords": [
+    "vscode"
+  ],
+  "icon": "icon.jpg",
   "main": "./extension.js",
   "activationEvents": [],
   "contributes": {
@@ -30,6 +35,10 @@
       {
         "command": "saveCodeSnippetsAndReusePlugins.giteeConfig",
         "title": "仓库配置修改"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.codeSnippetSynchronization",
+        "title": "代码片段同步"
       }
     ],
     "keybindings": [
@@ -61,6 +70,10 @@
       "saveCodeSnippetsAndReusePlugins": [
         {
           "command": "saveCodeSnippetsAndReusePlugins.giteeConfig",
+          "group": "group1"
+        },
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.codeSnippetSynchronization",
           "group": "group1"
         },
         {

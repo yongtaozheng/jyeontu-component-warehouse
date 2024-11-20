@@ -32,10 +32,10 @@ function saveSnippet(context) {
         });
 
         if (snippetName) {
-          const snippetData = {
-            name: snippetName,
-            content: text,
-          };
+          // const snippetData = {
+          //   name: snippetName,
+          //   content: text,
+          // };
 
           // 读取已有的代码片段数据
           const snippetsFilePath = path.join(
@@ -50,7 +50,8 @@ function saveSnippet(context) {
           }
 
           // 将新的代码片段添加到数据中
-          snippetsData.snippets.push(snippetData);
+          // snippetsData.snippets.push(snippetData);
+          snippetsData.snippets[snippetName] = text;
 
           // 保存更新后的代码片段数据
           fs.writeFileSync(
@@ -58,6 +59,7 @@ function saveSnippet(context) {
             JSON.stringify(snippetsData, null, 2),
             "utf8"
           );
+          vscode.window.showInformationMessage(`代码片段已保存到本地！`);
 
           const giteeConfig = await getGiteeConfig(context);
           const { token, owner, repo } = giteeConfig;
@@ -77,7 +79,9 @@ function saveSnippet(context) {
             "更新代码片段"
           );
           vscode.window.showInformationMessage(
-            `代码片段 "${snippetName}" 保存 ${res ? "成功" : "失败"}！`
+            `代码片段 "${snippetName}" 同步到gitee仓库 ${
+              res ? "成功" : "失败"
+            }！`
           );
         }
       }

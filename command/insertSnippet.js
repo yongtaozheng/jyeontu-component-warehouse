@@ -19,9 +19,10 @@ function insertSnippet(context) {
         }
 
         // 构建一个包含代码片段名称的快速选择列表
-        const snippetNames = snippetsData.snippets.map(
-          (snippet) => snippet.name
-        );
+        // const snippetNames = snippetsData.snippets.map(
+        //   (snippet) => snippet.name
+        // );
+        const snippetNames = Object.keys(snippetsData.snippets);
         const selectedSnippetName = await vscode.window.showQuickPick(
           snippetNames,
           {
@@ -30,13 +31,11 @@ function insertSnippet(context) {
         );
 
         if (selectedSnippetName) {
-          const selectedSnippet = snippetsData.snippets.find(
-            (snippet) => snippet.name === selectedSnippetName
-          );
+          const selectedSnippet = snippetsData.snippets[selectedSnippetName];
           if (selectedSnippet) {
             const position = editor.selection.start;
             editor.edit((editBuilder) => {
-              editBuilder.insert(position, selectedSnippet.content);
+              editBuilder.insert(position, selectedSnippet);
             });
           }
         }

@@ -1,9 +1,10 @@
 async function getDecodedContent(content) {
   const decodedContent = atob(content); // 解码Base64编码的文件内容
   const decoder = new TextDecoder();
-  const decodedData = decoder.decode(
-    new Uint8Array([...decodedContent].map((char) => char.charCodeAt(0)))
-  );
+  const decodedData =
+    decoder.decode(
+      new Uint8Array([...decodedContent].map((char) => char.charCodeAt(0)))
+    ) || "{}";
   return JSON.parse(decodedData);
 }
 

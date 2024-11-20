@@ -35,9 +35,10 @@ function deleteSnippet(context) {
         }
 
         // 构建一个包含代码片段名称的快速选择列表
-        const snippetNames = snippetsData.snippets.map(
-          (snippet) => snippet.name
-        );
+        // const snippetNames = snippetsData.snippets.map(
+        //   (snippet) => snippet.name
+        // );
+        const snippetNames = Object.keys(snippetsData.snippets);
         const selectedSnippetName = await vscode.window.showQuickPick(
           snippetNames,
           {
@@ -52,17 +53,17 @@ function deleteSnippet(context) {
             "否"
           );
           if (confirmation === "是") {
-            snippetsData.snippets = snippetsData.snippets.filter(
-              (snippet) => snippet.name !== selectedSnippetName
-            );
-
+            // snippetsData.snippets = snippetsData.snippets.filter(
+            //   (snippet) => snippet.name !== selectedSnippetName
+            // );
+            delete snippetsData.snippets[selectedSnippetName];
             // 保存更新后的代码片段数据
             fs.writeFileSync(
               snippetsFilePath,
               JSON.stringify(snippetsData, null, 2),
               "utf8"
             );
-
+            vscode.window.showInformationMessage(`本地代码片段已删除！`);
             const giteeConfig = await getGiteeConfig(context);
             const { token, owner, repo } = giteeConfig;
             const url = `https://gitee.com/api/v5/repos/${owner}/${repo}/contents/codeSnippets/snippets.json`;
@@ -81,7 +82,7 @@ function deleteSnippet(context) {
               "更新代码片段"
             );
             vscode.window.showInformationMessage(
-              `代码片段删除${res ? "成功" : "失败"}！`
+              `gitee仓库代码片段删除${res ? "成功" : "失败"}！`
             );
           } else {
             vscode.window.showInformationMessage("操作已取消。");
