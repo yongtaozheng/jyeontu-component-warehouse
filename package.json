@@ -1,0 +1,91 @@
+{
+  "name": "saveCodeSnippetsAndReusePlugins",
+  "displayName": "saveCodeSnippetsAndReusePlugins",
+  "description": "代码片段保存复用插件",
+  "version": "0.0.1",
+  "author": "JYeontn <jyeontu@163.com>",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "snippets": [],
+    "commands": [
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.saveSnippet",
+        "title": "保存代码片段"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.insertSnippet",
+        "title": "插入代码片段"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.deleteSnippet",
+        "title": "删除代码片段"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.giteeConfig",
+        "title": "仓库配置修改"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.saveSnippet",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.insertSnippet",
+        "key": "ctrl+alt+i",
+        "mac": "cmd+alt+i",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.deleteSnippet",
+        "key": "ctrl+alt+d",
+        "mac": "cmd+alt+d"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "saveCodeSnippetsAndReusePlugins",
+          "group": "navigation"
+        }
+      ],
+      "saveCodeSnippetsAndReusePlugins": [
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.giteeConfig",
+          "group": "group1"
+        },
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.saveSnippet",
+          "group": "group2",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.insertSnippet",
+          "group": "group2",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.deleteSnippet",
+          "group": "group2"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "saveCodeSnippetsAndReusePlugins",
+        "label": "代码片段仓库"
+      }
+    ]
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
