@@ -6,7 +6,6 @@ const {
   fetchFileContent,
   putFileContent,
 } = require("../utils/gitee.js");
-const { merge } = require("../utils/utils.js");
 
 async function getStr(name, value = "") {
   const token = await vscode.window.showInputBox({
@@ -61,7 +60,6 @@ function giteeConfig(context) {
         vscode.window.showInformationMessage(`请输入仓库名`);
         return;
       }
-      console.log(token, owner, repo);
       await saveGiteeConfig(
         {
           token,
@@ -89,12 +87,12 @@ function giteeConfig(context) {
       );
       fs.writeFileSync(
         snippetsFilePath,
-        JSON.stringify(merge(content, snippetsData), null, 2),
+        JSON.stringify(Object.assign(content, snippetsData), null, 2),
         "utf8"
       );
 
       const modifiedContent = JSON.stringify(
-        merge(content, snippetsData),
+        Object.assign(content, snippetsData),
         null,
         2
       );

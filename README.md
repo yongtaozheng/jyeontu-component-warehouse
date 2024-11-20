@@ -3,8 +3,7 @@
 ## 介绍
 
 代码片段保存复用 vscode 插件，支持同步代码片段到自己指定的 gitee 仓库，实现不同电脑上 vscode 可以共享代码片段。
-
-![1732086587361](images/README/1732086587361.png)
+![1732086587361](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086587361.png)
 
 ## 一、准备工作
 
@@ -13,18 +12,18 @@
 直接在[gitee](https://gitee.com/)上新建仓库即可。
 
 我们不想要书签信息公开，所以选择勾选上私有：
-![1732086618889](images/README/1732086618889.png)
+![1732086618889](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086618889.png)
 
 创建完的初始仓库是这样的：
-![1732086633592](images/README/1732086633592.png)
+![1732086633592](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086633592.png)
 
 我们再新增一个目录`codeSnippets`，用于存放代码片段相关的文件：
 
-![1732086650074](images/README/1732086650074.png)
+![1732086650074](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086650074.png)
 
 在该目录下新增一个文件`snippets.json`，用于保存代码片段数据：
 
-![1732086768121](images/README/1732086768121.png)
+![1732086768121](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086768121.png)
 
 ## 二、插件使用
 
@@ -32,38 +31,38 @@
 
 直接在 vscode 插件商场中搜索`saveCodeSnippetsAndReusePlugins`
 
-![1732086794486](images/README/1732086794486.png)
+![1732086794486](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086794486.png)
 
 点击安装即可：
 
-![1732086807664](images/README/1732086807664.png)
+![1732086807664](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086807664.png)
 
 ### 2、仓库配置
 
-![1732086822279](images/README/1732086822279.png)
+![1732086822279](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086822279.png)
 
 需要配置三个属性：
 
 - token
 
 在 gitee 设置中生成然后复制填写即可：
-![1732086839272](images/README/1732086839272.png)
+![1732086839272](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086839272.png)
 
 - owner
 
-![1732086853300](images/README/1732086853300.png)
+![1732086853300](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086853300.png)
 
 - repo
 
 前面准备工作中新建的仓库，填写仓库名
 
-![1732086865788](images/README/1732086865788.png)
+![1732086865788](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086865788.png)
 
 ### 3、代码片段同步
 
 在多机使用时，可以同步拉取其他电脑保存的代码片段
 
-![1732086881019](images/README/1732086881019.png)
+![1732086881019](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086881019.png)
 
 ### 4、保存代码片段
 
@@ -71,7 +70,7 @@
 
 将选中的代码保存为代码片段，可以自己命名
 
-![1732086893618](images/README/1732086893618.png)
+![1732086893618](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086893618.png)
 
 ### 5、插入代码片段
 
@@ -79,7 +78,7 @@
 
 选择已保存的代码片段插入到当前代码
 
-![1732086905857](images/README/1732086905857.png)
+![1732086905857](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086905857.png)
 
 ### 6、删除代码片段
 
@@ -87,7 +86,7 @@
 
 选择需要删除的代码片段进行删除
 
-![1732086924239](images/README/1732086924239.png)
+![1732086924239](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086924239.png)
 
 ## 源码
 

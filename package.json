@@ -3,10 +3,14 @@
   "displayName": "saveCodeSnippetsAndReusePlugins",
   "publisher": "jyeontu",
   "description": "代码片段保存复用插件",
-  "version": "0.0.6",
+  "version": "0.0.8",
   "author": "JYeontn <jyeontu@163.com>",
   "engines": {
     "vscode": "^1.95.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse.git"
   },
   "categories": [
     "Snippets"
