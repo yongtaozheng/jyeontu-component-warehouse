@@ -18,11 +18,7 @@ function insertSnippet(context) {
           snippetsData = JSON.parse(fs.readFileSync(snippetsFilePath, "utf8"));
         }
 
-        // 构建一个包含代码片段名称的快速选择列表
-        // const snippetNames = snippetsData.snippets.map(
-        //   (snippet) => snippet.name
-        // );
-        const snippetNames = Object.keys(snippetsData.snippets);
+        const snippetNames = Object.keys(snippetsData);
         const selectedSnippetName = await vscode.window.showQuickPick(
           snippetNames,
           {
@@ -31,7 +27,7 @@ function insertSnippet(context) {
         );
 
         if (selectedSnippetName) {
-          const selectedSnippet = snippetsData.snippets[selectedSnippetName];
+          const selectedSnippet = snippetsData[selectedSnippetName];
           if (selectedSnippet) {
             const position = editor.selection.start;
             editor.edit((editBuilder) => {

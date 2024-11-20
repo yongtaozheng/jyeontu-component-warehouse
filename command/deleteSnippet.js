@@ -34,11 +34,7 @@ function deleteSnippet(context) {
           snippetsData = JSON.parse(fs.readFileSync(snippetsFilePath, "utf8"));
         }
 
-        // 构建一个包含代码片段名称的快速选择列表
-        // const snippetNames = snippetsData.snippets.map(
-        //   (snippet) => snippet.name
-        // );
-        const snippetNames = Object.keys(snippetsData.snippets);
+        const snippetNames = Object.keys(snippetsData);
         const selectedSnippetName = await vscode.window.showQuickPick(
           snippetNames,
           {
@@ -53,10 +49,7 @@ function deleteSnippet(context) {
             "否"
           );
           if (confirmation === "是") {
-            // snippetsData.snippets = snippetsData.snippets.filter(
-            //   (snippet) => snippet.name !== selectedSnippetName
-            // );
-            delete snippetsData.snippets[selectedSnippetName];
+            delete snippetsData[selectedSnippetName];
             // 保存更新后的代码片段数据
             fs.writeFileSync(
               snippetsFilePath,

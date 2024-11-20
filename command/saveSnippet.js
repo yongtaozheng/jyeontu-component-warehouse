@@ -32,11 +32,6 @@ function saveSnippet(context) {
         });
 
         if (snippetName) {
-          // const snippetData = {
-          //   name: snippetName,
-          //   content: text,
-          // };
-
           // 读取已有的代码片段数据
           const snippetsFilePath = path.join(
             context.extensionPath,
@@ -48,11 +43,8 @@ function saveSnippet(context) {
               fs.readFileSync(snippetsFilePath, "utf8")
             );
           }
-
           // 将新的代码片段添加到数据中
-          // snippetsData.snippets.push(snippetData);
-          snippetsData.snippets[snippetName] = text;
-
+          snippetsData[snippetName] = text;
           // 保存更新后的代码片段数据
           fs.writeFileSync(
             snippetsFilePath,
