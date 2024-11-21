@@ -2,7 +2,7 @@
   "name": "saveCodeSnippetsAndReusePlugins",
   "displayName": "saveCodeSnippetsAndReusePlugins",
   "publisher": "jyeontu",
-  "description": "代码片段保存复用插件",
+  "description": "代码片段管理插件",
   "version": "0.0.9",
   "author": "JYeontn <jyeontu@163.com>",
   "engines": {
@@ -20,7 +20,9 @@
   ],
   "icon": "icon.jpg",
   "main": "./extension.js",
-  "activationEvents": [],
+  "activationEvents": [
+    "*"
+  ],
   "contributes": {
     "snippets": [],
     "commands": [
@@ -43,6 +45,14 @@
       {
         "command": "saveCodeSnippetsAndReusePlugins.codeSnippetSynchronization",
         "title": "代码片段同步"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.insertFunctionName",
+        "title": "根据代码片段提示补全"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.editEffectiveDocuments",
+        "title": "修改插件配置文件"
       }
     ],
     "keybindings": [
@@ -62,6 +72,11 @@
         "command": "saveCodeSnippetsAndReusePlugins.deleteSnippet",
         "key": "ctrl+alt+d",
         "mac": "cmd+alt+d"
+      },
+      {
+        "command": "saveCodeSnippetsAndReusePlugins.editEffectiveDocuments",
+        "key": "ctrl+alt+e",
+        "mac": "cmd+alt+e"
       }
     ],
     "menus": {
@@ -78,6 +93,10 @@
         },
         {
           "command": "saveCodeSnippetsAndReusePlugins.codeSnippetSynchronization",
+          "group": "group1"
+        },
+        {
+          "command": "saveCodeSnippetsAndReusePlugins.editEffectiveDocuments",
           "group": "group1"
         },
         {

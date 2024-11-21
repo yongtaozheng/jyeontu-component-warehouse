@@ -80,6 +80,7 @@ function saveSnippet(context) {
     }
   );
   context.subscriptions.push(saveSnippetDisposable);
+  return saveSnippetDisposable;
 }
 
 module.exports = {

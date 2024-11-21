@@ -1,3 +1,4 @@
 node_modules
 *.vsix
-config/
+config/gitConfig.json
+config/snippets.json

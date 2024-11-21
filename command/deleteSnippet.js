@@ -85,6 +85,7 @@ function deleteSnippet(context) {
     }
   );
   context.subscriptions.push(deleteSnippetDisposable);
+  return deleteSnippetDisposable;
 }
 module.exports = {
   deleteSnippet,

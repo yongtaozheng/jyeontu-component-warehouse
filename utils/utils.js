@@ -1,3 +1,7 @@
+const fs = require("fs");
+const path = require("path");
+const vscode = require("vscode");
+
 function merge(a, b) {
   const merged = {
     snippets: [],
@@ -23,6 +27,25 @@ function merge(a, b) {
   return merged;
 }
 
+async function getExtensionFile(context, fileName) {
+  const filePath = path.join(context.extensionPath, fileName);
+  let gitConfigData = {};
+  if (fs.existsSync(filePath)) {
+    gitConfigData = JSON.parse(fs.readFileSync(filePath, "utf8") || "{}");
+  }
+  return gitConfigData;
+}
+
+async function getInput(name, value = "") {
+  const inputVal = await vscode.window.showInputBox({
+    placeHolder: `请输入${name}`,
+    value,
+  });
+  return inputVal;
+}
+
 module.exports = {
   merge,
+  getExtensionFile,
+  getInput,
 };

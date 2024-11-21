@@ -112,6 +112,7 @@ function giteeConfig(context) {
     }
   );
   context.subscriptions.push(giteeConfigDisposable);
+  return giteeConfigDisposable;
 }
 
 //代码片段同步
@@ -165,6 +166,7 @@ function codeSnippetSynchronization(context) {
     }
   );
   context.subscriptions.push(codeSnippetSynchronizationDisposable);
+  return codeSnippetSynchronizationDisposable;
 }
 
 module.exports = {

@@ -39,6 +39,7 @@ function insertSnippet(context) {
     }
   );
   context.subscriptions.push(insertSnippetDisposable);
+  return insertSnippetDisposable;
 }
 module.exports = {
   insertSnippet,
