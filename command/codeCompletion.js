@@ -7,7 +7,7 @@ let completionProvider = null;
 // 定义提供代码补全项的方法
 function provideCompletionItems(document, position, token, context) {
   return completionItemsData.map((item) => {
-    let completionItem = new vscode.CompletionItem(item.label);
+    const completionItem = new vscode.CompletionItem(item.label);
     completionItem.detail = item.detail;
     completionItem.documentation = item.documentation;
     completionItem.insertText = item.insertText;
