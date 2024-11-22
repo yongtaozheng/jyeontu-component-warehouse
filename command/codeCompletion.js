@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const { getExtensionFile } = require("../utils/utils.js");
 
 let completionItemsData = [];
+let completionProvider = null;
 
 // 定义提供代码补全项的方法
 function provideCompletionItems(document, position, token, context) {
@@ -35,7 +36,7 @@ async function codeSnippetsTip(context) {
     config.effectiveDocuments ||
     "html,css,javascript,typescript,json,svg,less,sass,scss,vue,jsx,tsx,bat,sh";
   // 注册代码提示提供者
-  const completionProvider = vscode.languages.registerCompletionItemProvider(
+  completionProvider = vscode.languages.registerCompletionItemProvider(
     effectiveDocuments.split(","), // 语言标识符，要与activationEvents中的设置匹配
     {
       provideCompletionItems: provideCompletionItems,
@@ -48,6 +49,13 @@ async function codeSnippetsTip(context) {
   return completionProvider;
 }
 
+async function refreshCodeSnippetsTip(context) {
+  let tmp = await completionProvider;
+  if (tmp) tmp.dispose();
+  codeSnippetsTip(context);
+}
+
 module.exports = {
   codeSnippetsTip,
+  refreshCodeSnippetsTip,
 };

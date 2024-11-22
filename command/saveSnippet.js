@@ -2,6 +2,7 @@ const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
 const { fetchFileContent, putFileContent } = require("../utils/gitee.js");
+const { refreshCodeSnippetsTip } = require("./codeCompletion.js");
 
 async function getGiteeConfig(context) {
   const gitConfigFilePath = path.join(
@@ -75,6 +76,7 @@ function saveSnippet(context) {
               res ? "成功" : "失败"
             }！`
           );
+          refreshCodeSnippetsTip(context);
         }
       }
     }

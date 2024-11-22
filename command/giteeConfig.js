@@ -1,6 +1,7 @@
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
+const { refreshCodeSnippetsTip } = require("./codeCompletion.js");
 const {
   getDecodedContent,
   fetchFileContent,
@@ -109,6 +110,7 @@ function giteeConfig(context) {
         "更新代码片段"
       );
       vscode.window.showInformationMessage("已同步gitee最新代码片段");
+      refreshCodeSnippetsTip(context);
     }
   );
   context.subscriptions.push(giteeConfigDisposable);
@@ -163,6 +165,7 @@ function codeSnippetSynchronization(context) {
         "更新代码片段"
       );
       vscode.window.showInformationMessage("已同步gitee最新代码片段");
+      refreshCodeSnippetsTip(context);
     }
   );
   context.subscriptions.push(codeSnippetSynchronizationDisposable);

@@ -9,13 +9,13 @@ const {
 const { codeSnippetsTip } = require("./command/codeCompletion.js");
 
 function activate(context) {
+  codeSnippetsTip(context);
   saveSnippet(context);
   insertSnippet(context);
   giteeConfig(context);
   deleteSnippet(context);
   codeSnippetSynchronization(context);
-  let completionProvider = codeSnippetsTip(context);
-  configEdit(context, completionProvider);
+  configEdit(context);
 }
 
 function deactivate() {

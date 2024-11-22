@@ -88,6 +88,17 @@
 
 ![1732086924239](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086924239.png)
 
+### 7、代码片段自动补全
+
+![1732242428642](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732242428642.png)
+
+### 8、代码片段补全语言类型
+
+- 快捷键（ctrl + alt + e）
+  配置代码补全语言标识符，即需要触发代码片段补全的语言类型，默认为：`html,css,javascript,typescript,json,svg,less,sass,scss,vue,jsx,tsx,bat,sh`，在配置好的这些语言类型文件编辑中才会触发代码片段补全功能
+
+  ![1732242517310](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732242517310.png)
+
 ## 源码
 
 组件库已开源到 gitee，有兴趣的也可以到这里看看：[https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse)
