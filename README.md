@@ -2,7 +2,7 @@
 
 ## 介绍
 
-代码片段保存复用 vscode 插件，支持同步代码片段到自己指定的 gitee 仓库，实现不同电脑上 vscode 可以共享代码片段。
+代码片段保存复用 vscode 插件，支持代码提示自动补全代码片段，支持同步代码片段到自己指定的 gitee 仓库，实现不同电脑上 vscode 可以共享代码片段。
 ![1732086587361](https://gitee.com/zheng_yongtao/save-code-snippets-and-reuse/raw/master/images/README/1732086587361.png)
 
 ## 一、准备工作
